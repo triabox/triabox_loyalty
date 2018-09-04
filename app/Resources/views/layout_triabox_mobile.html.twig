@@ -1,0 +1,658 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta property="og:type"          content="website" />
+    {% block header_meta %}
+   	<meta property="og:url"           content="http://www.triabox.com/news/calendar" />
+    <meta property="og:title"         content="TriaBox - Calendario - Resultados - Amigos y mucho mas" />
+    <meta property="og:description"   content="Red Social para deportistas amateur, Calendario de Competencias, Planificacion, Busqueda de amigos, Seguimiento online de participantes, Guarda tus tiempo de competencia, Compara tus tiempos, Calificacion de Eventos, Especializado en Carreras. Triatlon, Duatlon, Ciclismo, Natacion" />
+    <meta property="og:image"         content="http://www.triabox.com/web/bundles/cube/img/triabox.png" />
+	{% endblock %}
+	
+	<title>TriaBox</title>
+
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			
+	  		'bundles/cube/css/bootstrap/bootstrap.min.css'
+	  		
+	  		'bundles/cube/css/libs/font-awesome.css'
+	  		'bundles/cube/css/libs/nanoscroller.css'
+	  		
+	  		'bundles/cube/css/compiled/theme_styles.css'
+	  		
+	  		
+	  		'bundles/cube/css/libs/jquery-jvectormap-1.2.2.css'
+	  		'bundles/cube/css/libs/weather-icons.css'
+	  		'bundles/cube/css/libs/morris.css'
+	  		'bundles/cube/css/libs/jquery.nouislider.css'
+	  		'bundles/cube/css/libs/select2.css'
+	  		
+	  		'bundles/cube/css/libs/datepicker.css'
+	  		'bundles/cube/css/libs/bootstrap-timepicker.css'
+
+	  		'bundles/cube/css/libs/hopscotch.css'
+	  		
+	  		'bundles/cube/angularjs/css/angular.css'
+	  		'bundles/cube/angularjs/css/loading-bar.css'
+	  		
+			
+		%}
+
+	
+		    <link rel="stylesheet" href="{{ asset_url }}" />
+		    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+		{% endstylesheets %}
+		
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+	<![endif]-->
+	{% endblock %}
+	
+	<!-- bootstrap -->
+{# 	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />#}
+	
+	
+	<!-- 
+	If you need RTL support just include here RTL CSS file <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-rtl.min.css" />
+	And add "rtl" class to <body> element - e.g. <body cl	ass="rtl"> 
+	-->
+	
+	<!-- libraries -->
+{# 	<link rel="stylesheet" type="text/css" href="css/libs/font-awesome.css" />#}
+{# 	<link rel="stylesheet" type="text/css" href="css/libs/nanoscroller.css" />#}
+
+	<!-- global styles -->
+{# 	<link rel="stylesheet" type="text/css" href="css/compiled/theme_styles.css" />#}
+
+	<!-- this page specific styles -->
+{# 	<link rel="stylesheet" href="css/libs/daterangepicker.css" type="text/css" />#}
+{# 	<link rel="stylesheet" href="css/libs/jquery-jvectormap-1.2.2.css" type="text/css" />#}
+{# 	<link rel="stylesheet" href="css/libs/weather-icons.css" type="text/css" />#}
+	
+	<!-- Favicon -->
+{# 	<link type="{{ asset('bundles/cube/img/x-icon') }}" href="favicon.png" rel="shortcut icon" />#}
+
+	<!-- google font libraries -->
+{# 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>#}
+
+{# 	<!--[if lt IE 9]>#}
+{# 		<script src="js/html5shiv.js"></script>#}
+{# 		<script src="js/respond.min.js"></script>#}
+{# 	<![endif]-->#}
+</head>
+<body>
+	<div id="theme-wrapper">
+		<header class="navbar" id="header-navbar">
+			<div class="container">
+				<a href="{{ path('newsuser') }}" id="logo" class="navbar-brand">
+					<cite title="Source Title">TriaBox</cite>
+{# 					<img src="{{ asset('bundles/cube/img/swim_bike_run.jpg') }}" alt="" class="normal-logo logo-white"/>#}
+{# 					<img src="{{ asset('bundles/cube/img/logo-black.png') }}" alt="" class="normal-logo logo-black"/>#}
+{# 					<img src="{{ asset('bundles/cube/img/logo-small.png') }}" alt="" class="small-logo hidden-xs hidden-sm hidden"/>#}
+				</a>
+				
+				<div class="clearfix">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+					<span class="sr-only"></span>
+					<span class="fa fa-bars"></span>
+				</button>
+				
+				<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+					<ul class="nav navbar-nav pull-left">
+						<li>
+							<a class="btn" id="make-small-nav">
+								<i class="fa fa-bars"></i>
+							</a>
+						</li>
+						
+							{% block notifications %}
+							
+							{%  include 'notifications_amateur.html.twig' %}
+							
+							{% endblock %}
+						
+						
+						
+				</div>
+				
+				<div class="nav-no-collapse pull-right" id="header-nav">
+				
+					{% block profile %}
+						{%  include 'profile_amateur.html.twig' %}
+					{% endblock %}
+				
+				</div>
+				</div>
+			</div>
+		</header>
+		{% block container %}
+		<div id="page-wrapper" class="container">
+			<div class="row">
+				<div id="nav-col">
+				
+				{%  include 'menu_amateur_mobile.html.twig' %}
+					<div class="main-box">
+						<header class="main-box-header clearfix">
+							<h2 class="pull-left">{% block lateral_left_box_up_label %}Ultimos resultados{% endblock %}</h2>
+						</header>
+						
+						
+						{% block lateral_left_box_up %}
+								<div id="result_error"></div>
+								<div id="result"></div>
+						{% endblock %}
+							
+					</div>	
+				</div>
+				<div id="content-wrapper">
+					<div class="row">
+						<div class="col-lg-12">
+							
+							<div class="row">
+								<div class="col-lg-12">
+									
+									
+								</div>
+							</div>
+							
+							<div >
+								<div class="row">
+								<div align="center">
+										<div class="main-box">
+										<header class="main-box-header clearfix" >	
+											<div class="icon-box" >
+{# 											<a href="{{ path('event_today') }}">Eventos Hoy</a>#}
+												{% if app.user is not null %}
+												<a href="{{ path('newsuser') }}" class="btn" id="home">
+													<i class="fa fa-home fa-3x" ></i>
+												</a>
+												<a href="{{ path('user_show', { 'id': app.user.id }) }}" class="btn" id="perfil">
+													<i class="fa fa-user fa-3x" ></i>
+												</a>
+												
+												<a href="{{ path('friends') }}" class="btn" id="friend">
+													<i class="fa fa-users fa-3x" ></i>
+												</a>
+												{% endif %}
+												<a href="{{ path('event_list_next') }}" class="btn" id="calendar">
+													<i class="fa fa-calendar fa-3x"></i>
+												</a>
+												{% if app.user is not null %}
+												<a href="{{ path('event_past') }}" class="btn" id="logros">
+													<i class="fa fa-trophy fa-3x" ></i>
+												</a> 
+												<a href="{{ path('event_next') }}" class="btn" id="planing">
+													<i class="fa  fa-check-square-o fa-3x" ></i>
+												</a> 
+												
+												<a href="{{ path('event_report_running', { 'userId': app.user.id }) }}" class="btn" id="report">
+													<i class="fa fa-bar-chart-o fa-3x" ></i>
+												</a> 
+												
+												<a href="{{ path('search_result') }}" class="btn" id="search_result">
+													<i class="fa fa-search fa-3x" ></i>
+												</a> 
+												{% endif %}
+											</div>
+										</header>
+										</div>
+									
+									</div>
+								</div> 
+								
+								
+								<div class="row">
+									<div class="{% block main_col %}col-md-8{% endblock %}">
+										<div class="main-box">
+										<header class="main-box-header clearfix">
+											<h2 class="pull-left">{% block main_box_label %}Novedades{% endblock %}</h2>
+											{% block main_box_label_right %}
+											<div class="icon-box pull-right">
+												<a href="#" class="btn pull-left">
+													<i class="fa fa-refresh"></i>
+												</a>
+												<a href="#" class="btn pull-left">
+													<i class="fa fa-cog"></i>
+												</a>
+											</div>
+											{% endblock %}
+										</header>
+											<div id="login">
+														
+											
+											</div><!-- /.modal-content -->
+											<div class="row">
+												<div class="col-lg-12">
+													
+													<div class="slide-main-container">
+														<div ng-view autoscroll="true" class="slide-main-animation"></div>
+													</div>
+													
+												</div>
+											</div>
+											{% block main_box %}
+											
+											
+											{% endblock %}
+											
+										</div>
+									
+									</div>
+	{% block lateral_box %}
+										<div class="col-md-4">
+										
+											<div class="main-box">
+												<header class="main-box-header clearfix">
+													<h2 class="pull-left">{% block lateral_box_up_label %}{% if app.user is not null %}Amigos{% else %}Usuarios Destacados{% endif %}{% endblock %}</h2>
+												</header>
+												
+												
+												{% block lateral_box_up %}
+														<div id="friends_error"></div>
+														<div id="friends"></div>
+												{% endblock %}
+													
+											</div>	
+																				
+										</div>
+									
+										<div class="col-md-4">
+											<div class="main-box weather-box">
+												<header class="main-box-header clearfix">
+													<h2 class="pull-left">{% block lateral_box_down_label %}Proximos Eventos{% endblock %}</h2>
+												</header>
+												{% block lateral_box_down %}
+													<div id="event_error"></div>
+													<div id="event"></div>
+												{% endblock %}
+													
+											</div>	
+																					
+										</div>
+										{% endblock %}
+									</div>
+							   </div>
+							
+								
+								
+							</div>
+							
+						</div>
+					</div>
+			</div>
+		</div>
+		
+		{% endblock %}
+	</div>
+		
+	
+	{% block script %}
+
+	
+	{% javascripts
+	'bundles/cube/js/demo-rtl.js'
+	'bundles/cube/js/demo-skin-changer.js' 
+	'bundles/cube/js/jquery.js'
+	'bundles/cube/js/bootstrap.js'
+	'bundles/cube/js/jquery.nanoscroller.min.js'
+	'bundles/cube/js/demo.js' 
+	'bundles/cube/js/moment.min.js'
+	'bundles/cube/js/jquery-jvectormap-1.2.2.min.js'
+	'bundles/cube/js/jquery-jvectormap-world-merc-en.js'
+	'bundles/cube/js/gdp-data.js'
+	'bundles/cube/js/flot/jquery.flot.min.js'
+	'bundles/cube/js/flot/jquery.flot.resize.min.js'
+	'bundles/cube/js/flot/jquery.flot.time.min.js'
+	'bundles/cube/js/flot/jquery.flot.threshold.js'
+	'bundles/cube/js/flot/jquery.flot.axislabels.js'
+	'bundles/cube/js/jquery.slimscroll.min.js'
+	'bundles/cube/js/jquery.sparkline.min.js'
+	'bundles/cube/js/skycons.js'
+	'bundles/cube/js/scripts.js'
+	'bundles/cube/js/pace.min.js'
+	'bundles/cube/js/jquery.easypiechart.min.js'
+	'bundles/cube/js/bootstrap-datepicker.js'
+	'bundles/cube/js/bootstrap-timepicker.min.js'
+	'bundles/cube/js/jquery.nouislider.js'
+	'bundles/cube/js/select2.min.js'
+	'bundles/cube/js/hogan.js'
+	'bundles/cube/js/typeahead.min.js'
+	
+	'bundles/cube/js/jquery.knob.js'
+	'bundles/cube/js/raphael-min.js'
+	'bundles/cube/js/morris.js'
+	'bundles/cube/js/hopscotch.js'
+	
+	
+	'bundles/cube/angularjs/js/angular.min.js'
+	'bundles/cube/angularjs/js/angular-route.min.js'
+	'bundles/cube/angularjs/js/angular-animate.js'
+	'bundles/cube/angularjs/js/loading-bar.js'
+	
+	'bundles/cube/angularjs/js/angular.easypiechart.min.js'
+	'bundles/cube/angularjs/app/app.js'
+	'bundles/cube/angularjs/app/directives.js'
+	'bundles/cube/angularjs/app/controllers.js'
+			%}
+			
+	<script type="text/javascript" src="{{ asset_url }}"></script> 
+
+	 
+			
+    {% endjavascripts %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdE3f3MTZwBgQRgG4V-urwsCf-GXiryXY&sensor=false"></script>
+    
+
+	
+	<!-- AFECTA A EL GRAFICO DE CALIFICACIONES-->
+{# 	'bundles/cube/js/jquery-ui.custom.min.js'#}
+
+	
+	
+	
+	
+	
+	<!-- theme scripts -->
+	
+	
+	
+	<!-- this page specific inline scripts -->
+	<div id="fb-root"></div>
+	<script>
+
+	function checkLogin(){
+
+		{% if app.user is  null %}
+			$('#login').load('{{ path('login_redirect') }}');
+	
+			return false;
+		{% else %}
+			return true;
+		{% endif %}
+
+			
+		}
+
+	
+
+	{% block script_facebook %}
+	(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=1600590050192428";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	{% endblock %}
+
+	{% block script_twitter %}
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	
+	{% endblock %}
+	
+	
+	{%  include ':helper:dinamicAddTable.html.twig'%}
+
+	{% block script_custom %}
+	
+	{% endblock %}
+	{% block script_custom_ejecute %}
+	
+	{% endblock %}
+	
+	{% block script_ajax_up %}
+	{% if app.user is not null %}
+  	 	$('#friends').load('{{ path('friends_ajax') }}');
+  	{% else %}
+  	 	$('#friends').load('{{ path('max_friends_user') }}');
+  	 	{% endif %}	
+   	{% endblock %}
+
+   	$('#result').load('{{ path('event_last_result', { 'firstResult': 0,'maxResults': 15  }) }}');
+   	
+   	
+   	{% block script_ajax_down %}
+   	$('#event').load('{{ path('event_next_all', { 'firstResult': min_records,'maxResults': max_records ,'view':'mini' }) }}');
+   	
+	{% endblock %}
+
+	
+
+	function markViewNotificationEvent(){
+
+		$('#notificationEvent').load('{{ path('marck_view_notification_event') }}');
+		
+	}
+
+	function markViewNotificationFriend(){
+
+		$('#notificationFriend').load('{{ path('marck_view_notification_friend') }}');
+		
+	}
+
+  	function moreData(div,link){
+
+  	  	if(checkLogin()){  	
+	 		$(div).load(link);
+  	  	}
+
+	}
+
+  	function sendAjax(link){
+
+  		$.get( link );
+  	}
+  	
+  	
+  	
+	inicializarDatos('tbody.classification','{% trans %}adicionar.resultado{% endtrans %}',4);
+	
+	inicializarDatos('tbody.categories','{% trans %}Agregar Distancia{% endtrans %}',7);
+	
+	//autocomplete with templating
+
+
+	
+	
+	$('#sel2Multi').select2({
+		placeholder: 'Select a Country',
+		allowClear: true
+	});
+	//nice select boxes
+	$('#sel2').select2();
+
+  function sendComment(idNews){
+	 	$('#comments_'.concat(idNews)).load('{{ path('create_comment_newsUser') }}', {"comment" : $('#comment_'.concat(idNews)).val(), "newUser" : $('#newUser_'.concat(idNews)).val()});
+	 	
+	  }
+  function createLink(link,idNews){
+	 	$('#news_'.concat(idNews)).load(link);
+	  
+	  }
+	
+$(document).ready(function() {
+	$('#datepickerDateComponent').datepicker();
+//timepicker
+	$('#timepicker').timepicker({
+	minuteStep: 5,
+	showSeconds: false,
+	showMeridian: false,
+	disableFocus: false,
+	showWidget: true
+}).focus(function() {
+	$(this).next().trigger('click');
+});
+		
+
+		 $('.conversation-inner').slimScroll({
+		        height: '352px',
+		        alwaysVisible: false,
+		        railVisible: true,
+		        wheelStep: 5,
+		        allowPageScroll: false
+		    });
+
+		
+// 	    //CHARTS
+	    function gd(year, day, month) {
+			return new Date(year, month - 1, day).getTime();
+		}
+		
+
+	    
+
+	});
+
+</script>
+		
+<script>
+
+
+function updateFirstTime(){
+	{% if app.user is not null%}
+	$.get('{{ path('user_update_first_time', { 'id': app.user.id }) }}', { }, function(resp) {});
+	{% endif%}
+
+}
+{% if app.user is not null and app.user.firstTime == 0 %}
+
+$(document).ready(function() {
+	var placementRight = 'right';
+	var placementLeft = 'left';
+	
+	if ($('body').hasClass('rtl')) {
+		placementRight = 'left';
+		placementLeft = 'right';
+	}
+	
+	
+	// Define the tour!
+	var tour = {
+		id: "Cube-intro",
+		steps: [
+			{
+				target: "user-left-box",
+				title: "{% trans %}Usuario Logueado{% endtrans %}",
+				content: "{% trans %}Puedes ingresar tu perfil desde el menu{% endtrans %}",
+				placement: placementRight,
+				yOffset: 10
+			},
+			{
+				target: 'make-small-nav',
+				title: "{% trans %}Boton Menu{% endtrans %}",
+				content: "{% trans %}Haciendo Click en el Boton puede mostrar u ocultar el menu{% endtrans %}",
+				placement: "bottom",
+				zindex: 999,
+				xOffset: -8
+			},
+			{
+				target: 'profile-dropdown',
+				title: "{% trans %}Usuario Logueado{% endtrans %}",
+				content: "{% trans %}Puedes ingresar tu perfil desde el menu{% endtrans %}",
+				placement: placementLeft,
+				zindex: 999
+			},
+			{
+				target: 'novedades',
+				title: "{% trans %}Entrenaste hoy?{% endtrans %}",
+				content: "{% trans %}Deja tu estado para que lo vean tus amigos, ademas esta preparado para subir los entrenamientos del dia.{% endtrans %}",
+				placement: "top",
+				zindex: 999
+			},
+			{
+				target: 'home',
+				title: "{% trans %}Inicio{% endtrans %}",
+				content: "{% trans %}Desde cualquier lugar podes volver a la pagina de inicio{% endtrans %}",
+				placement: placementLeft,
+				zindex: 999
+			},
+			{
+				target: 'perfil',
+				title: "{% trans %}Perfil{% endtrans %}",
+				content: "{% trans %}Ingresa a tu perfil y poder ver tu actividad, amigos y carreras que participaste{% endtrans %}",
+				placement: placementLeft,
+				zindex: 999
+			},
+			{
+				target: 'friend',
+				title: "{% trans %}Amigos{% endtrans %}",
+				content: "{% trans %}Ingresa a ver a tus amigos y su perfil{% endtrans %}",
+				placement: placementLeft,
+				zindex: 999
+			},
+			{
+			target: 'calendar',
+			title: "{% trans %}Calendario{% endtrans %}",
+			content: "{% trans %}Ingresa al calendario de eventos e incribite o busca a un amigo{% endtrans %}",
+			placement: placementLeft,
+			zindex: 999
+			},
+			{
+			target: 'logros',
+			title: "{% trans %}Eventos Usuario{% endtrans %}",
+			content: "{% trans %}Ingresa a los eventos que participaste y carga o busca tus resueltados{% endtrans %}",
+			placement: placementLeft,
+			zindex: 999
+			},
+			{
+			target: 'planing',
+			title: "{% trans %}Planificacion{% endtrans %}",
+			content: "{% trans %}Mira los eventos que tenes planificados{% endtrans %}",
+			placement: placementLeft,
+			zindex: 999
+			},
+			{
+			target: 'report',
+			title: "{% trans %}Reportes{% endtrans %}",
+			content: "{% trans %}Informe de tus participaciones en eventos{% endtrans %}",
+			placement: placementLeft,
+			zindex: 999
+			},
+		{
+			target: 'search_result',
+			title: "{% trans %}Busqueda Resultados{% endtrans %}",
+			content: "{% trans %}Sugerencia de resultados oficiales cargados en el sistema{% endtrans %}",
+			placement: placementLeft,
+			zindex: 999
+			},
+		{
+			target: 'more_event',
+			title: "{% trans %}Informar Evento{% endtrans %}",
+			content: "{% trans %}Si conoces un evento que no esta en el sistema, informalo asi es parte de la red.{% endtrans %}",
+			placement: "bottom",
+			zindex: 999
+			},
+
+			{
+				target: 'search',
+				title: "{% trans %}Busqueda{% endtrans %}",
+				content: "{% trans %}Busca eventos o amigos{% endtrans %}",
+				placement: placementLeft,
+				zindex: 999
+				},
+			
+		
+		],
+		showPrevButton: true
+	};
+
+	updateFirstTime();
+	// Start the tour!
+	hopscotch.startTour(tour);
+});
+{% endif %}
+
+	</script>		
+		
+	{% endblock %}
+{# 	 <script async defer#}
+{#         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdE3f3MTZwBgQRgG4V-urwsCf-GXiryXY&signed_in=true&callback=initMap"></script>#}
+        
+</body>
+</html>
+<!--  -->

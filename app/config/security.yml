@@ -1,0 +1,46 @@
+security:
+    firewalls:
+      user_area:
+        anonymous: true
+        logout: ~
+        form_login:
+          login_path: /connect
+          check_path: /login/check
+          username_parameter: "form[username]"
+          password_parameter: "form[password]"
+        oauth:
+          login_path: /login
+          failure_path: /
+          default_target_path:  /news
+          resource_owners:
+            facebook: /login/check-facebook
+            google:  /login/check-google
+          oauth_user_provider:
+            service: ib_user.oauth_user_provider
+   
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_LOGIN,  ROLE_CORPORACION_ADMIN, ROLE_EMPRESA_ADMIN,  ROLE_SITE_ADMIN, ROLE_CONTACTO_ADMIN, ROLE_PRODUCTO_ADMIN,  ROLE_ALERTA_ADMIN,  ROLE_PROCESO_ADMIN, ROLE_ADMIN_USER, ROLE_ADMIN_ROLE, ROLE_ASIGNARFORM_ADMIN, ROLE_CRITERIODEFINICION_ADMIN, ROLE_FORMULARIO_ADMIN]
+        
+    access_control:
+        - { path: ^/login, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/login/, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/css, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/bundles, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user/max/friends/user, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user/enrolled, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user/logs/activity, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user/admin/all, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user/users/, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user, roles: [ROLE_USER ] }
+        - { path: ^/event/event/next/all, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/event/asigne, roles: [ROLE_USER ] }
+        - { path: ^/event/create_punctuation, roles: [ROLE_USER ] }
+        - { path: ^/event/enrolled/, roles: [ROLE_USER ] }
+        - { path: ^/event/today, roles: [IS_AUTHENTICATED_ANONYMOUSLY ] }
+    providers:
+      oauth:
+        id: ib_user.oauth_user_provider
+        
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        Amateur\ObjectBundle\Entity\User: plaintext

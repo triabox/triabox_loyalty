@@ -1,0 +1,193 @@
+Xtending\EntityBundle\Entity\Entidades:
+    type: entity
+    repositoryClass: Xtending\EntityBundle\Entity\EntidadesRepository
+    table: entidades
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        
+        nombre:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        razonsocial:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+            column: razonSocial
+        descripcionempresa:
+            type: string
+            length: 3000
+            fixed: false
+            nullable: true
+            column: descripcionEmpresa
+            
+        descripcionproductos:
+            type: string
+            length: 3000
+            fixed: false
+            nullable: true
+            column: descripcionProductos
+        email:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        idImpuestos:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: idImpuestos
+        emailalternativo:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: emailAlternativo
+        
+        
+        ciudad:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        estado:
+            type: string
+            length: 150
+            fixed: false
+            nullable: true
+        domicilio:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        telefonos:
+            type: string
+            length: 60
+            fixed: false
+            nullable: true
+        codpostal:
+            type: string
+            length: 10
+            fixed: false
+            nullable: true
+        url:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        logo:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        fechaalta:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        
+        fechabaja:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+            column: fechaBaja
+        registrada:
+            type: boolean
+            unsigned: false
+            nullable: false
+    manyToOne:
+      corporacion:
+        targetEntity: Corporaciones
+        inversedBy: entidades
+        joinColumn:
+                name: corporacion_id
+                referencedColumnName: id
+      pais:
+        targetEntity: Paises
+        joinColumn:
+                name: pais_id
+                referencedColumnName: id
+      contactobajaId:
+        targetEntity: Contactos
+        joinColumn:
+                name: contactoBaja_id
+                referencedColumnName: id 
+    oneToMany:
+        sites:
+            targetEntity: Sites
+            mappedBy: entidad
+            cascade:      [persist]
+        contactos:
+            targetEntity: Contactos
+            mappedBy: entidad
+            cascade:      [persist]
+        productos:
+            targetEntity: Producto
+            mappedBy: entidad
+            cascade:      [persist]
+        cargos:
+            targetEntity: CargosEntidades
+            mappedBy: entidad
+    manyToMany:           
+       clientes:
+            orderBy: { 'nombre': 'ASC' }
+            targetEntity: Entidades
+            joinTable:
+              name: clientes
+              joinColumns:
+                cliente_id:
+                  referencedColumnName: id
+              inverseJoinColumns:
+                empresa_id:
+                  referencedColumnName: id
+       proveedores:
+            orderBy: { 'nombre': 'ASC' }
+            targetEntity: Entidades
+            joinTable:
+              name: proveedor
+              joinColumns:
+                proveedor_id:
+                  referencedColumnName: id
+              inverseJoinColumns:
+                empresa_id:
+                  referencedColumnName: id
+       criteriosDefinicion:
+            targetEntity: CriterioDefinicion
+            joinTable:
+              name: criteriodefinicion_entidades
+              joinColumns:
+                entidades_id:
+                  referencedColumnName: id
+              inverseJoinColumns:
+                criteriodefinicion_id:
+                  referencedColumnName: id
+       procesos:
+            targetEntity: FormulariosDefiniciones
+            joinTable:
+              name: entidad_formularios
+              joinColumns:
+                entidad_id:
+                  referencedColumnName: id
+              inverseJoinColumns:
+                formulariodefinicion_id:
+                  referencedColumnName: id
+    oneToOne:
+       invitadaPor:
+          targetEntity: Entidades
+          cascade: {  }
+          mappedBy: null
+          inversedBy: null
+          joinColumns:
+              invito_contacto:
+                  referencedColumnName: id
+          orphanRemoval: false
+    lifecycleCallbacks: {  }

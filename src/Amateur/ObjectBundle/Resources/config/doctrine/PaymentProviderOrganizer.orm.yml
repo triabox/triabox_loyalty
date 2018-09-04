@@ -1,0 +1,51 @@
+Amateur\ObjectBundle\Entity\PaymentProviderOrganizer:
+    type: entity
+    table: payment_provider_organizer
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: false
+        authorizationKey:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: authorization_key
+        segurityKey:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: segurity_key
+        currencyCode:
+            type: string
+            length: 10
+            fixed: false
+            nullable: false
+            column: currency_code
+        merchant:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+    lifecycleCallbacks: {  }
+    oneToOne:
+      organizer:
+            targetEntity: Organizer
+            joinColumns:
+                organizer_id:
+                    referencedColumnName: id
+            orphanRemoval: false

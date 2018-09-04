@@ -1,0 +1,287 @@
+event:
+    pattern:  /
+    defaults: { _controller: "EventBundle:Event:index" }
+
+event_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EventBundle:Event:show" }
+
+event_new:
+    pattern:  /new
+    defaults: { _controller: "EventBundle:Event:new" }
+
+event_create:
+    pattern:  /create
+    defaults: { _controller: "EventBundle:Event:create" }
+    requirements: { _method: post }
+
+event_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EventBundle:Event:edit" }
+
+event_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EventBundle:Event:update" }
+    requirements: { _method: post|put }
+
+event_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EventBundle:Event:delete" }
+    requirements: { _method: post|delete }
+    
+event_past:
+    pattern:  /participation
+    defaults: { _controller: "EventBundle:Event:listEventPast" }
+
+event_past_ajax:
+    pattern:  /{firstResult}/{maxResults}/participation/ajax
+    defaults: { _controller: "EventBundle:Event:listEventPastAjax" }
+
+event_next:
+    pattern:  /next
+    defaults: { _controller: "EventBundle:Event:listEventNext" }
+
+event_next_ajax:
+    pattern:  /{firstResult}/{maxResults}/next/ajax
+    defaults: { _controller: "EventBundle:Event:listEventNextAjax" }
+    
+event_create_punctuation:
+    pattern:  /create_punctuation/{idEvent}
+    defaults: { _controller: "EventBundle:Event:createPunctuation" }
+
+event_next_all:
+    pattern:  /{firstResult}/{maxResults}/{view}/event/next/ajax/all
+    defaults: { _controller: "EventBundle:Event:nextEventAllAjax" }
+    
+event_next_all_rss:
+    pattern:  /{firstResult}/{maxResults}/event/next/rss/all
+    defaults: { _controller: "EventBundle:Event:nextEventAllRss" }   
+
+event_next_min:
+    pattern:  /{firstResult}/{maxResults}/event/next/reduce
+    defaults: { _controller: "EventBundle:Event:nextEventReduce" }
+
+event_next_min_sport:
+    pattern:  /{idSport}/{firstResult}/{maxResults}/{lat}/{log}/event/next/reduce
+    defaults: { _controller: "EventBundle:Event:nextEventBySportReduce" }
+    
+event_next_min_sport_mini:
+    pattern:  /{idSport}/{firstResult}/{maxResults}/{lat}/{log}/event/next/mini
+    defaults: { _controller: "EventBundle:Event:nextEventBySportMini" }
+
+event_next_min_sport_top:
+    pattern:  /{idSport}/{firstResult}/{maxResults}/{lat}/{log}/event/next/reduce/top
+    defaults: { _controller: "EventBundle:Event:nextEventBySportReduceTop" }
+    
+event_rio_next:
+    pattern:  /rio/event/next
+    defaults: { _controller: "EventBundle:Event:getRioEventNext" }
+    
+event_rio_to_day:
+    pattern:  /rio/event/next
+    defaults: { _controller: "EventBundle:Event:getRioEventToDay" }
+
+event_search:
+    pattern:  /event/{search}/search
+    defaults: { _controller: "EventBundle:Event:searchEventReduce" }
+
+event_list_next:
+    pattern:  /event/next/all
+    defaults: { _controller: "EventBundle:Event:listNexEvent" }
+    
+asigne_result:
+    pattern:  /asigne/{idEvent}/{idClassification}/result
+    defaults: { _controller: "EventBundle:Event:asigneResultEvent" }
+
+search_result:
+    pattern:  /search/result
+    defaults: { _controller: "EventBundle:Event:searchResult" }
+
+notificacion_result:
+    pattern:  /notificacion/result
+    defaults: { _controller: "EventBundle:Event:notificationResult" }
+    
+enrolled_update:
+    pattern:  /enrolled/{id}/update
+    defaults: { _controller: "EventBundle:Event:updateEnrolled" }
+  
+enrolled_new:
+    pattern:  /enrolled/{idEvent}/new
+    defaults: { _controller: "EventBundle:Event:newEnrolled" } 
+
+enrolled_show:
+    pattern:  /enrolled/{id}/show
+    defaults: { _controller: "EventBundle:Event:showEnrolled" } 
+    
+enrolled_new_basic:
+    pattern:  /enrolled/{idEvent}/new/basic
+    defaults: { _controller: "EventBundle:Event:newEnrolledBasic" }  
+ 
+enrolled_all_list:
+    pattern:  /enrolled/{idEvent}/list
+    defaults: { _controller: "EventBundle:Event:getAllEnrolledToEvent" }     
+     
+enrolled_edit:
+    pattern:  /enrolled/{id}/edit
+    defaults: { _controller: "EventBundle:Event:editEnrolled" } 
+    
+payment_create:
+    pattern:  /{idEvent}/{entry}/payment/create
+    defaults: { _controller: "EventBundle:Event:addPayment" } 
+    
+list_classification:
+    pattern:  /{firstResult}/{maxResults}/classification/{idEvent}/list/{tipe}
+    defaults: { _controller: "EventBundle:Event:getClassificationByIdEvent" }    
+    
+get_classification:
+    pattern:  /get/{idClassification}/classification
+    defaults: { _controller: "EventBundle:Event:getClassification" }  
+
+compare_classification:
+    pattern:  /compare/{idClassification1}/{idClassification2}/classification
+    defaults: { _controller: "EventBundle:Event:compareResultClassification" } 
+    
+event_rearch_result:
+    pattern:  /search/{search}/result/{idEvent}
+    defaults: { _controller: "EventBundle:Event:searchResultByNameAndBib" } 
+
+event_report_running:
+    pattern:  /{userId}/reports/running
+    defaults: { _controller: "EventBundle:EventReports:generateReportUserRunning" } 
+    
+
+ 
+event_last_result:
+    pattern:  /last/{firstResult}/{maxResults}/result
+    defaults: { _controller: "EventBundle:Event:lastResultEvent" } 
+   
+event_without_result:
+    pattern:  /last/without/{firstResult}/{maxResults}/result/load
+    defaults: { _controller: "EventBundle:Event:lastEventWithOutResultEvent" } 
+    
+event_result_preview:
+    pattern:  /{id}/preview
+    defaults: { _controller: "EventBundle:Event:preViewResult" }
+    requirements: { _method: post|put }
+    
+event_result_admin:
+    pattern:  /{id}/result/admin
+    defaults: { _controller: "EventBundle:Event:adminResult" }
+
+event_enviar_email:
+    pattern:  /enviaremail
+    defaults: { _controller: "EventBundle:Event:enviarEmailEvento" }
+
+event_enviar_next_email_all_user:
+    pattern:  /email/next/event/all/user
+    defaults: { _controller: "EventBundle:Event:enviarEmailNextEventAllUser" }
+
+event_enviar_last_result_email_all_user:
+    pattern:  /email/last/result/all/user
+    defaults: { _controller: "EventBundle:Event:enviarLastResultAllUser" }
+
+## Online Event
+
+event_today: 
+    pattern:  /today
+    defaults: { _controller: "EventBundle:Event:getToDayEvents" } 
+
+event_show_training:
+    pattern:  /online/{name}/user/training
+    defaults: { _controller: "EventBundle:Event:showTrainingOnline" } 
+    
+event_online_user:
+    pattern:  /online/{id}/user/{name}
+    defaults: { _controller: "EventBundle:Event:onlineEventUser" } 
+
+event_online_generate:
+    pattern:  /online/{idEvent}/generate
+    defaults: { _controller: "EventBundle:Event:generateIdOnline" } 
+
+event_show_training:
+    pattern:  /show/map/{name}/{idTraining}/training/online
+    defaults: { _controller: "EventBundle:Event:showTrainingMap" } 
+    
+event_show_event_app:
+    pattern:  /show/map/{name}/{idEvent}/app/online
+    defaults: { _controller: "EventBundle:Event:showEventMapApp" } 
+      
+event_distance:
+    pattern:  /distance/map/{name}/{idEvent}/online
+    defaults: { _controller: "EventBundle:Event:getEstadisticasEventOnline" }
+
+event_interval:
+    pattern:  /interval/map/{name}/{idEvent}/online
+    defaults: { _controller: "EventBundle:Event:getIntervalEventOnline" }
+    
+event_lastpoint:
+    pattern:  /last/point/{name}/{idEvent}/online
+    defaults: { _controller: "EventBundle:Event:getLastPointEvent" }
+
+event_lastpoint_training:
+    pattern:  /last/point/{name}/{idTraining}/training/online
+    defaults: { _controller: "EventBundle:Event:getLastPointTraining" }
+    
+event_send_point:
+    pattern:  /{latitude}/geo/{longitude}/map/{time}/point/{user}/{idEvent}/{idTraining}
+    defaults: { _controller: "EventBundle:Event:createEventPoint" } 
+    
+event_config_route:
+    pattern:  /event/route/{idEvent}
+    defaults: { _controller: "EventBundle:Event:configEventRoute" }
+
+event_user_oline:
+    pattern:  /online/user/{idEvent}
+    defaults: { _controller: "EventBundle:Event:listUserOnlineEvent" }
+    
+
+##Fin evento Online
+
+
+event_around_my:
+    pattern:  /around
+    defaults: { _controller: "EventBundle:Event:eventAroundMy" }
+    
+event_by_organizer:
+    pattern:  /{firstResult}/{maxResults}/{organizer}/organizer
+    defaults: { _controller: "EventBundle:Event:listEventByOrganizer" }
+    
+event_show_classification:
+    pattern:  /classification/{idClassification}/show
+    defaults: { _controller: "EventBundle:Event:showClassification" }
+    
+todopago:
+    pattern:  /{idPayment}/todopago
+    defaults: { _controller: "EventBundle:Event:todoPago" }
+    
+todopago_confirm:
+    pattern:  /{idPayment}/confirm/todopago
+    defaults: { _controller: "EventBundle:Event:confirmPayment" }
+    
+create_training:
+    pattern:  /create/{idMobile}/{idEvent}/training
+    defaults: { _controller: "EventBundle:Event:createTraining" }
+ 
+finalize_training:
+    pattern:  /finalize/{id}/{distance}/{speed}/{time}/training
+    defaults: { _controller: "EventBundle:Event:finalizeTraining" }
+
+update_training:
+    pattern:  /update/{id}/{distance}/{speed}/{time}/training
+    defaults: { _controller: "EventBundle:Event:updateTraining" }      
+    
+list_training_mobile:
+    pattern:  /list/{idMobile}/training
+    defaults: { _controller: "EventBundle:Event:listTrainingByIdMobile" }   
+    
+    
+
+
+
+
+
+
+
+    
+    
+    

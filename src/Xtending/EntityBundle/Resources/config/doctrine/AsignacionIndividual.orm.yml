@@ -1,0 +1,46 @@
+Xtending\EntityBundle\Entity\AsignacionIndividual:
+    type: entity
+    table: asignacionindividual
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        externo:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: externo
+        compartido:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: compartido
+        habilitado:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: habilitado
+        interno:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: interno
+    manyToOne:
+        entidad:
+            targetEntity: Entidades
+            joinColumns:
+                entidadId:
+                    referencedColumnName: id
+            orphanRemoval: false
+        
+        asignacion:
+            targetEntity: EntidadFormularios
+            joinColumns:
+                asignacionId:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,14 @@
+<div id="data-table">
+											<table class="style1">
+												<thead>
+												</thead>
+												<tbody id="pacsC" class="categories" data-prototype="{% filter escape %}{% include 'EventBundle:Category:prototyCategory.html.twig' with {'categories': form.categories.vars.prototype}  %}{% endfilter %}" >
+									
+														    {% for categories in form.categories %}
+														    	<tr>
+														    		{% include 'EventBundle:Category:prototyCategory.html.twig' with {'categories': categories} %}
+															  	</tr>
+															{% endfor %}
+												</tbody>
+											</table> 	
+</div><!-- /#table -->

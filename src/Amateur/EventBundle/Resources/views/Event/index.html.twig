@@ -1,0 +1,60 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}Show Eventos{% endblock %}
+{% block main_box -%}
+
+				
+				<div id="moreNews_1">
+						{% if tipe == "all" %}
+						{% include 'EventBundle:Event:listEvent.html.twig' with {'entities': entities,'tipe': tipe }  %}
+						
+						{% endif %}
+						{% if tipe == "NOT_DIRECCION" %}
+						<div class="alert alert-warning">
+							<i class="fa fa-warning fa-fw fa-lg"></i>
+							<strong>Es necesario que cargue su direccion en su perfil</strong>
+						</div>
+						{% endif %}
+				</div>	
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+
+{% block script_custom %}
+	
+	{% if tipe == "next" %}
+		$('#moreNews_1').load('{{ path('event_next_ajax', { 'firstResult': min_records,'maxResults': max_records  }) }}');
+		
+	{% endif %}
+	{% if tipe == "past" %}
+	
+		$('#moreNews_1').load('{{ path('event_past_ajax', { 'firstResult': min_records,'maxResults': max_records  }) }}');
+	{% endif %}	
+	{% if tipe == "next_all" %}
+	
+		$('#moreNews_1').load('{{ path('event_next_all', { 'firstResult': min_records,'maxResults': max_records ,'view':'max' }) }}');
+	{% endif %}	
+	
+   
+   {% endblock %}
+   {% block script_ajax_down %}
+   	
+   {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

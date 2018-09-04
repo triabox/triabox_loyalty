@@ -1,0 +1,38 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+
+
+{% block main_box_label %}{% trans %}Eventos que Participaste{% endtrans %}{% endblock %}
+									
+
+{% block main_box -%}
+<div class="main-box-body clearfix">
+	
+{% for enrolled in user.registrations %}
+	
+	{% include 'UserBundle:UserResult:userResultEvent.html.twig' with {'user': user,'event':enrolled.event ,'classification':enrolled.classification ,'enrolled':enrolled  } %}
+
+	{% endfor %}			
+		
+</div>
+	
+{% endblock %}
+
+
+
+
+    
+{% block script_custom %}
+
+	
+
+	{% endblock %}
+	
+
+
+	
+
+
+
+
+
+

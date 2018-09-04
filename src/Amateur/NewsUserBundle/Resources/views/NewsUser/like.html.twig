@@ -1,0 +1,17 @@
+
+	<footer class="story-footer" >
+	
+	<a  href="javascript:createLink('{{ path('like_create', { 'idNews': entity.id }) }}','{{ entity.id}}');" class="story-likes-link">
+		<i class="fa fa-heart fa-lg"></i>       {{ entity.likes|length }}              Likes
+	</a>
+	<a  href="javascript:moreData('#comments_{{ entity.id }}','{{ path('comments_news_user', { 'idNews': entity.id, 'firstResult': firstResult,'maxResults': 2  }) }}')" class="story-comments-link">
+		<i class="fa fa-comment fa-lg"></i>     {{ entity.newsUsers|length }}          Comentarios
+	</a>
+	{% if entity.event != null %}
+	<a  href="javascript:appendNews('{{ path('notification_search_event', { 'idEvent': entity.event.id }) }}','#newComent');" class="story-likes-link">
+		<i class="fa fa-mail-forward fa-lg"></i>           Recomendar
+	</a>
+	{% endif %}														
+	<br>
+	
+</footer>

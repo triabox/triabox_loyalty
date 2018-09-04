@@ -1,0 +1,36 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_col %}col-lg-12{% endblock %}
+{% block main_box_label %}{% trans %}Crear Organizador{% endtrans %}{% endblock %}
+{% block main_box -%}
+{%  include ':javascript:autocompleteMapStyle.html.twig' with {'placeId':  form.address.vars.id  } %}    
+<div class="main-box-body clearfix">     
+{% block action_form %} 
+<form action="{{ path('organizer_create') }}" method="post" class="form-horizontal" {{ form_enctype(form) }}>
+{% endblock %}
+				{% include 'UserBundle:Organizer:layoutOrganizer.html.twig' with {'form': form } %}	
+		
+</form>
+		</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+{% block lateral_box %}
+{% endblock %}
+{% endblock %}
+
+		{% block script_custom %}
+		
+	 	
+
+		{% include 'dateScript.html.twig' with {'id': 'startTime' } %}
+	
+																																																																																						
+		{%  include ':javascript:autocompleteMap.html.twig' with {'form': form, 'place': form.address.vars.value , 'placeId':  form.address.vars.id  } %}																																																							
+	
+		
+		
+   
+   		{% endblock %}

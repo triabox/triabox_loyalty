@@ -1,0 +1,55 @@
+Amateur\ObjectBundle\Entity\EventPath:
+    type: entity
+    table: event_path
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        latitude:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: latitude
+        longitude:
+            length: 200
+            fixed: false
+            nullable: true
+            column: longitude
+        time:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: time
+        idPath:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: id_path
+      
+    lifecycleCallbacks: {  }
+    manyToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      training:
+            targetEntity: Training
+            joinColumns:
+                training_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      event:
+            targetEntity: Event
+            joinColumns:
+                event_id:
+                    referencedColumnName: id
+            orphanRemoval: false

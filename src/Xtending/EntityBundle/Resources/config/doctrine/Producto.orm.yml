@@ -1,0 +1,44 @@
+Xtending\EntityBundle\Entity\Producto:
+    type: entity
+    repositoryClass: Xtending\EntityBundle\Entity\ProductosRepository
+    table: producto
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre: 
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        codigo:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+        imagen:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        especificacion:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        registro:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+    manyToOne:
+        entidad:
+            targetEntity: Entidades
+            inversedBy: productos
+            joinColumn:
+              name: entidad_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

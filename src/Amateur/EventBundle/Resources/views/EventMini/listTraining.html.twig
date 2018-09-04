@@ -1,0 +1,34 @@
+{% set ambiente = 'http://www.triabox.com'  %}
+{# {% set ambiente = 'http://www.triabox.com/web/app_test.php'  %}#}
+<div class="table-responsive">
+		<table class="table user-list table-hover" style="clear: both">
+			<tbody>
+					
+				{% for entity in entities %}
+				<tr>
+				
+					<td style="height: 20%;">
+						<img src="http://www.triabox.com/web/img/avatar_running.png" alt=""/>
+						<a href="{{ambiente}}{{ path('event_show_training', { 'idTraining': entity.id , 'name': idMobile }) }}" >{{ entity.name }}</a><br>
+{# 						<span class="user-subhead">{{ entity.startTime|date("d-m") }} - </span> <span class="user-subhead">{{ entity.startHs }}</span> </br>#}
+						<span class="user-subhead" >Duracion: <b>{{ entity.time  }}</b> - Recorrido: <b>{{ entity.distance|number_format(2)  }} km</b></span> 
+						
+					</td>
+					<td >
+						
+						
+					</td>
+				</tr>
+			
+				{% endfor %}
+				
+			</tbody>
+		</table>
+	</div>
+
+	
+	
+								
+				
+				
+

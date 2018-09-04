@@ -1,0 +1,154 @@
+<?php
+
+namespace Amateur\ObjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NewsUser
+ *
+ * @ORM\Table(name="news_user")
+ * @ORM\Entity
+ */
+class NewsUser
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=45, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="news_path", type="string", length=45, nullable=true)
+     */
+    private $newsPath;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="news")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_time", type="datetime", nullable=true)
+     */
+    private $createTime;
+ 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return NewsUser
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set newsPath
+     *
+     * @param string $newsPath
+     * @return NewsUser
+     */
+    public function setNewsPath($newsPath)
+    {
+        $this->newsPath = $newsPath;
+    
+        return $this;
+    }
+
+    /**
+     * Get newsPath
+     *
+     * @return string 
+     */
+    public function getNewsPath()
+    {
+        return $this->newsPath;
+    }
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     * @return NewsUser
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set createTime
+     *
+     * @param \DateTime $createTime
+     * @return NewsUser
+     */
+    public function setCreateTime($createTime)
+    {
+        $this->createTime = $createTime;
+    
+        return $this;
+    }
+
+    /**
+     * Get createTime
+     *
+     * @return \DateTime 
+     */
+    public function getCreateTime()
+    {
+        return $this->createTime;
+    }
+}

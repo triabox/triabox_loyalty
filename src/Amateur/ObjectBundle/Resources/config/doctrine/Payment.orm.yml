@@ -1,0 +1,29 @@
+Amateur\ObjectBundle\Entity\Payment:
+    type: entity
+    table: payment
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        state:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToOne:
+      entry:
+            targetEntity: Entry
+            joinColumns:
+                entry_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToOne:
+      enrolled:
+            targetEntity: Enrolled
+            mappedBy: payment
+            cascade:      [persist]

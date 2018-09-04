@@ -1,0 +1,24 @@
+<div class="topbuts">
+	  <span class="user-detail">
+	  	<span class="name"><a href="{{ path('admin_contactos_edit', { 'id': app.user.id,'entidadAsignada':'contactos_usuario' }) }}">{{ app.user.nombre }} {{ app.user.apellido }}</a></a></span>
+		<span class="text">
+			{% if app.user.corporacion is not null %}
+			<a href="#" onclick="$('#btModalCorp')[0].click();return false">
+			{% endif %}
+			{% if app.user.entidad is not null %}
+				{{ app.user.entidad.nombre }}
+			{% else %}
+				{% trans %}seleccione.empresa{% endtrans %}
+			{% endif %}
+			{% if app.user.corporacion is not null %}
+			</a>
+			{% endif %}
+		</span>
+		<span class="text">{{ app.user.roles[0].name}}</span>
+		<span class="text"><a href="{{ path('logout') }}">{% trans %}salir{% endtrans %}</a></span>
+		<span class="text">
+	   </span>
+	  </span>
+</div>
+
+{% include '::seleccionarEmpresaCorporativo.html.twig'  %}

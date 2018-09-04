@@ -1,0 +1,45 @@
+<div class="story">
+		<div class="story-user">
+			<a href="#">
+				<img src="{%  include 'user_photo.html.twig' with {'user': entity.user } %}" alt=""/>
+			</a>
+		</div>
+		
+		<div class="story-content">
+			<header class="story-header">
+				<div class="story-author">
+					<a href="{{ path('user_show', { 'id': entity.user.id }) }}" class="story-author-link">
+						{{ entity.user.name }} {{ entity.user.lastname }} 
+					</a>
+					<br>
+					 <i class="fa fa-clock-o"></i> {% if entity.createTime %}{{ entity.createTime|date('Y-m-d H:i:s') }}{% endif %}
+				</div>
+				
+				{% set url = '/news/'~entity.id  %}
+				{% set comment = '' %}
+				{% if entity.comment != '' %}{% set comment = entity.comment[:100]~'...'  %} {% else %}{% set  comment = entity.title[:100]~'...' %}{% endif %}
+				
+				
+				{%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+			</header>
+			<div class="story-inner-content">
+						<div class="profile-box-content clearfix">
+						<header class="main-box-header">
+														
+							<h2 class="pull-left" style="color: black;"><big>{{ entity.comment }}</big></h2>
+							
+						</header>
+						</div>
+				
+				</br>
+				{%   if entity.url != '' %}
+				{% include 'NewsUserBundle:NewsUser:viewWebSite.html.twig' with {'entity': entity ,'tipe':"news" } %}
+				{%   endif %}
+			</div>
+			<div id="news_{{ entity.id }}">
+				{% include 'NewsUserBundle:NewsUser:footerNews.html.twig' with {'entity': entity } %}
+			</div>
+			{% include 'NewsUserBundle:NewsUser:showComment.html.twig' with {'entity': entity } %}
+		</div>
+	
+</div>

@@ -1,0 +1,174 @@
+Xtending\EntityBundle\Entity\FormulariosDefiniciones:
+    type: entity
+    table: formularios_definiciones
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        tienefechaautomatica:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: tieneFechaAutomatica
+        caratula:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: caratula
+        tienesite:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+        tieneProducto:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+        tieneempresa:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: tieneEmpresa
+        tienecodigo:
+            type: string
+            length: 15
+            fixed: false
+            nullable: true
+        
+        tieneproveedor:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+        tienefechamanual:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: tieneFechaManual
+        tienefechacierre:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: tieneFechaCierre
+        tieneContacto:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: tieneContacto
+        tieneContactoEntidad:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: tieneContactoEntidad
+        tieneCapitulos:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: tieneCapitulos
+        descripcionEstado:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+            column: descripcionEstado
+        tieneResumen:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: tieneResumen
+        botonNoevalua:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: botonNoevalua
+        activo:
+            type: boolean
+            nullable: true
+            column: activo
+        tieneHistorial:
+            type: boolean
+            unsigned: false
+            nullable: false
+        tienePac:
+            type: boolean
+            unsigned: false
+            nullable: false
+        tieneCopia:
+            type: boolean
+            unsigned: false
+            nullable: false
+        agrupable:
+            type: boolean
+            unsigned: false
+            nullable: false
+        tienePdf:
+            type: boolean
+            unsigned: false
+            nullable: false
+        codigoManual:
+            type: boolean
+            unsigned: false
+            nullable: false
+    lifecycleCallbacks: {  }
+    oneToOne:
+            formularioConfiguracion:
+              targetEntity: FormularioConfiguracion
+              mappedBy: formularioDefincion
+            codigoDinamico:
+              targetEntity: CodigoFD
+              cascade: {  }
+              mappedBy: null
+              inversedBy: null
+              joinColumns:
+                  codigo_dinamico:
+                      referencedColumnName: id
+              orphanRemoval: false
+            tipoFormulario:
+              targetEntity: TipoFormulario
+              cascade: {  }
+              mappedBy: null
+              inversedBy: null
+              joinColumns:
+                  tipo_formulario:
+                      referencedColumnName: id
+              orphanRemoval: false
+    oneToMany:
+            labelsCaratula:
+                targetEntity: LabelsCaratula
+                mappedBy: formulariosDefiniciones
+                cascade:      [persist]
+            gruposPregunta:
+                targetEntity: GrupoPregunta
+                mappedBy: formulariosDefiniciones
+                cascade:      [persist]
+            estados:
+                targetEntity: EstadoFormulario
+                mappedBy: formulariosDefiniciones
+                cascade:      [persist]
+    manyToOne:
+      config:
+        targetEntity: ConfigCustom
+        joinColumn:
+                name: config_custom
+                referencedColumnName: id
+    
+    

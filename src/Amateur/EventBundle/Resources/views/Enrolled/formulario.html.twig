@@ -1,0 +1,169 @@
+
+
+
+<div class="main-box-body clearfix">
+											<div id="invoice-companies" class="row">
+												<div class="col-sm-6 invoice-box">
+													<div class="invoice-icon hidden-sm">
+														<i class="fa fa-home"></i> Participante
+													</div>
+													<div class="invoice-company">
+														<h4><div id="name_athlete"></div></h4>
+														<p>
+															<div id="address_athlete"></div>
+															<div id="email_athlete"></div>
+															<div id="cel_athlete"></div>
+															<br/>
+															<div class="invoice-date clearfix">
+															<strong>Fecha Inscripcion: </strong>
+															<span class="pull-right"> {{ "now"|date("Y-m-d") }}</span>
+															</div>
+														</p>
+													</div>
+												</div>
+												<div class="col-sm-6 invoice-box">
+													<div class="invoice-icon hidden-sm">
+														<i class="fa fa-truck"></i> Evento
+													</div>
+													<div class="invoice-company">
+														<h4>{{ event.name }}</h4>
+														<p>
+															{{ event.city }}<br/>
+															<br/>
+															<div class="invoice-date clearfix">
+																<strong>Fecha del Evento: </strong>
+																<span class="pull-right"> {{ event.startTime }}</span>
+															</div>
+														
+														</p>
+													</div>
+												</div>
+												<!--  <div class="col-sm-4 invoice-box invoice-box-dates">
+													<div class="invoice-dates">
+														<div class="invoice-number clearfix">
+															<strong>Numero Inscripcion</strong>
+															<span class="pull-right">20140566</span>
+														</div>
+														
+														
+													</div>
+												</div>-->
+											</div>
+											
+											<div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th><span>Nombre</span></th>
+															<th ><span>Entrada</span></th>
+															<th ><span>Descripcion</span></th>
+															<th ><span>Precio</span></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																Incripcion 
+															</td>
+															<td 
+																<div id="entrada_event"></div>
+															</td>
+															<td >
+																<div id="distance_event"></div>
+															</td>
+															<td >
+																<div id="price_event"></div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																Servicios 
+															</td>
+															<td >
+																Pago por servicios TriaBox
+															</td>
+															<td >
+																1% del costo del la inscripcion
+															</td>
+															<td >
+																<div id="price_service"></div> 
+															</td>
+														</tr>
+																</tbody>
+												</table>
+											</div>
+											
+											<div class="invoice-box-total clearfix">
+												<div class="row">
+													<div class="col-sm-9 col-md-10 col-xs-6 text-right invoice-box-total-label">
+														Total
+													</div>
+													<div class="col-sm-3 col-md-2 col-xs-6 text-right invoice-box-total-value">
+													<div id="price_total"></div> 
+													</div>
+												</div>
+												
+												
+											</div>
+											<!-- 
+											<div class="invoice-summary row">
+												<div class="col-md-3 col-sm-6 col-xs-12">
+													<div class="invoice-summary-item">
+														<span>Account No.</span>
+														<div>IBAN 12345678900</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6 col-xs-12">
+													<div class="invoice-summary-item">
+														<span>Invoice No.</span>
+														<div>20140566</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6 col-xs-12">
+													<div class="invoice-summary-item">
+														<span>Due Date</span>
+														<div>12/05/2014</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6 col-xs-12">
+													<div class="invoice-summary-item">
+														<span>Total</span>
+														<div>&dollar; 8550.91</div>
+													</div>
+												</div>
+											</div>
+											 
+											<div class="clearfix">
+												<a href="#" class="btn btn-success pull-right">
+													<i class="fa fa-mail-forward fa-lg"></i> Send invoice
+												</a>
+											</div>
+											-->
+										</div>
+										
+										
+										<script type="text/javascript">
+
+$("#name_athlete").text("{{ formUser.name.vars.value }}"+" "+"{{ formUser.lastname.vars.value }}");
+$("#address_athlete").text("{{ formUser.street.vars.value }}"+" "+"{{ formUser.number.vars.value }}"+" "+"{{ formUser.piso.vars.value }}");
+$("#email_athlete").text("{{ formUser.email.vars.value }}");
+$("#cel_athlete").text("{{ formUser.phoneNumber.vars.value }}");
+{%  if  entity.category is not null %}
+$("#distance_event").text("{{ entity.category.name}}");
+{%  if  entity.payment is not null %}
+$("#entrada_event").text("{{ entity.payment.entry.name}}");
+$("#price_event").text("{{ entity.payment.entry.amount}}");
+
+$("#price_service").text({{ entity.payment.entry.amount}}*0.01+" $");//En duro el % de cobro
+
+
+$("#price_total").text({{ entity.payment.entry.amount}}*0.01*1.01+" $");//En duro el % de cobro
+
+
+{% endif %}	
+
+{% endif %}	
+
+
+
+</script>

@@ -1,0 +1,40 @@
+Amateur\ObjectBundle\Entity\Friend:
+    type: entity
+    table: friend
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+        tipeFriend:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: tipe_friend
+        userPendingActive:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_pending_active
+    lifecycleCallbacks: {  }
+    manyToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToOne:
+      userFriend:
+            targetEntity: User
+            joinColumns:
+                user_id1:
+                    referencedColumnName: id
+            orphanRemoval: false

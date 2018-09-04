@@ -1,0 +1,36 @@
+
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}
+ <div align="center">				 
+	<a href="{{ path('event_next') }}" class="btn  btn-primary mrg-b-lg" id="planing">
+			<i class="fa  fa-check-square-o fa-3x" ></i>	<br>	
+			{% trans %}Inscripto{% endtrans %}
+		
+	</a> 
+	
+	<a href="{{ path('event_report_running', { 'userId': app.user.id }) }}" class="btn  btn-primary mrg-b-lg" id="report">
+		
+		<i class="fa fa-bar-chart-o fa-3x" ></i><br>
+		{% trans %}Reportes{% endtrans %}
+	</a> 
+</div>
+
+
+{% endblock %}
+{% block main_box -%}
+    
+{% include 'UserBundle:User:profile.html.twig' with {'user': entity } %}
+
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+{% block script_custom %}
+		
+	 
+
+
+	$('#moreNews_1').load('{{ path('news_user', { 'firstResult': min_records,'maxResults': max_records ,'userId': entity.id  }) }}');
+		
+	{% endblock %}

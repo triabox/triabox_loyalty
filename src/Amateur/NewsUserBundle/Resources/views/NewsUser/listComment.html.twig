@@ -1,0 +1,16 @@
+		<table class="table user-list table-hover" style="clear: both">
+		<tbody>
+		{% for entity in entities %}
+			
+				{% include 'NewsUserBundle:NewsUser:comment.html.twig' with {'entity': entity } %}
+					
+											
+        {% endfor %}
+        </tbody>
+		</table>
+        
+{#         <div id="moreNews_{{ firstResult }}">#}
+{# 			<div class="clearfix">#}
+{# 				<button type="submit" onclick="appendNews('{{ path('comments_news_user', { 'idNews': idNews, 'firstResult': firstResult,'maxResults': max_records  }) }}','#comments_{{ idNews }}')" class="btn btn-success pull-right">Ver mas</button>#}
+{# 			</div>	#}
+{# 		</div>	#}

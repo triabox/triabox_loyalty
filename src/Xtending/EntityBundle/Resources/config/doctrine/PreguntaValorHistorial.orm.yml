@@ -1,0 +1,52 @@
+Xtending\EntityBundle\Entity\PreguntaValorHistorial:
+    type: entity
+    table: preguntas_valor_historial  
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        textarea:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+            column: textarea
+        fecha:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+            column: fecha
+        text:
+            type: string
+            length: 50
+            column: text
+        archivo:
+            type: string
+            length: 100
+            column: archivo
+    oneToOne:
+        pregunta:
+            targetEntity: Preguntas
+            joinColumns:
+              id_pregunta:
+                referencedColumnName: id
+        criterioSeleccion:
+            targetEntity: LabelsCriterio
+            joinColumns:
+              criterio_seleccion:
+                referencedColumnName: id       
+    manyToOne:
+        formulariosResultados:
+            targetEntity: FormulariosResultadosHistorial
+            inversedBy: preguntasValor
+            joinColumns:
+                formularios_resultados_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
+        

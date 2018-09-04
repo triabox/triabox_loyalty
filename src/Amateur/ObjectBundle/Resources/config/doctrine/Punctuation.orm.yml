@@ -1,0 +1,61 @@
+Amateur\ObjectBundle\Entity\Punctuation:
+    type: entity
+    table: punctuation
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        location:
+            type: integer
+            unsigned: false
+            nullable: true
+        circuit:
+            type: integer
+            unsigned: false
+            nullable: true
+        organization:
+            type: integer
+            unsigned: false
+            nullable: true
+        nutrition:
+            type: integer
+            unsigned: false
+            nullable: true
+        punctuality:
+            type: integer
+            unsigned: false
+            nullable: true
+        assistance:
+            type: integer
+            unsigned: false
+            nullable: true
+        kit:
+            type: integer
+            unsigned: false
+            nullable: true
+        total:
+            type: integer
+            unsigned: false
+            nullable: true
+        mostPositive:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: most_positive
+        mostNegative:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: most_negative
+        comment:
+            type: string
+            length: 5000
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

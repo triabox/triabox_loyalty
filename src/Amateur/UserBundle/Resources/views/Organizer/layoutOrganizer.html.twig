@@ -1,0 +1,79 @@
+				<style>
+<!--
+
+-->
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+</style>
+				{{ form_errors(form) }}
+				<div class="form-group">
+					<label for="photo">{% trans %}Foto{% endtrans %}</label>
+					{% if form.logo.vars.value != "" %}
+					<img id="archivo" src="{{ asset(form.logo.vars.value) }}" style="max-width: 30mm; max-height: 30mm"/>						
+					{% endif %}
+					<span class="btn btn-success btn-file">
+					Modificar{{ form_widget(form.file) }}
+					</span>
+					<div style="visibility: hidden;">{{ form_widget(form.logo) }}</div>
+					{{ form_row(form._token) }}
+				</div>
+
+			
+				{% include ':form:inputLateral.html.twig' with {'id': form.name.vars.id 
+				,'name': form.name.vars.full_name ,'type': 'username' ,'value': form.name.vars.value, 'label': 'Nombre' } %}
+				{{ form_row(form._token) }}
+				{% include ':form:inputLateral.html.twig' with {'id': form.email.vars.id 
+				,'name': form.email.vars.full_name ,'type': 'email' ,'value': form.email.vars.value, 
+				'label': 'Email' } %}
+				{% include ':form:inputLateral.html.twig' with {'id': form.web.vars.id 
+				,'name': form.web.vars.full_name ,'type': 'web' ,'value': form.web.vars.value, 
+				'label': 'Web' } %}
+				{% include ':form:inputLateral.html.twig' with {'id': form.twitter.vars.id 
+				,'name': form.twitter.vars.full_name ,'type': 'twitter' ,'value': form.twitter.vars.value, 
+				'label': 'Twitter' } %}
+				{% include ':form:inputLateral.html.twig' with {'id': form.facebook.vars.id 
+				,'name': form.facebook.vars.full_name ,'type': 'facebook' ,'value': form.facebook.vars.value, 
+				'label': 'Facebook' } %}
+				
+				<div class="row">
+				<div class="col-lg-12">
+					<div class="main-box">
+						<header class="main-box-header clearfix">
+							<h2>{% trans %}Entradas{% endtrans %}</h2>
+						</header>
+						<div class="main-box-body clearfix">{% include
+							'UserBundle:PaymentProviderOrganizer:layoutPaymentProviderOrganizer.html.twig' %}</div>
+					</div>
+				</div>
+			</div>
+				
+				{% include ':form:inputLateralMap.html.twig' with {'id': form.address.vars.id 
+				,'name': form.address.vars.full_name ,'type': 'address' ,'value': form.address.vars.value, 
+				'label': 'Ingrese Ubicacion' } %}
+				
+				<div style="visibility: hidden;">
+				
+				{{ form_widget(form.latitude) }}
+				{{ form_widget(form.longitude) }}
+	
+				</div>
+				{% include ':form:buttonLateral.html.twig' with {
+				'name': 'Enviar'} %}
+			

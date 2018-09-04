@@ -1,0 +1,16 @@
+Xtending\EntityBundle\Entity\TipoFormulario:
+    type: entity
+    table: tipo_formulario
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 150
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

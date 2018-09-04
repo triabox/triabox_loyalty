@@ -1,0 +1,70 @@
+Amateur\ObjectBundle\Entity\Enrolled:
+    type: entity
+    table: enrolled
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        number:
+            type: integer
+            unsigned: false
+            nullable: true
+        code:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+        time:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        objetive:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      event:
+            targetEntity: Event
+            joinColumns:
+                event_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      category:
+            targetEntity: Category
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToOne:
+      classification:
+            targetEntity: Classification
+            joinColumns:
+                classification_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      payment:
+            targetEntity: Payment
+            joinColumns:
+                payment_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+            cascade:      [persist]
+      punctuation:
+            targetEntity: Punctuation
+            joinColumns:
+                punctuation_id:
+                    referencedColumnName: id
+            orphanRemoval: false

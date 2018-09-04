@@ -1,0 +1,91 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: @SecurityXtendingBundle/Resources/config/services.yml }
+    - { resource: @ServicesBundle/Resources/config/services.yml }
+
+framework:
+    #esi:             ~
+    serializer:
+        enabled: true
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         
+        cookie_lifetime: 0
+    fragments:       ~
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        min_records: '0'
+        max_records: '4'
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+services:
+    get_set_method_normalizer:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+        tags:
+            - { name: serializer.normalizer }
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+hwi_oauth:
+        firewall_name: user_area
+        resource_owners:
+            facebook:
+                type:                facebook
+                client_id:           1600590050192428
+                client_secret:       699fff1dc7ca8a06731bc9cb257f2add
+                scope:               "email,user_friends,user_birthday"
+                infos_url:           "https://graph.facebook.com/me?fields=id,name,email,picture.type(square),friends,birthday"
+                options:
+                    display: page
+                paths:
+                    friends:  friends 
+                    profilepicture: picture.data.url
+                    birthday: birthday
+            google:
+                type:                google
+                client_id:           1096800004152-ngo910mpt2f5ko07v74lce17mr6shets.apps.googleusercontent.com
+                client_secret:       VM7g6vo8WOjEUpFzTX7wBysx
+                scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+                options:
+                    access_type:     offline

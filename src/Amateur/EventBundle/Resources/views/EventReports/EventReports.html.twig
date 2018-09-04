@@ -1,0 +1,131 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}{% trans %}Reporte{% endtrans %}{% endblock %}
+{% block main_box -%}
+
+
+<div class="main-box-body clearfix">
+<div class="row" id="user-profile">
+								
+				
+				<div id="reports">
+				
+				{% for entity in arrayEnrolled %} 
+					<div class="main-box">
+							<header class="main-box-header clearfix">
+								{{ entity.sport }} {{ entity.distance }}k
+							</header>
+							
+							<div class="main-box-body clearfix">
+								<div id="{{ entity.sport }}{{ entity.distance }}"></div>
+							</div>
+						</div>
+				{% endfor %}
+						
+				</div>	
+				
+				</div></div>
+{% endblock %}
+{% block main_col %}
+
+{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+{% block script_custom %}
+
+
+
+{% set cant = 0 %}
+
+
+{% for entity in arrayEnrolled %} 
+	
+
+	var {{ entity.sport }}{{ entity.distance }} = [ ];
+	
+	{% for enrolled in entity.enrolleds %} 
+		
+{% set time = 0 %}
+					{% if  enrolled.classification is not null%} 
+					
+					{% set time = enrolled.classification.secondsNetoTime %}
+					
+					
+					{% else %}
+					
+					{% set time = enrolled.seconds %}
+					{% endif %}
+				
+					{{ entity.sport }}{{ entity.distance }}[{{ cant}}] = {"period": "{{ enrolled.event.startTime }}", "time": {{ time }}, "tiempo": {{ time }}};
+					{% set cant = cant+1 %}
+	{% endfor %}
+	{% set cant = 0 %}
+	
+graphLine{{ entity.sport }}{{ entity.distance }} = Morris.Line({
+	element: '{{ entity.sport }}{{ entity.distance }}',
+	data: {{ entity.sport }}{{ entity.distance }},
+	lineColors: ['#8bc34a', '#ffc107', '#e84e40', '#03a9f4', '#9c27b0', '#90a4ae'],
+	xkey: 'period',
+	ykeys: ['time'],
+	labels: ['tiempo'],
+	resize: true,
+	yLabelFormat: function (y) { 
+	
+	var hours = Math.floor( y / 3600 );  
+	var minutes = Math.floor( (y % 3600) / 60 );
+	var seconds = y % 60;
+	 
+	//Anteponiendo un 0 a los minutos si son menos de 10 
+	minutes = minutes < 10 ? '0' + minutes : minutes;
+	 
+	//Anteponiendo un 0 a los segundos si son menos de 10 
+	seconds = seconds < 10 ? '0' + seconds : seconds;
+	 
+	var result = hours + ":" + minutes + ":" + seconds;  // 2:41:30
+	
+	return result; 
+	
+	}
+});
+
+	
+{% endfor %}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+

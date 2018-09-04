@@ -1,0 +1,39 @@
+Xtending\EntityBundle\Entity\EstadoFormularioValor:
+    type: entity
+    table: estado_formulario_valor
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        estado:
+            type: string
+            unique: true
+            length: 25
+            fixed: false
+            nullable: false
+        tipoParticipante:
+            type: integer
+            unique: true
+            length: 4
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }
+    manyToOne:
+        contacto:
+            targetEntity: Contactos
+            joinColumn:
+                name: id_contacto
+                referencedColumnName: id
+        estadoFormulario:
+            targetEntity: EstadoFormulario
+            joinColumn:
+                name: id_estado_formularios
+                referencedColumnName: id
+        formularioResultado:
+            targetEntity: FormulariosResultados
+            joinColumn:
+                name: id_formularios_resultado
+                referencedColumnName: id

@@ -1,0 +1,22 @@
+{% set ambiente = 'http://www.triabox.com'  %}
+<div class="table-responsive">
+	{% include 'EventBundle:EventResult:searchResult.html.twig' with { 'tipo' :'_mobile'} %}
+</div>
+<h1 class="modal-title" id="title_result"></h1>
+<div id="event_last_result"></div>
+<script>
+$( "#search_value_mobile").change(function() {
+            
+            if($( "#search_value_mobile" ).val().length >= 5){
+                autocomplete_mobile();
+            }
+
+        });
+
+
+	if($('#distance').length){
+		$('#event_last_result').test('Ultimos Resultados');
+		$('#event_last_result').load("{{ ambiente }}{{ path('event_last_result', {'firstResult': 0,'maxResults': 20 }) }}");
+	}
+
+</script>

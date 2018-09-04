@@ -1,0 +1,110 @@
+Amateur\ObjectBundle\Entity\NewsUser:
+    type: entity
+    table: news_user
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        comment:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        newsPath:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: news_path
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        createTime:
+            type: datetime
+            nullable: true
+            column: create_time
+        type:
+            type: string
+            nullable: true
+            column: type
+        urlImagen:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: url_imagen
+        title:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: title
+        description:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: descripcion
+        url:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: url  
+    lifecycleCallbacks: {  }
+    manyToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+        likes:
+            targetEntity: Positive
+            mappedBy: newsUser
+            cascade:      [persist]
+    manyToMany:           
+       newsUsers:
+            targetEntity: NewsUser
+            joinTable:
+                name: news_user_commet
+                joinColumns:
+                      news_user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                       news_user_comment_id:
+                        referencedColumnName: id
+    oneToOne:
+      enrolled:
+            targetEntity: Enrolled
+            joinColumns:
+                enrolled_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      event:
+            targetEntity: Event
+            joinColumns:
+                event_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      friend:
+            targetEntity: User
+            joinColumns:
+                fried_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      activity:
+            targetEntity: Activity
+            cascade:      [persist]
+            joinColumns:
+                activity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    

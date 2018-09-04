@@ -1,0 +1,39 @@
+Amateur\ObjectBundle\Entity\ActivityLogUsers:
+    type: entity
+    table: activity_log_user
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        comment:
+            type: string
+            length: 3000
+            fixed: false
+            nullable: true
+        section:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+        page:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+        date:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false

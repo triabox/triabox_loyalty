@@ -1,0 +1,61 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}Proximos Eventos{% endblock %}
+{% block main_box -%}
+<div class="main-box-body clearfix">
+	
+				
+				{% include 'EventBundle:Event:tapEvent.html.twig' %}
+		
+</div>
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+
+{% block script_custom %}
+	
+	
+   {% endblock %}
+   {% block script_ajax_down %}
+   	function loadEvent(){
+			
+   {% include 'EventBundle:Event:tapEventAjax.html.twig' %}
+	
+	if($('#longitude').val() != 'n' || {% if app.user is not null and app.user.latitude != '' %} true {% else %} false {% endif %} ){
+	
+				var notification = new NotificationFx({
+					message : '<span class="icon fa fa-filter fa-2x"></span><p>Eventos filtrados por ubicacion.</p>',
+					layout : 'bar',
+					effect : 'exploader',
+					type : 'notice', // notice, warning or error
+					onClose : function() {
+						setTimeout(function() {
+							path.animate( { 'path' : pathConfig.from }, 300, mina.easeinout );
+						}, 2500 );
+					}
+				});
+
+				// show the notification
+				notification.show();
+   	}
+   	
+   	}
+   {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

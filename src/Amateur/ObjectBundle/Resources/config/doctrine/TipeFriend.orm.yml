@@ -1,0 +1,22 @@
+Amateur\ObjectBundle\Entity\TipeFriend:
+    type: entity
+    table: tipe_friend
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        code:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

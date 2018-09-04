@@ -1,0 +1,48 @@
+Xtending\EntityBundle\Entity\AlertaRegistro:
+    type: entity
+    table: alerta_registro
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: estado
+        repeticiones:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: repeticiones
+        ultimaRepeticion:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: ultima_repeticion
+        
+        
+    lifecycleCallbacks: {  }
+    manyToOne:
+        alerta:
+            targetEntity: Alerta
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_alerta:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToOne:
+        registro:
+            targetEntity: FormulariosResultados
+            joinColumns:
+                id_registro:
+                    referencedColumnName: id
+                    
+        

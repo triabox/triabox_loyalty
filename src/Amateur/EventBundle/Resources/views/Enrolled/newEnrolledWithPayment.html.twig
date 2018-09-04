@@ -1,0 +1,272 @@
+{% block main_box -%}
+
+
+
+<style>
+  
+  /* Popover Body */
+  .popover-content {
+    background-color: #F2DEDE;
+    color: #A94442;
+    border-color: #DD504C;
+    border: 1px solid;
+    border-radius: 6px;
+  }
+
+  </style>
+{% if form.available.vars.value == "0"	 %}
+	El evento ya esta completo
+{% else %}
+							
+<div class="modal-content">
+<div class="col-lg-12">
+	<div class="main-box clearfix" style="min-height: 400px;">
+		<header class="main-box-header clearfix">
+			<h2>Participar en el evento</h2>
+		</header>
+		<div class="main-box-body clearfix">
+			<div id="myWizard" class="wizard">
+				<div class="wizard-inner">
+					<ul class="steps">
+						<li data-target="#step1" class="active"><span class="badge badge-primary">1</span>Inscripcion<span class="chevron"></span></li>
+						<li data-target="#step2"><span class="badge">2</span>Datos Participante<span class="chevron"></span></li>
+						<li data-target="#step3"><span class="badge">3</span>Confirmacion<span class="chevron"></span></li>
+						<li data-target="#step4"><span class="badge">4</span>Pago<span class="chevron"></span></li>
+					</ul>
+					<div class="actions">
+						<button type="button" class="btn btn-default btn-mini btn-prev"> <i class="icon-arrow-left"></i>Previo</button>
+						<button type="button" class="btn btn-success btn-mini btn-next" data-last="Finalizar">Siguiente<i class="icon-arrow-right"></i></button>
+					</div>
+				</div>
+				<div class="step-content">
+					<div class="step-pane active" id="step1">
+						
+						
+						<h4>{% trans %}Entrada{% endtrans %}</h4>
+						<div class="form-group">
+							
+								<div class="form-group form-group-select2">
+									{{ form_widget(form.entry) }}
+								</div>
+													</div>
+						
+						{%  include 'EventBundle:Enrolled:layoutDistanceAndObjetive.html.twig' with {'form': form } %}
+					</div>
+					<div class="step-pane" id="step2">
+	
+						
+						<h4>Datos Obligatorios de Usuario</h4>
+						<form action="{{ path('current_user_update') }}" method="post" name="user" id="user">
+						
+						{%  include 'UserBundle:User:layoutUser.html.twig' with {'form': formUser } %}
+
+						</form>
+					</div>
+					
+					<div class="step-pane" id="step3">
+						<br/>
+						
+							{%  include 'EventBundle:Enrolled:formulario.html.twig' with {'form': form } %}
+						
+					</div>
+					<div class="step-pane" id="step4">
+						
+						<div class="form-group">
+							<div id="pay" style="display: none;margin: 100px 0;" class="profile-message-btn center-block text-center">
+												<a href="" id="link_pay" class="btn btn-success">
+													<i class="fa fa-envelope"></i>
+													Solo te falta Pagar 
+												</a>
+											</div>
+							<div class="alert alert-success fade in" id="distancia" style="margin: 100px 0;">
+								<i class="fa fa-check-circle fa-fw fa-lg"></i>
+								<strong>Animate y hace click en Finalizar para confirmar la inscripcion!</strong> 
+							</div>
+						
+							
+							
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</div>
+</div>
+{% endif %}	
+        {% endblock %}
+        <script type="text/javascript">
+<!--
+
+//-->
+ 
+
+
+			$('#{{ formUser.sport.vars.id}}').select2();
+			$('#{{ form.category.vars.id}}').select2();
+			$('#{{ form.entry.vars.id}}').select2();
+		
+			//timepicker
+			$('#{{ form.objetive.vars.id  }}').timepicker({
+				minuteStep: 5,
+				showSeconds: true,
+				showMeridian: false,
+				disableFocus: false,
+				showWidget: true
+										}).
+			focus(function() {$(this).next().trigger('click');});
+
+
+			
+			
+			
+
+			//Ejecuta todos los formularios necesarios para la inscripcion
+			function enviar(){
+				
+				$( "#user" ).submit();
+				inscribirEvento();
+				
+			}
+			
+			//Inscribe al usuario sin el pago confirmado.
+			function inscribirEvento(){
+			$( "#distancia" ).load( createEnrolled(), function( response, status, xhr ) {
+					  if ( status == "error" ) {
+					    var msg = "Error al procesar la inscripcion: ";
+					    $( "#distancia" ).html( msg + xhr.status + " " + xhr.statusText );
+					  }else{
+						  $( "#payment" ).load( sendPayment(), function( response, status, xhr ) {
+							  if ( status == "error" ) {
+							    var msg = "Error al procesar la inscripcion: ";
+							    $( "#payment" ).html( msg + xhr.status + " " + xhr.statusText );
+							  }else{
+								
+								}
+						});
+					  }
+				});
+			
+			}
+			function createEnrolled(){
+                            
+				var url = '{{ path('add_registration' , { 'tiempo' :'tiempo_value','distancia' :'distancia_value','idEvent' :event.id }) }}';
+            	var url_value = url.replace('tiempo_value', $('#{{ form.objetive.vars.id }}').val());
+            	url_value = url_value.replace('distancia_value', $( "#{{ form.category.vars.id}} option:selected" ).val());
+            	//$('#distancia').load(url_value);
+            	return url_value;
+			}	
+			//habilita el pago
+			function enablePayment(idPayment){
+            	var urlTodoPago = '{{ path('todopago' , { 'idPayment' :'idPayment_value' }) }}';
+            	var urlTodoPago  = urlTodoPago.replace('idPayment_value', idPayment);
+            	
+            	$( "#pay" ).show();
+            	$("#link_pay").attr("href", urlTodoPago);
+            	
+            }
+            
+			function sendPayment(){
+				var url = '{{ path('payment_create' , { 'entry' :'entry_value','idEvent' :event.id }) }}';
+				var url_value  = url.replace('entry_value', $( "#{{ form.entry.vars.id}} option:selected" ).val());
+            	
+				$.ajax({
+  					url: url_value
+					}).done(function( msg ) {
+					
+  					enablePayment(msg);
+  				});
+            	
+
+            }
+            
+			//Captura el evento del envio del usuario y serializa el formulario y lo envia			
+			$("#user").submit(function(e){
+					
+				    e.preventDefault();
+				    var formSerialize = $(this).serialize();
+				    $.post('{{ path('current_user_update') }}', formSerialize, function(response){
+				   	if(response.result == 0) {
+				   		alert("Error"+response.data[key]);
+                    	for (var key in response.data) {
+                        	$($( "#user" ).find('[name*="'+key+'"]')[0]).before('<ul class="errors"><li>'+response.data[key]+'</li></ul>');
+                    	}
+                	} else {
+                		alert("Ok"+response.data[key]);
+                		
+                	}
+				   },'JSON');
+				});
+
+
+				$(document).ready(function() {
+				 $('#myWizard')
+			        // Call the wizard plugin
+			        .wizard()
+					// Triggered when clicking the Complete button
+					//El ultimo boton del wizar finaliza la ejecucion
+			        .on('finished.fu.wizard', function(e) {
+			            enviar();
+			            
+			          
+			        })
+			        
+
+			        ;
+			
+				});
+				function validateEmpty(idImput,name){
+
+					if($('#'+idImput).val() == ""){
+            			$('#'+idImput).popover({content: name+" es obligatorio", trigger: "manual",placement: "top"}); 
+            			$('#'+idImput).popover("show");
+            			return true;
+            		}
+					$('#'+idImput).popover("destroy");
+            		return false;
+
+				}
+
+				//captura el evento siguiente del wizar
+				$('#myWizard').on('change', function (event, data) {
+				var step = $('#myWizard').wizard("selectedItem");
+				if (step.step === 1) {
+                
+            	}
+            	if (step.step === 2) {
+					isOk = true;
+					if(validateEmpty('name',"Nombre")){isOk = false;}
+					if(validateEmpty('lastname',"Apellido")){isOk = false;}
+					if(validateEmpty('street',"Direccion")){isOk = false;}
+					if(validateEmpty('email',"Email")){isOk = false;}
+					if(validateEmpty('cel',"Telefono")){isOk = false;}
+					if(validateEmpty('date',"Fecha de Nacimiento")){isOk = false;}
+            		return isOk;
+            	}
+                    
+             	if (step.step === 3) {
+                //alert("Hola Mundo 3");
+            	}
+					$("#name_athlete").text($('#name').val()+" "+$('#lastname').val());
+					$("#address_athlete").text($('#address').val());
+					$("#email_athlete").text($('#email').val());
+					$("#cel_athlete").text($('#cel').val());
+					$("#distance_event").text($( "#{{ form.category.vars.id}} option:selected" ).text());
+					$("#entrada_event").text($( "#{{ form.entry.vars.id}} option:selected" ).text().split("-")[0]);
+					$("#price_event").text($( "#{{ form.entry.vars.id}} option:selected" ).text().split("-")[1]);
+					
+					$("#price_service").text($( "#{{ form.entry.vars.id}} option:selected" ).text().split("-")[1].split("$")[0]*0.01+"$");//En duro el % de cobro
+					
+					
+					$("#price_total").text($( "#{{ form.entry.vars.id}} option:selected" ).text().split("-")[1].split("$")[0]*1.01+"$");//En duro el % de cobro
+					
+							
+					});
+					
+				
+					
+				
+			</script>
+        

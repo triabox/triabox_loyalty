@@ -1,0 +1,47 @@
+ 	function autocomplete(){
+        
+            var url = '{{ path('admin_event_result_not_asigne_all' , { 'search' :'search_value'}) }}';
+            var value = $( "#search_value" ).val();
+          
+            var url_value = url.replace('search_value', encodeURIComponent(value));
+            
+            $('#classifications').load(url_value);
+    }
+    
+    function autocomplete_mobile(){
+        
+            var url = '{{ path('admin_event_result_not_asigne_all' , { 'search' :'search_value'}) }}';
+            var value = $( "#search_value_mobile" ).val();
+          
+            var url_value = url.replace('search_value', encodeURIComponent(value));
+            
+            $('#classifications_mobile').load(url_value);
+    }
+
+    $( "#search_value").change(function() {
+        
+        if($( "#search_value" ).val().length >= 5){
+            autocomplete();
+        }
+
+    });
+    
+    var dispositivo = navigator.userAgent.toLowerCase();
+    if( dispositivo.search(/iphone|ipod|ipad|android/) > -1 )
+    {
+
+    		$('#search_mobile').load('{{ path('search_result_mobile_view' )}}');
+        
+   
+    }else{
+    
+    	{% if app.user is  null %}
+{# 		$( "#boton" ).click();//Activa busqueda de resultado en el inicio#}
+		{% endif %}
+    }
+    
+    	
+    	 
+    	
+    
+      

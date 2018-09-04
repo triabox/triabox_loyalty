@@ -1,0 +1,16 @@
+				
+				{% for entity in entities %} 
+					{% include 'EventBundle:Event:view.html.twig' with {'entity': entity,'tipe': tipe } %} 
+				{% endfor %}
+			
+			
+					<div id="{{ action }}moreNews_{{ firstResult }}">
+			
+				 
+					
+					<div class="clearfix">
+		
+							<button type="submit" onclick="moreData('#{{ action }}moreNews_{{ firstResult }}','{{ path(action, { 'firstResult': firstResult,'maxResults': max_records  }) }}')" class="btn btn-success pull-right">Ver mas</button>
+				
+					</div>	
+				</div>	

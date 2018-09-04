@@ -1,0 +1,7 @@
+user:
+    resource: "@UserBundle/Controller/UserController.php"
+    type:     annotation
+    
+point:
+    resource: "@UserBundle/Controller/PointController.php"
+    type:     annotation

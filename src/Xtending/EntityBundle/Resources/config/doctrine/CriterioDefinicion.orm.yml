@@ -1,0 +1,104 @@
+Xtending\EntityBundle\Entity\CriterioDefinicion:
+    type: entity
+    table: criterio_definicion
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        tipo:
+            type: string
+            length: 10
+            fixed: false
+            nullable: false
+        esProveedorSite:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_site
+        esProveedorEmpresa:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_empresa
+        esProveedorProducto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_producto
+        esProveedorContacto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_contacto
+        esClienteSite:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_site
+        esClienteEmpresa:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_empresa
+        esClienteProducto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_producto
+        esClienteContacto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_contacto
+        esPropioSite:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_site
+        esPropioEmpresa:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_empresa
+        esPropioProducto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_producto
+        esPropioContacto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_contacto
+        activo:
+            type: boolean
+            nullable: true
+            column: activo
+    lifecycleCallbacks: {  }
+    oneToMany:
+            labelsCaratula:
+                targetEntity: LabelsCaratula
+                mappedBy: criterioDefinicion
+                cascade:      [persist]
+    manyToMany:           
+             empresas:
+                targetEntity: Entidades
+                joinTable:
+                name: criteriodefinicion_entidades
+                joinColumns:
+                  criteriodefinicion_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  entidades_id:
+                    referencedColumnName: id
+   
+    
+    

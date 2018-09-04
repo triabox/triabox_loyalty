@@ -1,0 +1,38 @@
+{% extends "::template.html.twig" %}
+
+
+{% block mainpage_layout %}
+
+		
+<div class="main pagesize"> <!-- *** mainpage layout *** -->
+	<div class="main-wrap">
+		
+		<div class="page clear">
+			
+			{% block content_box %}
+				<div class="content-box">
+					<div class="box-body">
+						<div class="box-header clear">
+							<div class="fr">
+								{% block tabs_clear %}
+							
+								{% endblock %}
+							</div>
+								<h2>{% block form_title %}Form Settings{% endblock %}</h2>
+						</div>
+							{% block form %}
+						
+					    	{% endblock %} 
+					</div> <!-- end of box-body -->
+				</div> <!-- end of content-box -->
+			{% endblock %}
+		</div><!-- end of page -->
+	</div>
+</div>
+
+
+
+{% endblock %}   
+
+
+

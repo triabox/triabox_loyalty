@@ -1,0 +1,64 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}{% trans %}Editar Evento{% endtrans %}{% endblock %}
+{% block main_box -%}
+{%  include ':javascript:autocompleteMapStyle.html.twig' with {'placeId':  form.city.vars.id  } %}
+<div class="main-box-body clearfix">    
+		<form action="{{ path('event_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+		
+		{% include 'EventBundle:Event:layoutEvent.html.twig' with {'form': form } %}								
+										
+		<button type="submit" class="btn btn-success">{% trans %}Guardar{% endtrans %}</button>
+		</form>
+		<div style="visibility: hidden;">
+		<button class="md-trigger" id="ubicacion" data-modal="modal-10"></button>
+		</div>
+</div>
+{% block script_custom_ejecute %}
+	
+{% endblock %}
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+
+
+{% block script_custom %}
+
+	{% for entries in form.entries %}
+	
+	$('#{{ entries.start.vars.id }}').datepicker();
+	$('#{{ entries.end.vars.id }}').datepicker();
+	
+	
+
+	{% endfor %}
+	
+	{% for categories in form.categories %}
+	$('#{{ categories.distanceTotal.vars.id}}').select2();
+	$('#{{ categories.distanceLastRun.vars.id}}').select2();
+	$('#{{ categories.distanceFirstRun.vars.id}}').select2();
+	$('#{{ categories.distanceBike.vars.id}}').select2();
+	$('#{{ categories.distanceSwim.vars.id}}').select2();
+
+		{% endfor %}
+	{%  include ':javascript:autocompleteMap.html.twig' with {'form': form, 'place': form.city.vars.value , 'placeId':  form.city.vars.id  } %}
+	
+
+	
+   $('#{{ form.sport.vars.id}}').select2();
+   
+   function openUbicacion(){
+   
+   $( "#ubicacion" ).click();
+   
+   
+   }
+   
+  $("#modal-10").on("shown.bs.modal", function () {
+    google.maps.event.trigger(mapafuera, "resize");
+	});
+   
+{% endblock %}
+   		
+   		

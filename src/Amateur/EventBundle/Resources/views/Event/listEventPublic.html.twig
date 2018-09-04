@@ -1,0 +1,70 @@
+<div class="main-box" id="main-box">
+
+<div class="main-box-body clearfix">
+				
+				{% for entity in entities %} 
+				
+				{% if app.user == null %}
+				<div class="col-lg-6 col-md-5 col-sm-7">
+					{% include 'EventBundle:Event:view_public.html.twig' with {'entity': entity,'tipe': tipe } %} 
+				</div>
+				
+				{% else %}
+				<div class="col-lg-6 col-md-5 col-sm-7">
+					{% include 'EventBundle:Event:view.html.twig' with {'entity': entity,'tipe': tipe } %} 
+				</div>
+				{% endif %}
+				
+				{% endfor %}
+				{% if entities|length == 0 %}
+											<div class="alert alert-warning">
+												<i class="fa fa-warning fa-fw fa-lg"></i>
+												<strong>No existen eventos</strong>
+											</div>
+				{% endif %}
+				
+						{% if idSport == "9" %}
+							<div id="running_{{ firstResult }}">
+						{% endif %}
+						{% if idSport == "3" %}
+							<div id="triatlon_{{ firstResult }}">
+						{% endif %}
+						{% if idSport == "1" %}
+							<div id="natacion_{{ firstResult }}">							
+						{% endif %}	
+						{% if idSport == "2" %}
+							<div id="ciclismo_{{ firstResult }}">							
+						{% endif %}	
+						{% if idSport == "4" %}
+							<div id="duatlon_{{ firstResult }}">							
+						{% endif %}	
+				 
+					
+					<div class="clearfix">
+						{% if idSport == "9" %}
+							
+							<button type="submit" style="width: 100%" onclick="getEventByPosition('http://www.triabox.com{{ path('event_next_min_sport', { 'idSport': idSport,'firstResult': firstResult,'maxResults': max_records ,'lat': 'latitude','log': 'longitude'  }) }}','#running_{{ firstResult }}')" class="btn btn-success pull-right"><span class="fa fa-refresh"></span> Ver mas</button>
+						{% endif %}
+						{% if idSport == "3" %}
+							
+							<button type="submit" style="width: 100%" onclick="getEventByPosition('http://www.triabox.com{{ path('event_next_min_sport', { 'idSport': idSport,'firstResult': firstResult,'maxResults': max_records ,'lat': 'latitude','log': 'longitude'  }) }}','#triatlon_{{ firstResult }}')" class="btn btn-success pull-right"><span class="fa fa-refresh"></span> Ver mas</button>
+						{% endif %}
+						{% if idSport == "1" %}
+						<button type="submit" style="width: 100%" onclick="getEventByPosition('http://www.triabox.com{{ path('event_next_min_sport', { 'idSport': idSport,'firstResult': firstResult,'maxResults': max_records ,'lat': 'latitude','log': 'longitude'  }) }}','#natacion_{{ firstResult }}')" class="btn btn-success pull-right"><span class="fa fa-refresh"></span> Ver mas</button>
+													
+						{% endif %}	
+						{% if idSport == "2" %}
+						<button type="submit" style="width: 100%" onclick="getEventByPosition('http://www.triabox.com{{ path('event_next_min_sport', { 'idSport': idSport,'firstResult': firstResult,'maxResults': max_records ,'lat': 'latitude','log': 'longitude'  }) }}','#ciclismo_{{ firstResult }}')" class="btn btn-success pull-right"><span class="fa fa-refresh"></span> Ver mas</button>
+													
+						{% endif %}	
+						{% if idSport == "4" %}
+						<button type="submit"  style="width: 100%" onclick="getEventByPosition('http://www.triabox.com{{ path('event_next_min_sport', { 'idSport': idSport,'firstResult': firstResult,'maxResults': max_records ,'lat': 'latitude','log': 'longitude'  }) }}','#duatlon_{{ firstResult }}')" class="btn btn-success pull-right"><span class="fa fa-refresh"></span> Ver mas</button>
+														
+						{% endif %}	
+						
+							
+				
+					</div>	
+				</div>	
+				</div>
+				</div>

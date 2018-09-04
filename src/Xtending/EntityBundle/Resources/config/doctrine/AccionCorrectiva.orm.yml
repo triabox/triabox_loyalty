@@ -1,0 +1,51 @@
+Xtending\EntityBundle\Entity\AccionCorrectiva:
+    type: entity
+    table: accion_correctiva
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        fechaInicio:
+            type: date
+            nullable: true
+            column: fecha
+        nombre:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        estado:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: estado
+    oneToMany:
+        descripcionesVerificaciones:
+            targetEntity: DescripcionVerificacion
+            mappedBy: accionCorrectiva
+            cascade:      [persist]
+        causasPropuestas:
+            targetEntity: CausaPropuesta
+            mappedBy: accionCorrectiva
+            cascade:      [persist]
+        accionesEjecuciones:
+            targetEntity: AccionEjecucion
+            mappedBy: accionCorrectiva
+            cascade:      [persist]
+        verificacionesEfectivas:
+            targetEntity: VerificacionEfectiva
+            mappedBy: accionCorrectiva
+            cascade:      [persist]    
+    manyToOne:
+        formularioResultado:
+            targetEntity: FormulariosResultados
+            inversedBy: accionesCorrectivas
+            joinColumns:
+                formulario_resultado_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
+    

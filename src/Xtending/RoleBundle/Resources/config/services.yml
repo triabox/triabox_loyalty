@@ -1,0 +1,7 @@
+parameters:
+#    role.example.class: Xtending\RoleBundle\Example
+
+services:
+#    role.example:
+#        class: %role.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

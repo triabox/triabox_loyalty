@@ -1,0 +1,56 @@
+
+{% extends 'layout_formulario_html.twig' %}
+{% block head_layout %}
+
+
+{% endblock %}
+
+{% block form_title %}{% trans %}recuperar.password{% endtrans %}{% endblock %}
+
+{% block mainpage_layout -%}
+	<div class="login-box">
+<div class="login-border">
+<div class="login-style">
+  <div class="login-header">
+    <div class="login-logo clear">
+        <span class="textlogo">
+          <span class="title"><img src="{{ asset('bundles/frontend/images/site-logo.png') }}" />      </div></span>
+
+          <span class="text">
+          </span>
+        </span>
+      <div class="picture">
+        
+    </div>
+  </div>
+  <form action="{{ path('login_cambio', {'id':usuario.id}) }}" method="post">
+
+  <div class="login-inside">
+    <div class="login-data">
+
+      <p>&nbsp;</p>
+      <div class="row clear">
+        <label for="user">{% trans %}nueva.password{% endtrans %}:</label>
+        <input  type="password" id="nuevaPass" name="nuevaPass"/> 
+      </div>
+	  <div class="row clear">
+        <label for="user">{% trans %}repite.nueva{% endtrans %}:</label>
+        <input  type="password" id="repNueva" name="repNueva"/> 
+      </div>
+      <button type="submit" class="button template">{% trans %}continuar{% endtrans %}</button>
+
+       </div>    
+  </div>
+  <div class="login-footer clear">
+    <div class="login-links">
+      <a href="{{ path('login_recuperar_password') }}">{% trans %}volver{% endtrans %}</a>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends '::registration-full.html.twig' %}
+{% block form_login %}		
+<form role="form" action="{{ path('user_create') }}" method="post" {{ form_enctype(form) }}>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user"></i></span>
+											<input class="form-control" type="text" name="{{ form.username.vars.full_name }}" placeholder="User name">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user"></i></span>
+											<input class="form-control" type="text" name="{{ form.name.vars.full_name }}" placeholder="Name">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+											<input class="form-control" type="text" name="{{ form.email.vars.full_name }}"  placeholder="Email address">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+											<input type="password" class="form-control" name="{{ form.password.vars.full_name}}" placeholder="Enter password">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+											<input type="password" class="form-control" name="{{ form.codePassword.vars.full_name }}"  placeholder="Re-enter password">
+											{{ form_row(form._token) }}
+										</div>
+										<div id="remember-me-wrapper">
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="checkbox-nice">
+														<input type="checkbox" id="terms-cond" checked="checked" />
+														<label for="terms-cond">
+															I accept terms and conditions
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<button type="submit" class="btn btn-success col-xs-12">Register</button>
+											</div>
+										</div>
+									</form>
+									{% endblock %}

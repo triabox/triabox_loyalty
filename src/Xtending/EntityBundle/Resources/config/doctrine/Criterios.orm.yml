@@ -1,0 +1,32 @@
+Xtending\EntityBundle\Entity\Criterios:
+    type: entity
+    table: criterios
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        tipo:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tipo
+        unidadBase:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: unidadBase
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    oneToMany:
+        labelsCriterio:
+            targetEntity: LabelsCriterio
+            mappedBy: criterio
+            cascade:      [persist]
+     

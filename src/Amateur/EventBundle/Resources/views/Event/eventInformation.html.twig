@@ -1,0 +1,175 @@
+<div class="main-box clearfix profile-box-menu">
+        <div class="main-box clearfix">
+
+
+                <div class="tabs-wrapper profile-tabs">
+                        <ul class="nav nav-tabs">
+                                {% if date(entity.startTime) < date() %} 
+                                <li class="active"><a href="#tab-result" data-toggle="tab">Resultado</a></li>
+                                 <li><a href="#tab-fotos" data-toggle="tab">Fotos</a></li>
+                                {% else %}
+                                <li class="active"><a href="#tab-newsfeed" data-toggle="tab">Participantes</a></li>
+
+                                {% endif %}
+                                {% if app.user is not null %}
+                                <li><a href="#tab-friends" data-toggle="tab">Amigos Participantes</a></li>
+                                {% endif %}
+                                {% if date(entity.startTime) < date() %} 
+
+                                <li><a href="#tab-punctuation" data-toggle="tab">Opiniones</a></li>
+                                {% endif %}
+                        </ul>
+                        
+                        <div class="row">
+                                <div class="form-group col-xs-6">
+                                        <div id="result_1"></div>
+                                </div>
+                                <div class="form-group col-xs-6">
+                                        <div id="result_2"></div>
+                                </div>
+
+                        </div>
+                        {#<div class="row" id="compartirComparar" style="display: none">
+                            <div class="form-group col-xs-12">
+                            {% set url = path('event_show_classification', { 'idClassification': classification.id })  %}
+
+                            {% set time = classification.netoTime %}
+
+
+                            {% set comment = '[Resultado] '~classification.event.name~ ' : - Tiempo de '~classification.name~' '~classification.lastname~' - '~time  %}
+
+                            {%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}        
+
+                            </div>
+
+                        </div>
+#}			<div class="tab-content">
+
+                                {% if date(entity.startTime) < date() %} 
+                                <div class="tab-pane clearfix fade in active" id="tab-result">
+                                        <div class="form-group">
+                                        <label for="search">Buscar Resultado</label>
+                                        <input type="text" class="form-control" id=search_value_event placeholder="Nombre, Apellido o Dorsar">
+                                        <div id="autocomplete">
+                                        </div>
+                                </div>
+                                        {% include 'UserBundle:User:listUsersClassification.html.twig' with {'registrations': entity.registrations } %}
+
+
+                                        <br/>
+                                </div>
+                              <div class="tab-pane clearfix fade" id="tab-fotos">
+                                        <div class="form-group">
+                                        <label for="search">Fotos</label>
+                                </div>
+                                        
+                                  {{entity.flyerPath|raw}}
+
+                                        <br/>
+                                </div>
+                                {% else %}
+
+                                <div class="tab-pane fade in active" id="tab-newsfeed">
+
+                                        <div id="newsfeed">
+
+                                                        {% include 'UserBundle:User:listUsersRegistration.html.twig' with {'registrations': entity.registrations } %}
+
+                                        </div>
+
+                                </div>
+                                {% endif %}
+                                {% if app.user is not null %}
+                                <div class="tab-pane fade" id="tab-friends">	
+                                                {% include 'UserBundle:User:list_users.html.twig' with {'entities': friends,'type':'friends' , 'tipe':''} %}
+                                </div>
+                                {% endif %}
+                                {% if date(entity.startTime) < date() %} 
+                                <div class="tab-pane clearfix fade" id="tab-punctuation">
+
+                                        {% include 'EventBundle:Event:listPunctuationEvent.html.twig' with {'registrations': entity.registrations } %}
+
+
+                                        <br/>
+
+                                </div>
+                                {% endif %}
+
+
+
+
+                        </div>
+                </div>
+
+        </div>
+</div>
+			
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<form action="{{ path('event_create_punctuation', { 'idEvent': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+{{ form_row(form._token) }}
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title">Puntuacion</h4>
+</div>
+<div class="modal-body">
+	<form role="form">
+		<div class="form-group">
+			<label>Ubicacion</label>
+			<span id="location_span" class="slider-label"></span><div class="slider-minmax"></div>
+			<input type="text" class="form-control" id="location" name="{{ form.location.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label>Circuito</label>
+	<span id="circuit_span" class="slider-label"></span><div class="slider-minmax1"></div>
+	<input type="text" class="form-control" id="circuit" name="{{ form.circuit.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label>Organizacion</label>
+	<span id="organization_span" class="slider-label"></span><div class="slider-minmax2"></div>
+	<input type="text" class="form-control" id="organization" name="{{ form.organization.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label>Nutricion</label>
+	<span id="nutrition_span" class="slider-label"></span><div class="slider-minmax3"></div>
+	<input type="text" class="form-control" id="nutrition" name="{{ form.nutrition.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label>Puntualidad</label>
+	<span id="punctuality_span" class="slider-label"></span><div class="slider-minmax4"></div>
+	<input type="text" class="form-control" id="punctuality" name="{{ form.punctuality.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label>Asistencia</label>
+	<span id="assistance_span" class="slider-label"></span><div class="slider-minmax5"></div>
+	<input type="text" class="form-control" id="assistance" name="{{ form.assistance.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label>KIT</label>
+	<span id="kit_span" class="slider-label"></span><div class="slider-minmax6"></div>
+	<input type="text" class="form-control" id="kit" name="{{ form.kit.vars.full_name }}">
+</div>
+<div class="form-group">
+	<label for="exampleTextarea">Lo mejor</label>
+	<textarea class="form-control" id="mostPositive" rows="3" name="{{ form.mostPositive.vars.full_name }}"></textarea>
+</div>
+
+<div class="form-group">
+	<label for="exampleTextarea">Lo peor</label>
+	<textarea class="form-control" id="mostNegative" rows="3" name="{{ form.mostNegative.vars.full_name }}"></textarea>
+			</div>
+				
+			</div>
+		
+		
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		<button type="submit" class="btn btn-primary">Opinar</button>
+	</div>
+	</form>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->					
+		
+	

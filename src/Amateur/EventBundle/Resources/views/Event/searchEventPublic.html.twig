@@ -1,0 +1,21 @@
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box show-grid clearfix">
+			<div class="main-box-body clearfix">
+				<div class="row">
+				{% if entities is empty %}
+				<h5 class="pull-left">{% trans %}No se encontraron eventos{% endtrans %}</h5>
+				{% endif %}
+				{% include
+					'EventBundle:EventMini:listEvent.html.twig' with {'entities':
+					entities,'tipe': tipe } %}
+					
+					
+					</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+

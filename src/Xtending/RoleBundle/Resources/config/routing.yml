@@ -1,0 +1,30 @@
+admin_role:
+    pattern:  /admin/role
+    defaults: { _controller: "RoleBundle:Role:index" }
+
+admin_role_show:
+    pattern:  /admin/role/{id}/show
+    defaults: { _controller: "RoleBundle:Role:show" }
+
+admin_role_new:
+    pattern:  /admin/role/new
+    defaults: { _controller: "RoleBundle:Role:new" }
+
+admin_role_create:
+    pattern:  /admin/role/create
+    defaults: { _controller: "RoleBundle:Role:create" }
+    requirements: { _method: post }
+
+admin_role_edit:
+    pattern:  /admin/role/{id}/edit
+    defaults: { _controller: "RoleBundle:Role:edit" }
+
+admin_role_update:
+    pattern:  /admin/role/{id}/update
+    defaults: { _controller: "RoleBundle:Role:update" }
+    requirements: { _method: post|put }
+
+admin_role_delete:
+    pattern:  /admin/role/{id}/delete
+    defaults: { _controller: "RoleBundle:Role:delete" }
+    requirements: { _method: post|delete }

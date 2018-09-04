@@ -1,0 +1,132 @@
+Xtending\EntityBundle\Entity\Sites:
+    type: entity
+    repositoryClass: Xtending\EntityBundle\Entity\SitesRepository
+    table: sites
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        operador:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        ciudad:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        estado:
+            type: string
+            length: 150
+            fixed: false
+            nullable: true
+        domicilio:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        codpostal:
+            type: string
+            length: 10
+            fixed: false
+            nullable: true
+        logo:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        fechaalta:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+
+        telefonos:
+            type: string
+            length: 11
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        emailAlternativo:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: emailAlternativo
+        web:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        descripcionSite:
+            type: string
+            length: 3000
+            fixed: false
+            nullable: true
+            column: descripcionSite
+        descripcionProductos:
+            type: string
+            length: 3000
+            fixed: false
+            nullable: true
+            column: descripcionProductos
+        codigoplanta:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: codigoPlanta
+       
+        adjunto:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+    oneToMany:
+        contactos:
+            targetEntity: Contactos
+            mappedBy: site
+            cascade:      [persist]
+    manyToOne:
+        entidad:
+            targetEntity: Entidades
+            inversedBy: sites
+            joinColumn:
+              name: entidad_id
+              referencedColumnName: id
+        contacto:
+            targetEntity: Contactos
+            joinColumn:
+              name: contacto_id
+              referencedColumnName: id
+        pais:
+            targetEntity: Paises
+            joinColumn:
+              name: pais_id
+              referencedColumnName: id
+    manyToMany:
+      responsables:
+        targetEntity: Contactos
+        joinTable:
+        name: sites_contactos
+        joinColumns:
+          contactos_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          sites_id:
+            referencedColumnName: id
+     
+    lifecycleCallbacks: {  }

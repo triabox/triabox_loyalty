@@ -1,0 +1,88 @@
+<div class="table-responsive">
+	<table class="table user-list table-hover">
+		<thead>
+			<tr>
+				<th><span>Evento</span></th>
+				<th><span>Inicio</span></th>
+				<th class="text-center"><span>Estado</span></th>
+				<th><span>Inscriptos</span></th>
+				<th><span>Plan</span></th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		{% for entity in entities %} 
+		<tbody>
+			<tr>
+				<td>
+					<img src="{{ asset(entity.photo) }}" alt="">
+					<a href="{{ path('event_show', { 'id': entity.id }) }}" class="user-link">{{ entity.name }}</a>
+					<span class="user-subhead">{{ entity.city }} {{ entity.province }} {{ entity.country }}</span>
+				</td>
+				<td>
+					{{ entity.startTime|date('d/m/y') }} 
+				</td>
+				<td class="text-center">
+				 {%  if  entity.isActive == "1" and date(entity.startTime) > date() %}
+					<span class="label label-success">Activo</span>
+				{% else %}	
+					{%  if  entity.isActive == "0" and date(entity.startTime) > date() %}
+					<span class="label label-default">Inactivo</span>
+					{% else %}
+					<span class="label label-warning">Finalizado</span>
+					{% endif %}
+				{% endif %}
+					
+				</td>
+				<td  class="text-center">
+				
+				<span class="label label-primary label-circle">{{ entity.registrations|length  }}</span>
+					
+				</td>
+				<td class="text-center">
+				 {%  if  entity.isTop == "1" and date(entity.startTime) > date() %}
+					<span class="label label-success">Destacado</span>
+				{% else %}	
+				
+					<span class="label label-default">Gratuito</span>
+				{% endif %}
+					
+				</td>
+				<td style="width: 25%;">
+					<a href="javascript:moreData('#main-box','{{ path('enrolled_all_list', { 'idEvent': entity.id }) }}')" class="table-link" >
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-users fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+					<a href="{{ path('event_edit', { 'id': entity.id }) }}" class="table-link" >
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+					<a href="{{ path('event_config_route', { 'idEvent': entity.id }) }}" class="table-link">
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-road fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+					<a href="{{ path('event_result_admin', { 'id': entity.id }) }}" class="table-link">
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-trophy fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+					
+{# 					<a href="#" class="table-link danger">#}
+{# 						<span class="fa-stack">#}
+{# 							<i class="fa fa-square fa-stack-2x"></i>#}
+{# 							<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>#}
+{# 						</span>#}
+{# 					</a>#}
+				</td>
+			</tr>
+			{% set cant = cant +1 %}
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

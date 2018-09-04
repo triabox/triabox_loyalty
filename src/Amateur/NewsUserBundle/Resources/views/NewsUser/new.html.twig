@@ -1,0 +1,35 @@
+
+		{% for entity in entities %}
+			{% if entity.type == "00" or entity.type == "06"%}
+				{% include 'NewsUserBundle:NewsUser:newsWebSite.html.twig' with {'entity': entity } %}
+			{% endif %}
+			{% if entity.type == "02" or entity.type == "03" or entity.type == "04" or entity.type == "05"%}
+				{% include 'NewsUserBundle:NewsUser:newsEventCreate.html.twig' with {'entity': entity } %}
+			{% endif %}		
+						
+        {% endfor %}
+        
+        <div id="moreNews_{{ firstResult }}">
+			<div class="clearfix">
+				<button type="submit" id="morenotice" style="width: 100%" onclick="moreData('#moreNews_{{ firstResult }}','{{ path('more_news_user', { 'firstResult': firstResult,'maxResults': max_records  }) }}')" class="btn btn-success pull-right">Ver mas</button>
+			</div>	
+        	<script type="text/javascript">
+<!--
+//nice select boxes
+
+//-->
+//show div and trigger custom event in callback when div is visible
+{#$('#morenotice').show('slow', function(){
+    $( "#morenotice" ).click();
+});
+#}
+{#$('#moreNews_{{ firstResult }}').visibilityChanged(function() {
+   $( "#morenotice" ).click();
+});#}
+   
+
+</script>
+        </div>	
+
+		
+	

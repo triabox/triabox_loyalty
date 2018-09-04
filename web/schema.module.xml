@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer version="1.4.3.456">
+
+  <module import-format="DoctrineYml" import-path="..\schema.yml" name="Xtending" visBkColor="15989236" visSizeX="0" visSizeX2="934" visSizeY="0" visSizeY2="464">
+    <table name="FormularioDefinicion" visPositionX="72" visPositionY="43" visSizeX="0" visSizeX2="123" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" size="11" type="integer"/>
+      <column name="Nombre" size="250" type="string"/>
+      <column name="entidad_id" size="11" type="integer"/>
+    </table>
+  </module>
+
+</orm-designer>

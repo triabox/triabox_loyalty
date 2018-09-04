@@ -1,0 +1,72 @@
+{% set ambiente = 'http://www.triabox.com/'  %}
+{# {% set ambiente = 'http://www.triabox.com/web/app_test.php/'  %}		#}
+
+<div class="panel-group accordion" id="accordion_online{{ entities|first.event.id }}">
+		
+	<div class="panel panel-default">
+		<div class="panel-heading green-bg">
+			<h4 class="panel-title" align="center">
+				<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion_online{{ entities|first.event.id }}" href="#collapse{{ entities|first.event.id }}" onclick="getUserOnline({{ entities|first.event.id }})" >
+					Usuarios Online
+				</a>
+			</h4>
+		</div>
+		<div id="collapse{{ entities|first.event.id }}" class="panel-collapse collapse">
+
+			<table class="table footable toggle-circle-filled user-list table-hover" data-page-size="4" data-filter="#filter" data-filter-text-only="true">
+					<thead>
+						<tr>
+							
+							<th >{% trans %}Participante{% endtrans %}</th>
+							<th data-hide="accion" >{% trans %}Accion{% endtrans %}</th>
+							<th data-hide="compartir" >{% trans %}Compartir{% endtrans %}</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+					{% for entitie in entities %}
+			
+						<tr>
+						<td >
+						{{ entitie.idPath }} <br>
+						 
+						</td>
+							
+						<td class="text-center">
+							<a onclick="$('#collapse{{ entities|first.event.id }}').load('{{ ambiente }}event/show/map/{{ entitie.idPath }}/{{ entitie.event.id }}/app/online');" ><span class="label label-success">
+							{% trans %}Seguir{% endtrans %}</span></a>
+						</td>
+			{# <td class="text-center">#}
+			{# 				<a onclick="getPositionUser('{{ entitie.idPath }}' ,'{{ entitie.event.id }}' );" href="#" ><span class="label label-success">{% trans %}Posicion Manual{% endtrans %}</span></a>&nbsp;&nbsp;&nbsp;&nbsp;#}
+							
+			               
+			{# 				</td>#}
+						<td class="text-center">
+								{% set url = '/event/show/map/'~entitie.idPath~'/'~entitie.event.id~'/online'  %}
+								{% set comment = '[Estoy participando en '~entitie.event.name~ ']: Seguime online en triabox : en el kilometro: '  %}
+					
+						
+							<div class="story-time">
+								<div class="btn-group">
+								<button type="button" class="btn btn-info" target="_blank" data-mce-target="_blank"  onclick="window.open('http://twitter.com/share?text={{ comment }} &url={{ ambiente }}{{ url }}&hashtags={{ entitie.idPath }},run,yoelegicorrer')"><i class="fa fa-twitter"></i></button>
+								<button type="button" class="btn btn-info btn-facebook" target="_blank" data-mce-target="_blank" 
+								onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ ambiente }}{{ url }}')"><i class="fa fa-facebook"></i></button>
+							
+							</div>
+							
+								
+						</td>
+						</tr>
+						
+					{% endfor %}
+					</tbody>
+				</table>
+	</div>
+	<ul class="pagination pull-right hide-if-no-paging"></ul>
+</div>
+<script type="text/javascript">
+$( '#collapse{{ entities|first.event.id }}' ).collapse( 'show' );
+</script>
+
+
+

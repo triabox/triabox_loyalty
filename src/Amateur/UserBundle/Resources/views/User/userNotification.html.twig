@@ -1,0 +1,36 @@
+	<div class="main-box clearfix">
+		<header class="main-box-header clearfix">
+			<h2>{{ user.name }} {{ user.lastname }} </h2>
+		</header>
+		
+		<div class="main-box-body clearfix">
+			<div class="profile-status">
+				<i class="fa fa-circle"></i> Online
+			</div>
+			
+			<img src="{%  include 'user_photo.html.twig' with {'user': user } %}" alt="" class="profile-img img-responsive center-block" />
+			
+			
+			
+			<div class="profile-since">
+				{{ user.city }} <br/>{{ user.province }}<br/> {{ user.country }}
+			</div>
+			<div class="profile-details">
+				<ul class="fa-ul">
+					<li><i class="fa-li fa fa-group "></i>Amigos: <span>{{ user.friends|length }}</span></li>
+					<li><i class="fa-li fa fa-trophy"></i>Eventos: <span>{{ user.registrations|length }}</span></li>
+				</ul>
+			</div>
+			
+			{%  if app.user.id == user.id %} 
+			<div class="profile-message-btn center-block text-center">
+			
+				<a href="{{ path('user_edit', { 'id': app.user.id }) }}" class="btn btn-success">
+					<i class="fa fa-envelope"></i>
+				
+				</a>
+			</div>
+			{% endif %}
+		</div>
+		
+	</div>

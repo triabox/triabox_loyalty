@@ -1,0 +1,83 @@
+<div class="table-responsive">
+        <table class="table user-list table-hover" style="clear: both">
+
+                <thead>
+                        <tr>
+                                <th><span>{% trans %}Participante{% endtrans %}</span></th>
+                                {% if date(entity.startTime) < date() %} 
+                                <th><span>{% trans %}Numero{% endtrans %}</span></th>
+                                <th class="text-center"><span>{% trans %}Tiempo no Oficial{% endtrans %}</span></th>
+                                {% endif %}
+                                {% if entity.isTop == 1 %}
+                                <th ><span>{% trans %}Estado{% endtrans %}</span></th>
+                                <th class="text-center"><span></span></th>
+                                {% endif %}
+                        </tr>
+                </thead>
+                <tbody>
+
+                        {% for enrolled in registrations %}
+
+                        <tr id="confirmacion{{enrolled.id}}">
+
+                                <td>
+                                        <img src="{%  include 'user_photo.html.twig' with {'user': enrolled.user } %}" alt=""/>
+                                        <a href="#" class="user-link">{{ enrolled.user.name }} {{ enrolled.user.lastname }}</a>
+                                        <span class="user-subhead">{{ enrolled.user.username }}</span>
+                                </td>
+                                {% if date(entity.startTime) < date() %} 
+                                <td>
+                                        {{ enrolled.number }}
+                                </td>
+                                <td>
+                                        {{ enrolled.time }}
+                                </td>
+                                {% endif %}
+                                
+                                {% if enrolled.payment is not null %}
+                                <td>
+                                  {% if  enrolled.payment.state  == "01" %} 
+                                        
+                                        <span class="label label-success">Pagado</span>
+                                  {% else %}
+                                  		<span class="label label-warning">Pendiente Pago</span>
+                                  {% endif %}      
+                                </td>
+                                <td>
+                                	{% if app.user is not null and app.user.id == enrolled.user.id %}
+                                
+                                			<a 
+                                			onclick="moreData('#main-box','{{ path('enrolled_new', { 'idEvent': entity.id  }) }}')"
+                                			  class="table-link">{% if  enrolled.payment.state  == "02" %} 
+                                			  				<span class="fa-stack">
+																		<i class="fa fa-square fa-stack-2x"></i>
+																		<i class="fa fa-bank fa-stack-1x fa-inverse"></i>
+																	</span>{% else %}
+                                			  <span class="fa-stack">
+																		<i class="fa fa-square fa-stack-2x"></i>
+																		<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+																	</span> 	
+                                			  {% endif %} 	</a>
+                                 		
+{#                                     fa-bank 
+    <a data-toggle="modal" onclick="moreData('#modificacion','{{ path('enrolled_edit', { 'id': enrolled.id }) }}')"  class="btn btn-primary mrg-b-lg">modificar</a>#}
+{#                                         <a data-toggle="modal" onclick="moreData('#confirmacion{{enrolled.id}}','{{ path('enrolled_delete', { 'id': enrolled.id }) }}')"  class="btn btn-primary mrg-b-lg">eliminar</a>#}
+                                	{% endif %}
+	                                {% if app.user != null  and ((app.user.organizer is not null and entity.organizer is not null and entity.organizer.id == app.user.organizer.id) or app.user.tipeUser == '01') %}
+	{#                                         <a data-toggle="modal" onclick="moreData('#confirmacion{{enrolled.id}}','{{ path('enrolled_delete', { 'id': enrolled.id }) }}')"  class="btn btn-primary mrg-b-lg">eliminar</a>#}
+	                                 {% endif %}
+                                </td>
+                                {% endif %}
+                        </tr>
+
+                        <tr>
+                        <td colspan="4">
+                                <div id="modificacion">
+
+                                </div>
+                        </tr>
+                        {% endfor %}
+
+                </tbody>
+        </table>
+</div>

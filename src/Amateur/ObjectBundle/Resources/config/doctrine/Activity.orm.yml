@@ -1,0 +1,43 @@
+Amateur\ObjectBundle\Entity\Activity:
+    type: entity
+    table: activity
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        comment:
+            type: string
+            length: 3000
+            fixed: false
+            nullable: true
+        distance:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: distance
+        time:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: time
+    oneToOne:
+      sport:
+            targetEntity: Sport
+            joinColumns:
+                sport_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      newsUser:
+            targetEntity: NewsUser
+            cascade:      [persist]
+            joinColumns:
+                news_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

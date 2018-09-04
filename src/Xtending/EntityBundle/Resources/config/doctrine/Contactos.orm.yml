@@ -1,0 +1,140 @@
+Xtending\EntityBundle\Entity\Contactos:
+    type: entity
+    repositoryClass: Xtending\EntityBundle\Entity\ContactosRepository
+    table: contactos
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        username:
+            type: string
+            unique: true
+            length: 25
+            fixed: false
+            nullable: false
+        salt:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+        password:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+        isActive:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: is_active
+        nombre:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        apellido:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 255
+            fixed: false
+            unique: true
+            nullable: true
+        codigoRecuperacion:
+            type: string
+            length: 10
+            fixed: false
+            nullable: true
+        telefono:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+        celular:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        direccion:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        
+        foto:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        idioma:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+        template:
+            type: string
+            length: 30
+            fixes: false
+            nullable: false
+        tyc:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tyc
+        
+    lifecycleCallbacks: {  }
+    manyToOne:
+      entidad:
+            targetEntity: Entidades
+            joinColumns:
+                entidad_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      site:
+        targetEntity: Sites
+        joinColumn:
+                name: site_id
+                referencedColumnName: id
+      corporacion:
+        targetEntity: Corporaciones
+        joinColumn:
+                name:   corporacion_id
+                referencedColumnName: id
+    manyToMany:           
+       roles:
+        targetEntity: Role
+        joinTable:
+        name: contactos_role
+        joinColumns:
+          role_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          contacto_id:
+            referencedColumnName: id
+       sites:
+        targetEntity: Sites
+        joinTable:
+        name: sites_contactos
+        joinColumns:
+          sites_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          contactos_id:
+            referencedColumnName: id
+    oneToOne:
+       cargo:
+        targetEntity: CargosEntidades
+        joinColumn:
+            name: cargo_id
+            referencedColumnName: id
+    oneToMany:
+        planificaciones:
+            targetEntity: Planificacion
+            mappedBy: autor
+            cascade:      [persist]

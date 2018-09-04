@@ -1,0 +1,209 @@
+{% set ambiente = 'http://www.triabox.com'  %}		
+<div class="main-box clearfix profile-box-menu">
+	<div class="main-box-body clearfix" id="{{  name  }}">
+<div class="profile-box-header white-bg clearfix" style="background-image: url(http://www.triabox.com/{{ asset(entity.photoBackground) }});">
+{# 	<img src="http://www.triabox.com/{{ asset(entity.photo) }}"alt="" class="profile-img img-responsive" />#}
+	<h2 style="color: black;">{{ name }}</h2>
+		<div class="icon-box pull-right">
+		{% set url = '/event/show/map/'~name~'/'~entity.id~'/online'  %}
+		{% set comment = '[Estoy participando en '~entity.name~ ']: Segui mi progreso online en triabox'  %}
+	
+		{%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+	
+		</div>
+											
+</div>
+</div></div>						
+<div id="map" style="height: 700px"></div>
+	
+
+<script type="text/javascript">		
+// This example creates a 2-pixel-wide red polyline showing the path of William
+// Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+// Brisbane, Australia.
+
+
+var count = 1;
+var poly;
+var map;
+var markers = [];
+var markersKilometre = [];
+var myPoint{{ name }};
+
+function initMap() {
+
+ map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: {lat:{{ entity.latitude }}, lng: {{ entity.longitude }}}  // Center the map on Chicago, USA.
+  });
+  
+  poly = new google.maps.Polyline({
+    strokeColor: '#00bfff',
+    strokeOpacity: 0.5,
+    strokeWeight: 8
+
+  });
+  poly.setMap(map);
+  
+  initPath();
+
+}
+
+function addMarkerKilometro(location,number) {
+
+	var image = {
+          url: 'http://www.triabox.com/web/img/map/number_'+number+'.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+         
+          
+        };
+        
+  var markerKilometre = new google.maps.Marker({
+    position: location,
+    	icon: image,
+    title: '{{ name }}',
+    map: map
+  });
+  markersKilometre.push(markerKilometre);
+}
+
+// Adds a marker to the map and push to the array.
+function addMarker(location) {
+	var image = {
+          url: 'http://www.triabox.com/web/img/map/jogging.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+         anchor: new google.maps.Point(0, 50)
+          
+        };
+  	var marker = new google.maps.Marker({
+    position: location,
+    icon: image,
+    draggable: true,
+    animation: google.maps.Animation.BOUNCE,
+    label: "{{ name }}",
+    title: '{{ name }}',
+    map: map
+  });
+  map.setCenter(location);
+  map.setZoom(16);
+  markers.push(marker);
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+
+
+// Handles click events on a map, and adds a new point to the Polyline.
+function addLatLng(lat,lng) {
+  var path = poly.getPath();
+	
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+  path.push(new google.maps.LatLng(lat, lng));
+deleteMarkers();
+  	// Add a new marker at the new plotted point on the polyline.
+ 	addMarker(new google.maps.LatLng(lat, lng));
+}
+
+function getLastPoint(){
+
+	if($('#{{  name  }}').length){
+ $.ajax({
+    // la URL para la petición
+    url : '{{ambiente}}{{ path('event_lastpoint', { 'name': name,'idEvent': idEvent   }) }}',
+ 
+    // especifica si será una petición POST o GET
+    type : 'GET',
+ 
+    // el tipo de información que se espera de respuesta
+    dataType : 'json',
+ 
+    // código a ejecutar si la petición es satisfactoria;
+    // la respuesta es pasada como argumento a la función
+    success : function(json) {
+        //alert("posicion".concat(json.long, json.lant));
+        deleteMarkers();
+  	// Add a new marker at the new plotted point on the polyline.
+ 	addMarker(new google.maps.LatLng(json.lant, json.long));
+        
+    },
+ 
+    // código a ejecutar si la petición falla;
+    // son pasados como argumentos a la función
+    // el objeto de la petición en crudo y código de estatus de la petición
+    error : function(xhr, status) {
+        //alert('Disculpe, existió un problema');
+    },
+ 
+    // código a ejecutar sin importar si la petición falló o no
+    complete : function(xhr, status) {
+        
+    }
+});
+
+
+	}else{clearInterval(myPoint{{ name }})}
+
+}
+
+
+
+
+function reloadEstadistica(){
+
+$('#map_distancia').load('{{ambiente}}{{ path('event_distance', { 'name': name,'idEvent': idEvent   }) }}');
+
+}
+
+function reloadIntervalo(){
+$('#map_intervalo').load(	'{{ambiente}}{{ path('event_interval', { 'name': name,'idEvent': idEvent   }) }}');
+
+}
+	var count = 0;
+	
+	
+	
+	//var myVar = setInterval(reloadEstadistica,20000);
+	//var myVar1 = setInterval(reloadIntervalo, 30000);
+	
+	 myPoint{{ name }} = setInterval(getLastPoint,20000);
+
+	function initPath(){
+		getLastPoint();
+		tiempo = 1;
+		{% for entity in route %}
+				addLatLng({{ entity.latitude }},{{  entity.longitude }});
+		{% endfor %}
+		
+		{% for entity in kilometre %}
+				count = count + 1;
+				addMarkerKilometro(new google.maps.LatLng({{ entity.latitude }}, {{  entity.longitude }}),count);
+				
+		{% endfor %}
+	}
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdE3f3MTZwBgQRgG4V-urwsCf-GXiryXY&signed_in=true&libraries=places&callback=initMap"></script>
+

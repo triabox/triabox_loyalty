@@ -1,0 +1,41 @@
+<div class="main-box" id="main-box">
+	<header class="main-box-header clearfix">
+		<h2>{% block main_box_label %}Resultados{% endblock %}</h2>
+		{% block main_box_label_right %}
+		<div class="icon-box pull-right"></div>
+		{% endblock %}
+	</header>
+	<div id="login"></div>
+	<!-- /.modal-content -->
+
+	<div class="table-responsive">
+		<table class="table user-list table-hover" style="clear: both">
+			<tbody>
+
+				{% for entity in entities %}
+				<tr>
+
+					<td style="height: 20%;"><img src="{{ asset(entity.photo) }}"
+						alt="" /> <a href="{{ path('event_show', { 'id': entity.id }) }}">{{
+							entity.name }}</a><br> <span class="user-subhead">{{ entity.sport
+							}}</span></td>
+
+				</tr>
+
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+

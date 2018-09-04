@@ -1,0 +1,81 @@
+{% set ambiente = 'http://www.triabox.com'  %}
+<div class="main-box-body clearfix">	
+<table class="table footable toggle-circle-filled user-list table-hover" data-page-size="4" data-filter="#filter" data-filter-text-only="true">
+		<thead>
+			<tr>
+				
+				<th >{% trans %}Evento{% endtrans %}</th>
+				<th >{% trans %}Participante{% endtrans %}</th>
+				<th >{% trans %}Tiempo{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Posicion{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Dorsal{% endtrans %}</th>
+				<th data-hide="accion" >{% trans %}Accion{% endtrans %}</th>
+				<th data-hide="compartir" >{% trans %}Compartir{% endtrans %}</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		{% for classification in classifications %}
+
+			<tr>
+				
+				<td class="text-center">
+					<img src="http://www.triabox.com/{{asset(classification.event.photo) }}" alt=""/>
+					<a href="{{ambiente}}{{ path('event_show', { 'id': classification.event.id }) }}" ><span class="user-subhead" ><b>{{ classification.event.name }}</b></span></a> 
+				
+				</td>
+				
+				<td class="text-center">
+				{{ classification.name }} {{ classification.lastname }}
+				</td>
+				<td >
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ classification.officialTime }}
+				</td>
+				<td class="text-center">
+					{{ classification.overallRank }}
+				</td>
+				<td >
+					{{ classification.bib }}
+				</td>
+				<td class="text-center">
+
+				<a href="{{ambiente}}{{ path('asigne_result', { 'idEvent': classification.event.id,'idClassification': classification.id }) }}" ><span class="label label-success">{% trans %}Guardar{% endtrans %}</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				
+                                
+				</td>
+				<td class="text-center">
+						
+						{% set url = path('event_show_classification', { 'idClassification': classification.id })  %}
+					
+						{% set time = classification.netoTime %}
+						
+					
+						{% set comment = '[Resultado] '~classification.event.name~ ' : - Tiempo de '~classification.name~' '~classification.lastname~' - '~time  %}
+					
+						{%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+				
+					
+				</td>
+			</tr>
+			
+		{% endfor %}
+		{% if classifications is empty %}
+		<tr>
+				<td colspan="5">
+				<h5 class="pull-left">{% trans %}No hay datos disponible{% endtrans %}</h5>
+				</td>
+		</tr>
+		{% endif %}
+		</tbody>
+	</table>
+	<ul class="pagination pull-right hide-if-no-paging"></ul>
+</div>
+
+
+
+<script>
+
+$('.footable').footable();
+
+
+</script>

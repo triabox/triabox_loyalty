@@ -1,0 +1,37 @@
+<li class="dropdown hidden-xs">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" onclick="markViewNotificationFriend();" id="notificationFriend">
+		<i class="fa fa-user"></i>
+		{% if notificationsNotViews > 0 %}<span class="count" >{{ notificationsNotViews }}</span>{% endif %}
+	</a>
+	<ul class="dropdown-menu notifications-list messages-list">
+		<li class="pointer">
+			<div class="pointer-inner">
+				<div class="arrow"></div>
+			</div>
+		</li>
+		{% if notificationsNotViews > 0 %}<li class="item-header">Tiene {{ notificationsNotViews }} nuevas notificaciones</li>{% endif %}
+		
+		{% for news in notifications %}
+		
+		<li class="item first-item">
+			<a href="javascript:moreData('#main-box','{{ path('list_notification_friend') }}')">
+				<span class="content">
+					
+					<span class="content-headline">
+						{{ news.friend.name }}{{ news.friend.lastname }}
+					</span>
+					<span class="content-text">
+						{{ news.comment }}
+					</span>
+				</span>
+				<span class="time"><i class="fa fa-clock-o"></i>{% if news.createTime %}{{ news.createTime|date('Y-m-d H:i:s') }}{% endif %}</span>
+			</a>
+		</li>
+		{% endfor %}
+		<li class="item-footer">
+			<a href="javascript:moreData('#main-box','{{ path('list_notification_friend') }}')">
+				Ver todas las solicitudes
+			</a>
+		</li>
+	</ul>
+</li>

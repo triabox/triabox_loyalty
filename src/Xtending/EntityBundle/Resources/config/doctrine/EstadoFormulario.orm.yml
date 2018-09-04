@@ -1,0 +1,32 @@
+Xtending\EntityBundle\Entity\EstadoFormulario:
+    type: entity
+    table: estado_formulario
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        orden:
+            type: integer
+            unsigned: false
+            nullable: true
+        creaVersion:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: crea_version
+    lifecycleCallbacks: {  }
+    manyToOne:
+        formulariosDefiniciones:
+            targetEntity: FormulariosDefiniciones
+            inversedBy: estados
+            joinColumn:
+                name: id_formularios_definiciones
+                referencedColumnName: id

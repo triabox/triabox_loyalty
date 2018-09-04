@@ -1,0 +1,5 @@
+{% extends 'UserBundle:Organizer:new.html.twig' %}
+{% block main_box_label %}{% trans %}Modificar Organizador{% endtrans %}{% endblock %}
+{% block action_form %} 
+<form action="{{ path('organizer_update', { 'id': entity.id }) }}" method="post"  class="form-horizontal"  {{ form_enctype(form) }}>
+{% endblock %}

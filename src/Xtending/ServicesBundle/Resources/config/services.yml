@@ -1,0 +1,18 @@
+parameters:
+     xtending.services.excel.class: Xtending\ServicesBundle\Services\ExcelServices
+     xtending.services.conversor.class: Xtending\ServicesBundle\Services\ConversorServices
+     xtending.services.mailer.class: Xtending\ServicesBundle\Services\MailerServices
+services:
+    services.excel:
+        class: "%xtending.services.excel.class%"
+    services.conversor:
+        class: "%xtending.services.conversor.class%"
+        arguments: [valor, label]
+    services.mailer:
+        class: "%xtending.services.mailer.class%"
+           
+    xtending_locale.locale_listener:
+        class: Xtending\ServicesBundle\EventListener\LocaleListener
+        arguments: ["%locale%"]
+        tags:
+            - { name: kernel.event_subscriber }

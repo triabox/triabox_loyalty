@@ -1,0 +1,37 @@
+Xtending\EntityBundle\Entity\ConfigCustom:
+    type: entity
+    table: config_custom
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 150
+            fixed: false
+            nullable: false
+        tienePac:
+            type: boolean
+            unsigned: false
+            nullable: false
+        tienePdf:
+            type: boolean
+            unsigned: false
+            nullable: false
+        tienePdfFull:
+            type: boolean
+            unsigned: false
+            nullable: false
+        tieneResumen:
+            type: boolean
+            unsigned: false
+            nullable: false            
+    lifecycleCallbacks: {  }
+    oneToMany:
+        formulariosDefiniciones:
+            targetEntity: FormulariosDefiniciones
+            mappedBy: config
+            cascade:      [persist]

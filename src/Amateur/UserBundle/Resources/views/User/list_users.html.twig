@@ -1,0 +1,70 @@
+<div class="table-responsive">
+		<table class="table user-list table-hover" style="clear: both">
+			<tbody>
+					
+				{% for entity in entities %}
+				<tr>
+				
+					<td style="height: 50%;">
+						<img src="{%  include 'user_photo.html.twig' with {'user': entity } %}" alt=""/>
+						<a href="{{ path('user_show', { 'id': entity.id }) }}" class="user-link">{{ entity.name }} {{ entity.lastname }}</a>
+						<span class="user-subhead">{{ entity.username }}</span>
+						<div id="amistad_{{ entity.id }}" >
+					
+					{% if type != 'friends' %}
+							{% if tipe != 'notificaciones' %}
+						
+							<button  onclick="moreData('#amistad_{{ entity.id }}','{{ path('send_request_friend', { 'id': entity.id }) }}')" class="btn btn-success">
+								<span class="fa fa-plus-square"></span> Enviar Solicitud
+							</button>
+							
+								{% if entity.userConfiguration is null or entity.userConfiguration.activeFollowMe == '1' %}
+								<button  onclick="moreData('#amistad_{{ entity.id }}','{{ path('add_follower', { 'id': entity.id }) }}')" class="btn btn-success">
+									<span class="fa fa-plus-square"></span> Seguir
+								</button>
+								{% endif %}
+							{% else %}
+							
+							<button  onclick="moreData('#amistad_{{ entity.id }}','{{ path('add_friend', { 'id': entity.id }) }}')" class="btn btn-success">
+								<span class="fa fa-plus-square"></span> Agregar
+							</button>
+							
+							{% endif %}
+                                        {% elseif app.user is not null %}
+                                            
+							<button  onclick="moreData('#amistad_{{ entity.id }}','{{ path('delete_friend', { 'id': entity.id }) }}')" class="btn btn-success">
+								<span class="fa fa-plus-square"></span> Eliminar
+							</button>
+                                                            
+                                          {% else %}                      
+                                                                <button  onclick="moreData('#amistad_{{ entity.id }}','{{ path('send_request_friend', { 'id': entity.id }) }}')" class="btn btn-success">
+								<span class="fa fa-plus-square"></span> Enviar Solicitud
+							</button>
+							
+								
+								<button  onclick="moreData('#amistad_{{ entity.id }}','{{ path('add_follower', { 'id': entity.id }) }}')" class="btn btn-success">
+									<span class="fa fa-plus-square"></span> Seguir
+								</button>
+                                                                
+					{% endif %}	
+                                        
+                                        
+                                        
+					</div>
+					</td>
+					
+					<td style="height: 50%;">
+					
+					
+					
+					</td>
+				
+				</tr>
+			
+				{% endfor %}
+				
+			</tbody>
+		</table>
+	</div>
+
+

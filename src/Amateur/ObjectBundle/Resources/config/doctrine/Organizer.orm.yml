@@ -1,0 +1,88 @@
+Amateur\ObjectBundle\Entity\Organizer:
+    type: entity
+    table: organizer
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        isActive:
+            type: integer
+            nullable: true
+            column: is_active
+        name:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        address:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        web:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        twitter:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        facebook:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        logo:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        phone:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        description:
+            type: string
+            length: 5000
+            fixed: false
+            nullable: true
+        latitude:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: latitude
+        longitude:
+            length: 200
+            fixed: false
+            nullable: true
+            column: longitude
+    lifecycleCallbacks: {  }
+    oneToMany:
+        events:
+            targetEntity: Event
+            mappedBy: organizer
+            cascade:      [persist]
+        paymentProvidersOrganizer:
+             targetEntity: PaymentProviderOrganizer
+             mappedBy: organizer
+             cascade:      [persist]
+    oneToOne:
+      user:
+        targetEntity: User
+        inversedBy: organizer
+        joinColumn:
+          name: user_id
+          referencedColumnName: id

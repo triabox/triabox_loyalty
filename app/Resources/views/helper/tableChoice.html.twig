@@ -1,0 +1,42 @@
+{% set reglon = 0 %}
+<p>{% trans %}empresa{% endtrans %}</p>
+						<table class="style1 datatable">
+						<thead>
+							<tr>
+								<th class="bSortable"><input type="checkbox" class="checkbox select-all" /></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							{% for empresa in empresas  %}
+								
+									{% if (reglon is even ) %}
+									<td><input type="checkbox" class="checkbox" name="{{ form.empresas.vars.full_name }}[]" /></td>
+									<td><a href="{{ asset('bundles/frontend/images/site-logo.png') }}" title="preview" rel="group1"><img src="{{ asset('bundles/frontend/images/site-logo.png') }}" alt="" class="thumb size64 fl-space" /></a></td>
+									<td>{{ empresa.nombre }}</td>
+									{% endif %}
+									{% if (reglon is odd) %}
+										<td></td>
+										<td><input type="checkbox" class="checkbox" name="{{ form.empresas.vars.full_name }}[]" /></td>
+										<td><a href="{{ asset('bundles/frontend/images/site-logo.png') }}" title="preview" rel="group1"><img src="{{ asset('bundles/frontend/images/site-logo.png') }}" alt="" class="thumb size64 fl-space" /></a></td>
+										<td>{{ empresa.nombre }}</td>
+										</tr>
+									{% endif %}
+									
+									{% set reglon = reglon+1 %}
+							{% endfor %}
+							{% if (reglon is odd) %}
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													</tr>
+										{% endif %}
+						</tbody>
+						</table>

@@ -1,0 +1,76 @@
+Xtending\EntityBundle\Entity\CodigoFD:
+    type: entity
+    table: codigofd
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        tipoA:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipoa
+        caracterA:
+            type: string
+            length: 3
+            fixed: false
+            nullable: true
+            column: caractera
+        tipoB:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipob
+        caracterB:
+            type: string
+            length: 3
+            fixed: false
+            nullable: true
+            column: caracterb
+        tipoC:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipoc
+        caracterC:
+            type: string
+            length: 3
+            fixed: false
+            nullable: true
+            column: caracterc
+        tipoD:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipod
+        caracterD:
+            type: string
+            length: 3
+            fixed: false
+            nullable: true
+            column: caracterd
+        tipoE:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipoe
+        caracterE:
+            type: string
+            length: 3
+            fixed: false
+            nullable: true
+            column: caractere
+    lifecycleCallbacks: {  }
+    oneToOne:
+        formularioDefinicion:
+            targetEntity: FormulariosDefiniciones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                formulario_definicion:
+                    referencedColumnName: id
+            orphanRemoval: false

@@ -1,0 +1,37 @@
+{% set ambiente = 'http://www.triabox.com'  %}
+<div class="table-responsive">
+		<table class="table user-list table-hover" style="clear: both">
+			<tbody>
+					
+				{% for entity in entities %}
+				<tr>
+				
+					<td style="height: 20%;">
+						<img src="http://www.triabox.com/{{ asset(entity.photo) }}" alt=""/>
+						<a href="{{ambiente}}{{ path('event_show', { 'id': entity.id }) }}" >{{ entity.name }}</a><br>
+						<span class="user-subhead">{{ entity.startTime|date("d-m") }} - </span> <span class="user-subhead">{{ entity.city }}</span> {%  if  entity.distanceMe|number_format(1) != "0.0" %} <span class="label label-primary label-circle pull-right">{{ entity.distanceMe|number_format(1) }} km</span>{% endif %}</br>
+						<span class="user-subhead" ><b>{{ entity.sport }}</b></span> 
+						
+					</td>
+					<td >
+						{% set url = '/event/'~ entity.id ~'/show'  %}
+                                        {% set comment = '[Calendario '~entity.sport~ ']: '~entity.startTime|date('d.m.y')~' - '~entity.name~' - '~entity.city  %}
+
+                                        {%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+						
+						
+					</td>
+				</tr>
+			
+				{% endfor %}
+				
+			</tbody>
+		</table>
+	</div>
+
+	
+	
+								
+				
+				
+

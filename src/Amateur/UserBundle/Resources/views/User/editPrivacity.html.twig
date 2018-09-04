@@ -1,0 +1,11 @@
+<div class="main-box clearfix profile-box-stats"> 
+ 		
+				<div class="form-group">
+					<label for="photo">{% trans %}Compartir Con{% endtrans %}</label>
+					{{ form_widget(form.userConfiguration.shareWith) }}
+				</div>
+				<div class="form-group">
+					<label for="photo">{% trans %}Activar Seguirme{% endtrans %}</label>
+					{{ form_widget(form.userConfiguration.activeFollowMe) }}
+				</div>
+</div>

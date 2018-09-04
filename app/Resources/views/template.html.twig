@@ -1,0 +1,27 @@
+{% set extend = "::layout_xtending_blue.html.twig" %}
+
+{% if app.user and app.user.template == '02' %}
+	{% set extend = "::layout_mc.html.twig" %} 	
+{% elseif app.user and app.user.template == '03' %}
+	{% set extend = "::layout_mca.html.twig" %}
+{% elseif app.user and app.user.template == '04' %}
+	{% set extend = "::layout_so_energy.html.twig" %}
+{% elseif app.user and app.user.template == '05' %}
+	{% set extend = "::layout_cyg.html.twig" %}
+{% elseif app.user and app.user.template == '06' %}
+	{% set extend = "::layout_yacht1.html.twig" %}
+{% elseif app.user and app.user.template == '07' %}
+	{% set extend = "::layout_iram.html.twig" %}
+{% elseif app.user and app.user.template == '08' %}
+	{% set extend = "::layout_jbs.html.twig" %}
+{% elseif app.user and app.user.template == '09' %}
+	{% set extend = "::layout_brf.html.twig" %}  	   	   	
+{% elseif app.user and app.user.template == '10' %}
+	{% set extend = "::layout_galicia.html.twig" %}
+{% elseif app.user and app.user.template == '11' %}
+	{% set extend = "::layout_jfs.html.twig" %}  	  	   	   	
+{% elseif app.user and app.user.template == '12' %}
+	{% set extend = "::layout_aryzta.html.twig" %} 
+{% endif %}
+
+{% extends extend %}	

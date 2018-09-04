@@ -1,0 +1,18 @@
+{% set cant  = 0%}
+<div id="data-table">
+											<table class="style1">
+												<thead>
+												</thead>
+												<tbody id="pacsC" class="entries" data-prototype="{% filter escape %}{% include 'EventBundle:Entry:prototyEntry.html.twig' with {'entries': form.entries.vars.prototype, 'cant':cant}  %}{% endfilter %}" >
+									
+														    {% for entries in form.entries %}
+														    
+														    
+														    	<tr>
+														    		{% include 'EventBundle:Entry:prototyEntry.html.twig' with {'entries': entries, 'cant':cant} %}
+															  	</tr>
+																{% set cant  = cant + 1%}
+														   	{% endfor %}
+												</tbody>
+											</table> 	
+</div><!-- /#table -->

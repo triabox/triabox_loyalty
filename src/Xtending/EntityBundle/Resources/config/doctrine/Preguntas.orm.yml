@@ -1,0 +1,84 @@
+Xtending\EntityBundle\Entity\Preguntas:
+    type: entity
+    table: preguntas
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        punto:
+            type: string
+            length: 10
+            fixed: false
+            nullable: true
+        resumen:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: resumen    
+        tieneText:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tieneText
+        tieneFecha:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tieneFecha
+        tieneArchivo:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tieneArchivo    
+        descripcion:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+       
+        tieneTextarea:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tieneTextarea
+        
+        destacado:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: destacado
+        
+        tieneAyuda:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        tieneUnidad:
+            type: string
+            length: 10
+            fixed: false
+            nullable: true
+      
+        tieneAccionCorrectiva:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tieneAccionCorrectiva    
+    lifecycleCallbacks: {  }
+    manyToOne:
+        grupoPregunta:
+            targetEntity: GrupoPregunta
+            inversedBy: preguntas
+            joinColumn:
+                name: id_grupoPregunta
+                referencedColumnName: id
+        criterio:
+            targetEntity: Criterios
+            joinColumn:
+              name: id_criterio
+              referencedColumnName: id
+            
+   

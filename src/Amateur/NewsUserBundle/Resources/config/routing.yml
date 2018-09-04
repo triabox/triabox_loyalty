@@ -1,0 +1,3 @@
+news:
+    resource: "@NewsUserBundle/Controller/NewsUserController.php"
+    type:     annotation

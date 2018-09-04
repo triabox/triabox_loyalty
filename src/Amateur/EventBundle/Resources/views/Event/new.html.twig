@@ -1,0 +1,38 @@
+{% extends '::layout_xtending_dashboard.html.twig' %} 
+
+{% block main_box_label %}Crear Evento{% endblock %} 
+
+{% block main_box -%}
+
+{%  include ':javascript:autocompleteMapStyle.html.twig' with {'placeId':  form.city.vars.id  } %} 
+<div class="main-box-body clearfix">
+	<form action="{{ path('event_create') }}" method="post"
+		 {{ form_enctype(form) }}>
+
+		{% include 'EventBundle:Event:layoutEvent.html.twig' with {'form':
+		form } %}
+
+		<button type="submit" class="btn btn-success">{% trans %}Guardar{% endtrans %}</button>
+	</form>
+	<div style="visibility: hidden;">
+		<button class="md-trigger" id="ubicacion" data-modal="modal-10"></button>
+		</div>
+</div>
+{% block script_custom_ejecute %}
+	
+{% endblock %}
+
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+	
+{% block script_custom %}
+	
+	{%  include ':javascript:autocompleteMap.html.twig' with {'form': form, 'place': form.city.vars.value , 'placeId':  form.city.vars.id  } %}
+	
+   $('#{{ form.sport.vars.id}}').select2();
+{% endblock %}
+   		
+

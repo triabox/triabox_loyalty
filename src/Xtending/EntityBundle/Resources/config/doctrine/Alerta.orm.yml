@@ -1,0 +1,77 @@
+Xtending\EntityBundle\Entity\Alerta:
+    type: entity
+    table: alerta
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        remitente:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        asunto:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        contenido:
+            type: string
+            length: 5000
+            fixed: false
+            nullable: true
+        destinatario:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+            column: destinatario
+        tipoRepeticion:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipo_repeticion
+        tipoDestinatario:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipo_destinatario
+        repeticionDato:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: repeticionDato
+        tipoBase:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipoBase
+        finDato:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: fin_dato
+        tipoFin:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tipoFin
+        
+    lifecycleCallbacks: {  }
+    manyToOne:
+        formularioDefinicion:
+            targetEntity: FormulariosDefiniciones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                formulario_definicion:
+                    referencedColumnName: id
+            orphanRemoval: false
+        

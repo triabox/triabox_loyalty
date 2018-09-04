@@ -1,0 +1,76 @@
+<div class="main-box clearfix">
+	<header class="main-box-header clearfix">
+		<h2 class="pull-left">Puntuacion</h2>
+		<div class="filter-block pull-right">
+			<a data-toggle="modal" href="#myModal" class="btn btn-primary mrg-b-lg">Opinar</a>
+		</div>
+	</header>
+	<div class="main-box-body clearfix">
+		<div class="conversation-wrapper">
+			<div class="conversation-content">
+				<div class="conversation-inner">
+				
+				{% for enrolled in registrations %}
+					{% if enrolled.punctuation != null %}
+					<div class="main-box clearfix project-box green-box">
+						<div class="main-box-body clearfix">
+							<div class="project-box-header green-bg">
+								
+								<div class="name">
+									<img src="{%  include 'user_photo.html.twig' with {'user': enrolled.user } %}" alt="" class="profile-img-mini" />
+									<a href="#">
+										{{ enrolled.user.name }} {{ enrolled.user.lastname }}
+									</a>
+								</div>
+							</div>
+							
+							<div class="project-box-content">
+								<span class="chart" data-percent="{{ enrolled.punctuation.total }}" data-bar-color="#2ecc71">
+									<span class="percent"></span>%<br/>
+									<span class="lbl">Calificacion</span>
+								</span>
+							</div>
+
+							<div class="profile-box-content clearfix">
+								<ul class="menu-items">																				
+									<li>
+										<div class="alert alert-success">
+											<i class="fa fa-check-circle fa-fw fa-lg"></i>
+											<strong>Lo mejor</strong>    {{ enrolled.punctuation.mostPositive }}
+										</div>
+									</li>
+									<li>
+										<div class="alert alert-danger">
+											<i class="fa fa-times-circle fa-fw fa-lg"></i>
+											<strong>Lo peor</strong>     {{ enrolled.punctuation.mostNegative }}
+										</div>
+									</li>
+											
+								</ul>
+							</div>
+		
+		
+						</div>
+					</div>
+					{% endif %}
+				{% endfor %}
+								
+							
+							
+													
+														
+														
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+	
+												
+												
+												
+												
+												
+	

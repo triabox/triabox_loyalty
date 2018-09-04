@@ -1,0 +1,29 @@
+Xtending\EntityBundle\Entity\ResponsableEmpresa:
+    type: entity
+    table: responsable_empresa
+    repositoryClass: Xtending\EntityBundle\Entity\ResponsableEmpresaRepository
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+    manyToOne:
+      contacto:
+        targetEntity: Contactos
+        joinColumn:
+                name: contacto_id
+                referencedColumnName: id 
+      contactoEmpresa:
+        targetEntity: Entidades
+        joinColumn:
+                name: contacto_empresaId
+                referencedColumnName: id 
+      contactoAsignadoEmpresa:
+        targetEntity: Entidades
+        joinColumn:
+                name: contacto_asignado_empresaId
+                referencedColumnName: id 
+    
+    lifecycleCallbacks: {  }

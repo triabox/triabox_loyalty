@@ -1,0 +1,73 @@
+<div class="main-box" id="main-box">
+<header class="main-box-header clearfix">
+	<h2>{% block main_box_label %}Organizadores{% endblock %}</h2>
+	{% block main_box_label_right %}
+	<div class="icon-box pull-right">
+			<a href="javascript:moreData('#main-box','{{ path('organizer_list') }}')" class="btn pull-left">
+				<i class="fa fa-refresh"></i>
+			</a>
+	</div>
+	{% endblock %}
+</header>
+<div class="main-box-body clearfix">
+	<table class="table footable toggle-circle-filled" data-page-size="6"
+		data-filter="#filter" data-filter-text-only="true">
+		<thead>
+			<tr>
+				<th>{% trans %}Organizador{% endtrans %}</th>
+				<th>{% trans %}Web{% endtrans %}</th>
+				<th class="text-center"	>{% trans %}Estado{% endtrans %}</th>
+				<th >{% trans %}Accion{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Email{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Twitter{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Facebook{% endtrans %}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for entity in entities %}
+			<tr>
+				<td><a href="{{ path('organizer_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+				<td><a href="http://{{ entity.web }}" target="_blank">{{ entity.web }}<a></a></td>
+				<td class="text-center">
+							{% if entity.isActive == '2' %}
+							<span class="label label-warning">{% trans %}Pendiente{% endtrans %}</span>
+							{% endif %}
+							{% if entity.isActive == '0' %}
+							<span class="label label-default">{% trans %}Desactivado{% endtrans %}</span>
+							{% endif %}
+							{% if entity.isActive == '1' %}
+							<span class="label label-success">{% trans %}Activo{% endtrans %}</span>
+							{% endif %}
+							
+				</td>
+				<td style="width: 20%;">																		
+					<a href="{{ path('organizer_edit', { 'id': entity.id }) }}" class="table-link">
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+					<a href="javascript:moreData('#main-box','{{ path('event_by_organizer', { 'firstResult': min_records,'maxResults': max_records,'organizer': entity.id }) }}')" class="table-link">
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</td>
+				
+				<td class="text-right">{{ entity.email }}</span></td>
+				<td class="text-right">{{ entity.twitter }}</td>
+				<td>{{ entity.facebook }}</td>
+				
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	<ul class="pagination pull-right hide-if-no-paging"></ul>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.footable').footable();
+});
+</script>
+</div>

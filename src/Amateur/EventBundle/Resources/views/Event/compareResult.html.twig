@@ -1,0 +1,40 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block header_meta %}
+    <meta property="og:url"           content="http://www.triabox.com/event/{{ entity.id }}/show" />
+    <meta property="og:title"         content="TriaBox - {{ entity.name }}" />
+    <meta property="og:description"   content="[{{ entity.sport }} - {{ entity.startTime|date('d.m.y') }} - {{ entity.startHs }}]  {{ entity.name }} - {{ entity.province }} - {{ entity.city }}" />
+    <meta property="og:image"         content="http://www.triabox.com/{{ asset(entity.photo) }}" />
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="[{{ entity.sport }} - {{ entity.startTime|date('d.m.y') }} - {{ entity.startHs }}]  {{ entity.name }} - {{ entity.province }} - {{ entity.city }}"/>
+    <meta name="twitter:title" content="TriaBox - {{ entity.name }}"/>
+    <meta name="twitter:site" content="@triabox"/>
+    <meta name="twitter:domain" content="triabox.com"/>
+    <meta name="twitter:image:src" content="http://www.triabox.com/{{ asset(entity.photo) }}"/>
+    <meta name="twitter:domain" content="TriaBox"/>
+
+{% endblock %}
+{% block main_box_label %}{% trans %}Comparar Resultados{% endtrans %}{% endblock %}
+{% block main_box -%}
+<div class="row">
+        <div class="form-group col-xs-6">
+                {% include 'UserBundle:User:showResultUser.html.twig' with {'classification': classification1 } %}
+        </div>
+        <div class="form-group col-xs-6">
+                {% include 'UserBundle:User:showResultUser.html.twig' with {'classification': classification2 } %}
+        </div>
+</div>
+
+<!--
+
+//-->
+</script>
+{% endblock %}
+
+{% block script_custom %}
+		
+ $('#moreNews_1').load('{{ path('event_next_ajax', { 'firstResult': min_records,'maxResults': max_records  }) }}');
+
+{% endblock %}
+   		
+   		

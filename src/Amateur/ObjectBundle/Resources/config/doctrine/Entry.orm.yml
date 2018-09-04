@@ -1,0 +1,63 @@
+Amateur\ObjectBundle\Entity\Entry:
+    type: entity
+    table: entry
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+        description:
+            type: string
+            length: 300
+            fixed: false
+            nullable: false
+        start:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: start
+        end:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: end
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+        amount:
+            type: integer
+            length: 10
+            fixed: false
+            nullable: false
+            column: amount    
+        money:
+            type: integer
+            length: 11
+            fixed: false
+            nullable: false
+            column: money  
+        cant:
+            type: integer
+            length: 45
+            fixed: false
+            nullable: false
+            column: cant  
+    lifecycleCallbacks: {  }
+    manyToOne:
+      event:
+            targetEntity: Event
+            joinColumns:
+                event_id:
+                    referencedColumnName: id
+            orphanRemoval: false

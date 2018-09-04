@@ -1,0 +1,18 @@
+{% extends 'layout_formulario_html.twig' %}
+
+{% block form_title %}{% trans %}modificar.contacto{% endtrans %}{% endblock %}
+
+{% block form -%}
+<div class="box-wrap clear">
+    <form action="{{ path('admin_role_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {%  include 'RoleBundle:Role:layoutRole.html.twig' with {'form': edit_form} %}
+        <p>
+            <button type="submit" class="button template">{% trans %}guardar{% endtrans %}</button>
+        </p>
+    </form>
+    <p style="float: right;" class="clear">
+    		<a href="{{ path('admin_role') }}" type="button" class="button template">{% trans %}volver{% endtrans %}</a>
+    </p>
+</div>
+{% endblock %}
+

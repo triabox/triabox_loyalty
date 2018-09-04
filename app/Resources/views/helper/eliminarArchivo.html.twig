@@ -1,0 +1,65 @@
+function eliminarArchivo (tipo,entidad) {
+	var url="{{path('archivo_eliminar')}}";
+	//env�a el post
+       var jqxhr =  $.post(url,{ formTipo:tipo, formEntidad:entidad },function(data){
+           //La respuesta est� en la variable data
+   
+            if(data.responseCode==200 ){           
+                alert("{% trans %}eliminar.exitoso{% endtrans %}");
+            }
+       })
+   		// para probar si hay errores
+   		.fail(function(jqXHR, textStatus, errorThrown) {
+	   		alert('Error: ' + errorThrown );
+	        $('#output').html(jqXHR.responseText);
+	    	})
+   		;
+       
+		//Este grupo tiene otra l�gica de eliminaci�n de etiquetas html ya que pueden haber varios a la vez.
+		if (tipo == 'PREGUNTA') {
+			//4 es pregunta valor
+			$("#subirPreguntaValor"+entidad).show();
+			$("#botonEliminarPregunta"+entidad).hide();
+			$("#preguntaValor"+entidad).remove();
+		} else if (tipo == 'LABEL') {
+			//5 es label caratula valor ##cambiar el valor del Label para que no rompa luego
+			$("#subirLabelValor"+entidad).show();
+			$("#botonEliminarLabel"+entidad).hide();
+			$("#labelValor"+entidad).remove();
+		} else if (tipo == 'PRODUCTOI') {
+			//6 es producto -> imagen
+			$("#subirArchivoImagen").show();
+			$("#archivoImagen").remove();
+			$("#botonEliminarImagen").hide();
+		} else if (tipo == 'PRODUCTOE') {
+			//6 es producto -> especificacion
+			$("#subirArchivoEspecificacion").show();
+			$("#archivoEspecificacion").remove();
+			$("#botonEliminarEspecificacion").hide();
+		} else if (tipo == 'PRODUCTOR') {
+			//6 es producto -> registro
+			$("#subirArchivoRegistro").show();
+			$("#archivoRegistro").remove();
+			$("#botonEliminarRegistro").hide();
+		} else if (tipo == 'FCPRESENTACION') {
+			//6 es producto -> imagen
+			$("#subirFCpresentacion").show();
+			$("#fcpresentacion").remove();
+			$("#btEliminarPresentacion").hide();
+		} else if (tipo == 'FCTEXTO') {
+			//6 es producto -> especificacion
+			$("#subirFCdoctxt").show();
+			$("#fcdoctxt").remove();
+			$("#btEliminarDocTxt").hide();
+		} else if (tipo == 'FCTEMPLATE') {
+			//6 es producto -> registro
+			$("#subirFCtemplate").show();
+			$("#fctemplate").remove();
+			$("#btEliminarTemplate").hide();
+		} else {
+			//Eliminacion de tags html para los que manejan un �nico archivo -Site, Contacto, Entidad-
+			$("#subirArchivo").show();
+			$("#archivo").remove();
+			$("#botonEliminar").hide();
+		}
+}

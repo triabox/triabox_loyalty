@@ -1,0 +1,18 @@
+<div class="main-box" id="main-box">
+<header class="main-box-header clearfix">
+	<h2>{% block main_box_label %}{{ title|trans }}{% endblock %}</h2>
+	{% block main_box_label_right %}
+	<div class="icon-box pull-right">
+			<a href="javascript:moreData('#main-box','{{ url_reload }}')" class="btn pull-left">
+				<i class="fa fa-refresh"></i>
+			</a>
+	</div>
+	{% endblock %}
+</header>
+<div class="main-box-body clearfix">				
+				{% include 'EventBundle:Event:listEventBig.html.twig' with 
+					{'entities': entities,'tipe': tipe, 'title': title, 
+					 'firstResult': firstResult, 'url_more': url_more } %}
+</div>		
+</div>
+</div>

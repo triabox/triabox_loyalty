@@ -1,0 +1,64 @@
+Xtending\EntityBundle\Entity\Planificacion:
+    type: entity
+    table: planificacion
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        estado:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: estado
+        fechaDesde:
+            type: date
+            nullable: true
+            column: fecha_desde
+        fechaHasta:
+            type: date
+            nullable: true
+            column: fecha_hasta
+        fechaCreacion:
+            type: datetime
+            nullable: true
+            column: fecha_creacion
+    lifecycleCallbacks: {  }
+    manyToOne:
+        proceso:
+            targetEntity: FormulariosDefiniciones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                formulario_definicion:
+                    referencedColumnName: id
+            orphanRemoval: false
+        autor:
+            targetEntity: Contactos
+            inversedBy: planificaciones
+            joinColumns:
+                contacto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+#       Relacion oneToMany
+        registros:
+          targetEntity: FormulariosResultados
+          joinTable:
+            name: planificacion_registros
+            joinColumns:
+              planificacion_id:
+                referencedColumnName: id
+            inverseJoinColumns:
+              registro_id:
+                referencedColumnName: id       
+          cascade:      [persist]    
+       

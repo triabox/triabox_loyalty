@@ -1,0 +1,92 @@
+Xtending\EntityBundle\Entity\EntidadFormularios:
+    type: entity
+    table: entidad_formularios
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+       
+        fecha:
+            type: date
+            nullable: true
+        esProveedor:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_site
+        soyProveedor:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_empresa
+        esProveedorProducto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_proveedor_producto
+        esCliente:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_site
+        soyCliente:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_empresa
+        esClienteProducto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_cliente_producto
+        esPropioSite:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_site
+        esPropioEmpresa:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_empresa
+        esPropioProducto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_propio_producto
+        esPrivada:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: es_privada
+    manyToOne:
+        entidad:
+            targetEntity: Entidades
+            joinColumns:
+                entidad_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        
+        formulariodefinicion:
+            targetEntity: FormulariosDefiniciones
+            joinColumns:
+                formulariodefinicion_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:           
+             entidadesCompartidas:
+                targetEntity: Entidades
+                joinTable:
+                  name: procesos_compartidos
+                  joinColumns:
+                    proceso_id:
+                      referencedColumnName: id
+                  inverseJoinColumns:
+                    entidades_id:
+                      referencedColumnName: id
+        
+    lifecycleCallbacks: {  }

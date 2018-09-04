@@ -1,0 +1,5 @@
+Xtending\EntityBundle\Entity\Contactos:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
+     

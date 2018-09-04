@@ -1,0 +1,141 @@
+Xtending\EntityBundle\Entity\FormulariosResultados:
+    type: entity
+    table: formularios_resultados
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        fechaautomatica:
+            type: date
+            nullable: true
+            column: fechaAutomatica
+        fechamanual:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        fechaCierre:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: fecha_cierre    
+        eliminado:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: eliminado            
+        estado:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: estado
+        privado:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: privado
+    lifecycleCallbacks: {  }
+    manyToOne:
+        formulariosDefiniciones:
+            targetEntity: FormulariosDefiniciones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                formularios_definiciones_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contacto:
+            targetEntity: Contactos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contacto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactoEntidad:
+            targetEntity: Contactos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contacto_entidad_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        proveedor:
+            targetEntity: Entidades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                proveedor_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        compartido:
+            targetEntity: AsignacionIndividual
+            joinColumns:
+                asig_ind_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        site:
+            targetEntity: Sites
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                site_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        producto:
+            targetEntity: Producto
+            cascade: { }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+        empresa:
+            targetEntity: Entidades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entidad_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+        preguntasValor:
+            targetEntity: PreguntaValor
+            mappedBy: formulariosResultados
+            cascade:      [persist]
+        labelsCaratulaValor:
+            targetEntity: LabelCaratulaValor
+            mappedBy: formularioResultado
+            cascade:      [persist]
+        labelsCaratulaFile:
+            targetEntity: FilesRegistro
+            mappedBy: formularioResultado
+            cascade:      [persist]
+        estadosFormularioValor:
+            targetEntity: EstadoFormularioValor
+            mappedBy: formularioResultado
+            cascade:      [persist]
+        accionesCorrectivas:
+            targetEntity: AccionCorrectiva
+            mappedBy: formularioResultado
+            cascade:      [persist]
+        formulariosResultadosHistorial:
+            targetEntity: FormulariosResultadosHistorial
+            mappedBy: formularioResultado
+            cascade:      [persist]

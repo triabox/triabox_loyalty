@@ -1,0 +1,16 @@
+		{% for entity in entities %}
+			{% if entity.type == "00"%}
+				{% include 'NewsUserBundle:NewsUser:newsUser.html.twig' with {'entity': entity } %}
+			{% endif %}
+			{% if entity.type == "02" or entity.type == "03" or entity.type == "04"%}
+				{% include 'NewsUserBundle:NewsUser:newsEventCreate.html.twig' with {'entity': entity } %}
+			{% endif %}		
+											
+        {% endfor %}
+        
+        <div id="moreNews_{{ firstResult }}">
+			<div class="clearfix">
+				<button type="submit" onclick="moreData('#moreNews_{{ firstResult }}','{{ path('news_user', { 'firstResult': firstResult,'maxResults': max_records,'userId': userId  }) }}')" class="btn btn-success pull-right">Ver mas</button>
+			</div>	
+		</div>	
+

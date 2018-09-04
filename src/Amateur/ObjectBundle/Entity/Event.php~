@@ -1,0 +1,602 @@
+<?php
+
+namespace Amateur\ObjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+/**
+ * Event
+ *
+ * @ORM\Table(name="event")
+ * @ORM\Entity
+ */
+class Event
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=1000, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_contact", type="string", length=255, nullable=true)
+     */
+    private $emailContact;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="start_time", type="string",  nullable=false)
+     */
+    private $startTime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_time", type="datetime", nullable=true)
+     */
+    private $createTime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=1000, nullable=true)
+     */
+    private $photo;
+    
+    
+    private $filePhoto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo_background", type="string", length=1000, nullable=true)
+     */
+    private $photoBackground;
+
+    private $filePhotoBackground;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link_page", type="string", length=1000, nullable=true)
+     */
+    private $linkPage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label_link", type="string", length=30, nullable=true)
+     */
+    private $labelLink;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flyer_path", type="string", length=1000, nullable=true)
+     */
+    private $flyerPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="start_hs", type="string", length=1000, nullable=false)
+     */
+    
+    private $startHs;
+    
+    
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Event
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set emailContact
+     *
+     * @param string $emailContact
+     * @return Event
+     */
+    public function setEmailContact($emailContact)
+    {
+        $this->emailContact = $emailContact;
+    
+        return $this;
+    }
+
+    /**
+     * Get emailContact
+     *
+     * @return string 
+     */
+    public function getEmailContact()
+    {
+        return $this->emailContact;
+    }
+
+    /**
+     * Set startTime
+     *
+     * @param \DateTime $startTime
+     * @return Event
+     */
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+    
+        return $this;
+    }
+
+    /**
+     * Get startTime
+     *
+     * @return \DateTime 
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+	
+    /**
+     * Set startHs
+     *
+     * @param \DateTime $startHs
+     * @return Event
+     */
+    public function setStartHs($startHs)
+    {
+    	$this->startHs = $startHs;
+    
+    	return $this;
+    }
+    
+    
+    
+    /**
+     * Get startHs
+     *
+     * @return \DateTime
+     */
+    public function getStartHs()
+    {
+    	return $this->startHs;
+    }
+    
+    
+    /**
+     * Set createTime
+     *
+     * @param \DateTime $createTime
+     * @return Event
+     */
+    public function setCreateTime($createTime)
+    {
+        $this->createTime = $createTime;
+    
+        return $this;
+    }
+
+    /**
+     * Get createTime
+     *
+     * @return \DateTime 
+     */
+    public function getCreateTime()
+    {
+        return $this->createTime;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     * @return Event
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set photoBackground
+     *
+     * @param string $photoBackground
+     * @return Event
+     */
+    public function setPhotoBackground($photoBackground)
+    {
+        $this->photoBackground = $photoBackground;
+    
+        return $this;
+    }
+
+    /**
+     * Get photoBackground
+     *
+     * @return string 
+     */
+    public function getPhotoBackground()
+    {
+        return $this->photoBackground;
+    }
+
+    /**
+     * Set linkPage
+     *
+     * @param string $linkPage
+     * @return Event
+     */
+    public function setLinkPage($linkPage)
+    {
+        $this->linkPage = $linkPage;
+    
+        return $this;
+    }
+
+    /**
+     * Get linkPage
+     *
+     * @return string 
+     */
+    public function getLinkPage()
+    {
+        return $this->linkPage;
+    }
+
+    /**
+     * Set labelLink
+     *
+     * @param string $labelLink
+     * @return Event
+     */
+    public function setLabelLink($labelLink)
+    {
+        $this->labelLink = $labelLink;
+    
+        return $this;
+    }
+
+    /**
+     * Get labelLink
+     *
+     * @return string 
+     */
+    public function getLabelLink()
+    {
+        return $this->labelLink;
+    }
+
+    /**
+     * Set flyerPath
+     *
+     * @param string $flyerPath
+     * @return Event
+     */
+    public function setFlyerPath($flyerPath)
+    {
+        $this->flyerPath = $flyerPath;
+    
+        return $this;
+    }
+
+    /**
+     * Get flyerPath
+     *
+     * @return string 
+     */
+    public function getFlyerPath()
+    {
+        return $this->flyerPath;
+    }
+	
+    
+    //Admin file load
+    
+    /**
+     * Get FilePhoto.
+     *
+     * @return UploadedFile
+     */
+    public function getFilePhoto()
+    {
+    	return $this->filePhoto;
+    }
+    
+    
+    public function getAbsolutePath()
+    {
+    	return null === $this->photo
+    	? null
+    	: $this->getUploadRootDir().'/'.$this->photo;
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->photo
+    	? null
+    	: $this->photo;
+    }
+    
+    protected function getUploadRootDir()
+    {
+    	// la ruta absoluta del directorio donde se deben
+    	// guardar los archivos cargados
+    	return 'uploads/event/'.$this->id.'/';
+    }
+    
+    /**
+     * Sets filePhoto.
+     *
+     * @param UploadedfilePhoto $filePhoto
+     *
+     */
+    public function setFilePhoto(UploadedFile $filePhoto = null)
+    {
+    	$this->filePhoto = $filePhoto;
+    	// check if we have an old image path
+    	$extension = $this->getFilePhoto()->guessExtension();
+    	if (!$extension) {
+    		// no se puede deducir la extensi�n
+    		$extension = 'bin';
+    	}
+    
+    	//     	$filename = rand(1,99999).'.'.$extension;
+    	$filename = strval(date("Ymdhis")).'-'.$this->sanear_string($this->getFilePhoto()->getClientOriginalName());
+    	$this->photo = $this->getUploadRootDir().$filename;
+    	$this->upload();
+    }
+    
+    
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+    	if (null === $this->getFilePhoto()) {
+    		return;
+    	}
+    
+    	// si hay un error al mover el archivo, move() autom�ticamente
+    	// env�a una excepci�n. This will properly prevent
+    	// the entity from being persisted to the database on error
+    	$this->getFilePhoto()->move($this->getUploadRootDir(), $this->photo);
+    
+    	// check if we have an old image
+    	if (isset($this->temp)) {
+    		// delete the old image
+    		unlink($this->getUploadRootDir().'/'.$this->temp);
+    		// clear the temp image path
+    		$this->temp = null;
+    	}
+    	$this->filePhoto = null;
+    }
+    
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+    	if ($filePhoto = $this->getAbsolutePath()) {
+    		if (file_exists($filePhoto) && is_writable($filePhoto))
+    		{
+    			unlink ( $filePhoto );
+    		}
+    	}
+    }
+    
+    
+    //Admin photoBackground load
+    
+    /**
+     * Get FilePhotoBackground.
+     *
+     * @return UploadedFile
+     */
+    public function getFilePhotoBackground()
+    {
+    	return $this->filePhotoBackground;
+    }
+    
+    
+    public function getAbsolutePathB()
+    {
+    	return null === $this->photoBackground
+    	? null
+    	: $this->getUploadRootDir().'/'.$this->photoBackground;
+    }
+    
+    public function getWebPathB()
+    {
+    	return null === $this->photoBackground
+    	? null
+    	: $this->photoBackground;
+    }
+    
+  
+    
+    /**
+     * Sets filePhotoBackground.
+     *
+     * @param UploadedfilePhotoBackground $filePhotoBackground
+     *
+     */
+    public function setFilePhotoBackground(UploadedFile $filePhotoBackground = null)
+    {
+    	$this->filePhotoBackground = $filePhotoBackground;
+    	// check if we have an old image path
+    	$extension = $this->getFilePhotoBackground()->guessExtension();
+    	if (!$extension) {
+    		// no se puede deducir la extensi�n
+    		$extension = 'bin';
+    	}
+    
+    	//     	$filename = rand(1,99999).'.'.$extension;
+    	$filename = strval(date("Ymdhis")).'-'.$this->sanear_string($this->getFilePhotoBackground()->getClientOriginalName());
+    	$this->photoBackground = $this->getUploadRootDir().$filename;
+    	$this->uploadB();
+    }
+    
+    
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function uploadB()
+    {
+    	if (null === $this->getFilePhotoBackground()) {
+    		return;
+    	}
+    
+    	// si hay un error al mover el archivo, move() autom�ticamente
+    	// env�a una excepci�n. This will properly prevent
+    	// the entity from being persisted to the database on error
+    	$this->getFilePhotoBackground()->move($this->getUploadRootDir(), $this->photoBackground);
+    
+    	// check if we have an old image
+    	if (isset($this->temp)) {
+    		// delete the old image
+    		unlink($this->getUploadRootDir().'/'.$this->temp);
+    		// clear the temp image path
+    		$this->temp = null;
+    	}
+    	$this->filePhotoBackground = null;
+    }
+    
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUploadB()
+    {
+    	if ($filePhotoBackground = $this->getAbsolutePathB()) {
+    		if (file_exists($filePhotoBackground) && is_writable($filePhotoBackground))
+    		{
+    			unlink ( $filePhotoBackground );
+    		}
+    	}
+    }
+    
+    
+    /**
+     * Reemplaza todos los acentos por sus equivalentes sin ellos
+     *
+     * @param $string
+     *  string la cadena a sanear
+     *
+     * @return $string
+     *  string saneada
+     */
+    public static function sanear_string($string)
+    {
+    
+    	$string = trim($string);
+    
+    	$string = str_replace(
+    			array('�', '�', '�', '�', '�', '�', '�', '�', '�'),
+    			array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+    			$string
+    	);
+    
+    	$string = str_replace(
+    			array('�', '�', '�', '�', '�', '�', '�', '�'),
+    			array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+    			$string
+    	);
+    
+    	$string = str_replace(
+    			array('�', '�', '�', '�', '�', '�', '�', '�'),
+    			array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+    			$string
+    	);
+    
+    	$string = str_replace(
+    			array('�', '�', '�', '�', '�', '�', '�', '�'),
+    			array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+    			$string
+    	);
+    
+    	$string = str_replace(
+    			array('�', '�', '�', '�', '�', '�', '�', '�'),
+    			array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+    			$string
+    	);
+    
+    	$string = str_replace(
+    			array('�', '�', '�', '�'),
+    			array('n', 'N', 'c', 'C',),
+    			$string
+    	);
+    
+    	//Esta parte se encarga de eliminar cualquier caracter extra�o
+    	$string = str_replace(
+    			array("\\", "�", "�", "-", "~",
+    					"#", "@", "|", "!", "\"",
+    					"�", "$", "%", "&", "/",
+    					"(", ")", "?", "'", "�",
+    					"�", "[", "^", "`", "]",
+    					"+", "}", "{", "�", "�",
+    					">", "< ", ";", ",", ":"," "),'',$string
+    	);
+    
+    
+    	return $string;
+    }
+
+}

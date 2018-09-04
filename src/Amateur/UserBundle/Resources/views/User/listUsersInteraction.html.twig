@@ -1,0 +1,31 @@
+<div class="main-box" id="main-box">
+						<div class="main-box clearfix">
+							<header class="main-box-header clearfix">
+								<h2>{% trans %}Interacciones{% endtrans %}</h2>
+							</header>
+							
+							<div class="main-box-body clearfix">
+								<div class="tabs-wrapper">
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#tab-friend" data-toggle="tab">{% trans %}Amigos{% endtrans %}</a></li>
+										<li><a href="#tab-follower" data-toggle="tab">{% trans %}Siguiendo{% endtrans %}</a></li>
+										<li><a href="#tab-followed" data-toggle="tab">{% trans %}Seguidores{% endtrans %}</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane fade in active" id="tab-friend">
+											{% include 'UserBundle:User:list_users.html.twig' with {'entities': friend,'type': type } %}
+										</div>
+										<div class="tab-pane fade" id="tab-follower">
+											
+											{% include 'UserBundle:User:list_users.html.twig' with {'entities': follower,'type': type } %}
+										</div>
+										<div class="tab-pane fade" id="tab-followed">
+											{% include 'UserBundle:User:list_users.html.twig' with {'entities': followed,'type': type } %}
+											
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+				</div>

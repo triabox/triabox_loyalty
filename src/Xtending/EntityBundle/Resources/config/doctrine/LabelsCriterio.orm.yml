@@ -1,0 +1,36 @@
+Xtending\EntityBundle\Entity\LabelsCriterio:
+    type: entity
+    table: labels_criterios
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        convertible:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: convertible
+        valor:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToOne:
+        criterio:
+            targetEntity: Criterios
+            inversedBy: labelsCriterio
+            joinColumn:
+                name: criterios_id
+                referencedColumnName: id
+            orphanRemoval: false
+    
+    

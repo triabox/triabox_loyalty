@@ -1,0 +1,27 @@
+Amateur\ObjectBundle\Entity\UserConfiguration:
+    type: entity
+    table: user_configuration
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        shareWith:
+            type: integer
+            unsigned: false
+            nullable: true
+        activeFollowMe:
+            type: integer
+            unsigned: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    oneToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false

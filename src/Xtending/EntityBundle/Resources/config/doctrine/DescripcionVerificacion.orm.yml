@@ -1,0 +1,67 @@
+Xtending\EntityBundle\Entity\DescripcionVerificacion:
+    type: entity
+    table: descripcion_verificacion
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        descripcionFalla:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: descripcion_falla
+        riesgo:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        archivoFalla:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: archivo_falla
+        descripcionEfectividad:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: descripcion_efectividad
+        efectividad:
+            type: string
+            length: 10
+            fixed: false
+            nullable: true
+            column: efectiva
+        responsableTxt:
+            type: string
+            length: 100
+            nullable: true
+            column: responsable_txt     
+        fechaEfectividad:
+            type: date
+            nullable: true
+            column: fecha_efectividad
+    manyToOne:
+      responsable:
+        targetEntity: Contactos
+        joinColumn:
+                name: responsable_efectividad_id
+                referencedColumnName: id
+      accionCorrectiva:
+            targetEntity: AccionCorrectiva
+            inversedBy: descripcionesVerificaciones
+            joinColumn:
+                name: accion_correctiva_id
+                referencedColumnName: id
+    oneToOne:
+        preguntaValor:
+            targetEntity: PreguntaValor
+            joinColumns:
+              id_pregunta_valor:
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

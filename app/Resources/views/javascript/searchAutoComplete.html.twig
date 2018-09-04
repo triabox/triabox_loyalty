@@ -1,0 +1,14 @@
+	
+	function autocompleteSearch(url,value,divData){
+        
+            var url = url;
+            var value = $( value ).val();
+          
+            var url_value = url.replace('search_value', encodeURIComponent(value));
+            
+            $(divData).load(url_value);
+    }
+    
+    
+    
+    

@@ -1,0 +1,49 @@
+<div id="modificacion{{ entity.id }}"></div>
+<div class="main-box clearfix profile-box-menu">
+                        <div class="main-box-body clearfix">
+
+                                <div class="profile-box-header white-bg clearfix" >
+                                        <img src="{{ asset(entity.photo) }}" alt="" class="profile-img img-responsive" />
+                                        <h2 style="color: black;">{{ entity.name }}</h2>
+                                        <div class="icon-box pull-right">
+                                        {% set url = '/event/'~ entity.id ~'/show'  %}
+                                        {% set comment = '[Calendario '~entity.sport~ ']: '~entity.startTime|date('d.m.y')~' - '~entity.name~' - '~entity.city  %}
+
+                                        {%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+
+                                        </div>
+                                        <div class="job-position" style="color: black;">
+                                               {{ entity.sport }} -  {{ entity.startTime|date('d.m.y') }}
+                                        </div>
+                                        <div class="job-position" style="color: black;">
+                            {% if entity.categories|length >= 1 %}
+
+                                             {% if (entity.categories|length >= 1 and entity.sport.id == 9)  %}{{ entity.categories[0].name }}:  {{ entity.categories[0].distanceFirstRun  }}k{% endif %}  {% if (entity.categories|length >= 2 and entity.sport.id == 9)%}  {{ entity.categories[1].name }} : {{ entity.categories[1].distanceFirstRun  }}k{% endif %} 
+
+                                                     {% if entity.categories|length >= 1 and entity.sport.id == 4  %}{{ entity.categories[0].name }}: run: {{ entity.categories[0].distanceFirstRun }}k bike: {{ entity.categories[0].distanceBike }}k run: {{ entity.categories[0].distanceLastRun }}k{% endif %}
+
+                                                     {% if entity.categories|length >= 1 and entity.sport.id == 3  %}{{ entity.categories[0].name }}: swim: {{ entity.categories[0].distanceSwim }}m bike: {{ entity.categories[0].distanceBike }}k run: {{ entity.categories[0].distanceFirstRun }}k{% endif %}
+
+                                                     {% if (entity.categories|length >= 1 and entity.sport.id == 2)  %}{{ entity.categories[0].name }}: {{ entity.categories[0].distanceBike }}k{% endif %}  {% if (entity.categories|length >= 2 and entity.sport.id == 2)%}  {{ entity.categories[1].name }} : {{ entity.categories[1].distanceBike }}k{% endif %}
+
+                                             {% if (entity.categories|length >= 1 and entity.sport.id == 1)  %}{{ entity.categories[0].name }}: {{ entity.categories[0].distanceSwim }}m{% endif %}  {% if (entity.categories|length >= 2 and entity.sport.id == 1)%}  {{ entity.categories[1].name }} : {{ entity.categories[1].distanceSwim }}m{% endif %}
+
+                             {% endif %}
+                             {% if (entity.categories|length >= 2 and (entity.sport.id == 3 or entity.sport.id == 4)) %}
+                                                     {% if entity.sport.id == 4  %}{{ entity.categories[1].name }}: run: {{ entity.categories[1].distanceFirstRun }}k bike: {{ entity.categories[1].distanceBike }}k run: {{ entity.categories[1].distanceLastRun }}k{% endif %}
+
+                                                     {% if entity.sport.id == 3  %}{{ entity.categories[1].name }}: swim: {{ entity.categories[1].distanceSwim }}m bike: {{ entity.categories[1].distanceBike }}k run: {{ entity.categories[1].distanceFirstRun }}k{% endif %}
+
+                             {% endif %}
+                                            
+                                        </div>
+                                        <div class="job-position" style="color: black;">
+                                            {{ entity.city }} {{ entity.province }} {{ entity.country }}
+                                        </div>
+                                </div>
+                              
+                                 </div>
+                        </div>
+                </div>
+									
+									

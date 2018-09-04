@@ -1,0 +1,65 @@
+<div class="table-responsive">
+        <header class="main-box-header clearfix">
+                <h2 class="pull-left">{% trans %}Usuarios registrados{% endtrans %}</h2>
+
+
+        </header>
+        <div class="table-responsive">
+                        <table class="table user-list table-hover">
+                                <thead>
+                                        <tr>
+                                                <th><span>{% trans %}Usuario{% endtrans %}</span></th>
+                                                <th><span>{% trans %}Dorsal{% endtrans %}</span></th>
+                                                <th class="text-center"><span>{% trans %}Tiempo Oficial{% endtrans %}</span></th>
+                                                <th class="text-center"><span>{% trans %}Tiempo Neto{% endtrans %}</span></th>
+                                                <th class="text-center"><span>{% trans %}Categoria{% endtrans %}</span></th>
+                                                <th class="text-center"><span></span></th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+
+                                        {% for enrolled in registrations %}
+                                                {% if enrolled.classification != null %}
+                                                <tr>
+                                                        <td>
+                                                                <img src="{%  include 'user_photo.html.twig' with {'user': enrolled.user } %}" alt=""/>
+                                                                <a href="#" class="user-link">{{ enrolled.user.name }} {{ enrolled.user.lastname }}</a>
+                                                                <span class="user-subhead">{{ enrolled.user.username }}</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                                {{ enrolled.classification.bib }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                                {{ enrolled.classification.officialTime }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                                {{ enrolled.classification.netoTime }}
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                                {{ enrolled.classification.categoryName }}
+                                                        </td>
+                                                        <td class="text-center">
+
+                                                            <a onclick="jsfunction()" href="javascript:compare({{ enrolled.classification.id }});"><span class="label label-info">{% trans %}Comparar{% endtrans %}</span></a>
+                                
+                                                	</td>
+
+                                                </tr>
+                                                {% endif %}
+                                        {% endfor %}
+                                        {% if registrations is empty %}
+                                        <tr>
+                                                        <td colspan="5">
+                                                        <h5 class="pull-left">NO HAY DATOS DISPONIBLES</h5>
+                                                        </td>
+                                        </tr>
+                                        {% endif %}
+                                </tbody>
+                        </table>
+                </div>
+                </div>
+
+        <div class="table-responsive" id="classifications_event">
+        </div>
+										

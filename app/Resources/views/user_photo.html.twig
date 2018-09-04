@@ -1,0 +1,1 @@
+{% if user.photo is not null%}{{ asset(user.photo) }}{% else %}{{ asset('bundles/cube/img/swim_bike_run.jpg') }}{% endif %}

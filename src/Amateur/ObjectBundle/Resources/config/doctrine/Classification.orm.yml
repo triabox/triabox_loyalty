@@ -1,0 +1,113 @@
+Amateur\ObjectBundle\Entity\Classification:
+    type: entity
+    table: classification
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 600
+            fixed: false
+            nullable: true
+        categoryName:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: category_name
+        officialTime:
+            type: string
+            length: 100
+            nullable: true
+            column: official_time
+        netoTime:
+            type: string
+            length: 100
+            nullable: true
+            column: neto_time
+        extraData:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: extra_data
+        sexo:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+        lastname:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+        categoryId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: category_id
+        overallRank:
+            type: string
+            length: 50
+            nullable: true
+            column: overall_rank
+        divRank:
+            type: string
+            length: 50
+            nullable: true
+            column: div_rank
+        bib:
+            type: string
+            length: 50
+            nullable: true
+            column: bib
+        nationality:
+            type: string
+            length: 100
+            nullable: true
+            column: nationality
+        swim:
+            type: string
+            length: 100
+            nullable: true
+            column: swim
+        bike:
+            type: string
+            length: 100
+            nullable: true
+            column: bike
+        runFirst:
+            type: string
+            length: 100
+            nullable: true
+            column: run_first
+        runLast:
+            type: string
+            length: 100
+            nullable: true
+            column: run_last
+        isUser:  
+            type: integer
+            unsigned: false
+            nullable: true
+            column: is_user
+    lifecycleCallbacks: {  }
+    manyToOne:
+        event:
+            targetEntity: Event
+            inversedBy: classifications
+            joinColumn:
+                name: event_id
+                referencedColumnName: id
+    oneToOne:
+      enrolled:
+            targetEntity: Enrolled
+            joinColumns:
+                enrolled_id:
+                    referencedColumnName: id
+            orphanRemoval: false

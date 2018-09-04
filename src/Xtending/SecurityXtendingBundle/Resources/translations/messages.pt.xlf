@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="pt" datatype="plaintext" original="file.ext">
+        <body>
+			<trans-unit id="10000"><source>about</source><target>Acerca de</target></trans-unit>
+			<trans-unit id="10001"><source>services</source><target>Serviços</target></trans-unit>
+			<trans-unit id="10002"><source>portfolio</source><target>Clientes</target></trans-unit>
+			<trans-unit id="10003"><source>contact</source><target>Contato</target></trans-unit>
+			<trans-unit id="10004"><source>welcome.to.xtending</source><target>Bem-Vindo ao Xtending!</target></trans-unit>
+			<trans-unit id="10005"><source>simplifica.la.gestion</source><target>Gerenciando simplesmente!</target></trans-unit>
+			<trans-unit id="10006"><source>tell.me.more</source><target>Saiba mais…</target></trans-unit>
+			<trans-unit id="10007"><source>iniciar.sesion</source><target>Inicie Sessão</target></trans-unit>
+			<trans-unit id="10008"><source>gestion</source><target>Gestão</target></trans-unit>
+			<trans-unit id="10009"><source>gestion.sub.titulo</source><target>Gerenciador de documentos e registros, internos e externos</target></trans-unit>
+			<trans-unit id="10010"><source>administracion</source><target>Fornecedores e Clientes</target></trans-unit>
+			<trans-unit id="10011"><source>administracion.sub.titulo</source><target>Gerencia os Processos internos da Empresa e externos compartilhados com Clientes ou Fornecedores</target></trans-unit>
+			<trans-unit id="10012"><source>auditorias</source><target>Auditorias</target></trans-unit>
+			<trans-unit id="10013"><source>auditorias.sub.titulo</source><target>Auditorias Internas y Externas</target></trans-unit>
+			<trans-unit id="10014"><source>comunicacion</source><target>Comunicação</target></trans-unit>
+			<trans-unit id="10015"><source>comunicacion.sub.titulo</source><target>Plataforma de Processos Colaborativos e Distribuídos</target></trans-unit>
+			<trans-unit id="10016"><source>portfolio.sub.titulo</source><target>Eles confiam Xtending…</target></trans-unit>
+			<trans-unit id="10017"><source>mc.donals</source><target>Arcos Dourados - McDonald's</target></trans-unit>
+			<trans-unit id="10018"><source>comida</source><target>Comida</target></trans-unit>
+			<trans-unit id="10019"><source>mac.cain</source><target>McCain</target></trans-unit>
+			<trans-unit id="10020"><source>calidad.gestion</source><target>Calidad y Gestión</target></trans-unit>
+			<trans-unit id="10021"><source>consultoria</source><target>Consultoria</target></trans-unit>
+			<trans-unit id="10022"><source>que.es.xtending</source><target>O que é Xtending?</target></trans-unit>
+			<trans-unit id="10023"><source>que.es.xtending.body</source><target>Xtending é uma rede  web 2.0 para processos colaborativos em ambientes distribuídos. Fornece ferramentas básicas e simples de aprender e usar</target></trans-unit>
+			<trans-unit id="10024"><source>que.ofrecemos</source><target>O que oferecemos?</target></trans-unit>
+			<trans-unit id="10025"><source>que.ofrecemos.body</source><target>Soluções que facilitam a gestão, em tempo real, dos Processos internos e compartilhados com Clientes e Fornecedores. Por Xtending, as empresas participantes obter uma imagem completa da sua rede de valor .</target></trans-unit>
+			<trans-unit id="10026"><source>an.more</source><target>Mais…</target></trans-unit>
+			<trans-unit id="10027"><source>contact.us</source><target>Fale conosco</target></trans-unit>
+			<trans-unit id="10028"><source>your.name</source><target>O seu nome</target></trans-unit>
+			<trans-unit id="10029"><source>your.email</source><target>O seu e-mail</target></trans-unit>
+			<trans-unit id="10030"><source>your.phone</source><target>O seu telefone</target></trans-unit>
+			<trans-unit id="10031"><source>your.message</source><target>A sua pregunta ou pedido*</target></trans-unit>
+			<trans-unit id="10032"><source>send.message</source><target>Enviar esta mensagem</target></trans-unit>
+			<trans-unit id="10033"><source>complete.todos.los.campos.correctamente</source><target>Você deve preencher todos os campos obrigatórios!</target></trans-unit>
+			<trans-unit id="10034"><source>mensaje.exitoso</source><target>A mensagem foi enviada com sucesso. Nós responderemos prontamente. Obrigado por entrar em contato.</target></trans-unit>
+			<trans-unit id="10035"><source>terminos.de.uso</source><target>Termos e Condições</target></trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,17 @@
+function actualizarInformacion(idEntidad) {
+	var url="{{path('entidad_actualizar_informacion')}}";
+	//env�a el post
+      var jqxhr = $.post(url,{ id:idEntidad },function(data){
+           //La respuesta est� en la variable data
+           if(data.responseCode==200){
+	           	alert("{% trans %}mensaje.exitoso{% endtrans %}");
+	           	$("#pedirActualizacion").hide();
+			}
+   		})
+   		// para probar si hay errores
+   		.fail(function(jqXHR, textStatus, errorThrown) {
+	        alert('Error: ' + errorThrown );
+	        $('#output').html(jqXHR.responseText);
+	    	})
+   		;
+}

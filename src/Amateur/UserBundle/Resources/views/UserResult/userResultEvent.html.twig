@@ -1,0 +1,107 @@
+{% if enrolled is not null%}
+<div id="modificacion{{ enrolled.id }}"></div>
+{% endif %}
+<div class="main-box clearfix profile-box-menu">
+        <div class="main-box-body clearfix">
+                <div class="profile-box-header green-bg clearfix" style="background-image: url({{ asset(event.photoBackground) }});">
+                        <img src="{{ asset(event.photo) }}" alt="" class="profile-img img-responsive" />
+                        <h2 style="color: black;">{{ event.name }}</h2>
+                        <div class="icon-box pull-right">
+
+
+                                {% if url is not defined %}
+
+                                {% set url = path('show_enrolled', { 'idErolled': enrolled.id, 'userID' : user.id })  %}
+
+                                {% endif %}
+                                {% if classification is not  null %} {% set time = classification.netoTime %}  {% else %}	 {%    set time = enrolled.time %} {% endif %}
+
+
+                                {% set comment = '[Resultado] '~event.name~ ' : - Tiempo de '~user.name~' '~user.lastname~' - '~time  %}
+
+                                {%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+
+                                </div>
+                        <div class="job-position" style="color: black;">
+                                {{ event.startTime|date('d.m.y') }}
+                        </div>
+                </div>
+
+                <div class="profile-box-content clearfix">
+                        <ul class="menu-items">
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-arrow-right fa-lg"></i> {% trans %}Deporte{% endtrans %} : {{ event.sport }}
+
+                                        </a>
+                                </li>
+                                {% if event.categories|length >= 1 %}
+                                        <li>
+                                                <a href="#" class="clearfix">
+                                                        <i class="fa fa-arrow-right fa-lg"></i> 
+                                                                {% if (event.categories|length >= 1 and event.sport.id == 9)  %}{{ event.categories[0].name }}:  {{ event.categories[0].distanceFirstRun  }}k{% endif %}  {% if (event.categories|length >= 2 and event.sport.id == 9)%}  {{ event.categories[1].name }} : {{ event.categories[1].distanceFirstRun  }}k{% endif %} 
+
+                                                                {% if event.categories|length >= 1 and event.sport.id == 4  %}{{ event.categories[0].name }}: run: {{ event.categories[0].distanceFirstRun }}k bike: {{ event.categories[0].distanceBike }}k run: {{ event.categories[0].distanceLastRun }}k{% endif %}
+
+                                                                {% if event.categories|length >= 1 and event.sport.id == 3  %}{{ event.categories[0].name }}: swim: {{ event.categories[0].distanceSwim }}m bike: {{ event.categories[0].distanceBike }}k run: {{ event.categories[0].distanceFirstRun }}k{% endif %}
+
+                                                                {% if (event.categories|length >= 1 and event.sport.id == 2)  %}{{ event.categories[0].name }}: {{ event.categories[0].distanceBike }}k{% endif %}  {% if (event.categories|length >= 2 and event.sport.id == 2)%}  {{ event.categories[1].name }} : {{ event.categories[1].distanceBike }}k{% endif %}
+
+                                                                        {% if (event.categories|length >= 1 and event.sport.id == 1)  %}{{ event.categories[0].name }}: {{ event.categories[0].distanceSwim }}m{% endif %}  {% if (event.categories|length >= 2 and event.sport.id == 1)%}  {{ event.categories[1].name }} : {{ event.categories[1].distanceSwim }}m{% endif %}			
+
+
+                                                </a>
+                                        </li>
+                                {% endif %}
+                                {% if classification is not  null %}
+                                        <li>
+                                                <a href="#" class="clearfix">
+                                                        <i class="fa fa-child fa-lg"></i> BIB : {{ classification.bib }}
+
+                                                </a>
+                                        </li>
+
+
+
+                                        <li>
+                                                <a href="#" class="clearfix">
+                                                        <i class="fa fa-trophy fa-lg"></i> Posicion : {{ classification.overallRank }}
+
+                                                </a>
+                                        </li>
+                                        <li>
+                                                <a href="#" class="clearfix">
+                                                        <i class="fa fa-tachometer fa-lg"></i> Tiempo Neto : {{ classification.netoTime }}
+
+                                                </a>
+                                        </li>
+                                        <li>
+                                                <a href="#" class="clearfix">
+                                                        <i class="fa fa-tachometer fa-lg"></i> Tiempo Oficial : {{ classification.officialTime }}
+
+                                                </a>
+                                        </li>	
+                                {% else %}		
+                                        <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-map-marker fa-lg"></i> Tiempo No Oficial : {{ enrolled.time }} 
+                                                {% if app.user is not null and app.user.id == user.id  %}
+                                                <button class="md-trigger btn btn-primary mrg-b-lg pull-right" onclick="moreData('#modificacion{{ enrolled.id }}','{{ path('enrolled_edit', { 'id': enrolled.id }) }}')" data-modal="modal">{% if enrolled.time == '' %}agregar resultado{% else %}modificar resultado{% endif %}</button>
+                                                {% endif %}
+                                        </a>
+                                        </li>
+
+                                {% endif %}
+
+
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-map-marker fa-lg"></i> {{ event.city }} {{ event.province }} {{ event.country }}
+
+                                        </a>
+                                </li>
+
+                        </ul>
+                </div>
+        </div>
+</div>

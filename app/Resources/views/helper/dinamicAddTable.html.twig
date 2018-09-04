@@ -1,0 +1,88 @@
+
+/////////////////////////////////////////////////////////////////////////
+
+
+function inicializarDatos($contenedor,$leyendaBoton,$numeroColumnas) {
+
+//Agregar Causas y Propuestas.
+
+// Tomar el contenedor de los Acciones Correctivas
+var collectionCausa = $($contenedor);
+
+// Generar el link "add a label"
+var $addCausaLink = $('<a href="#" class="add_labels_link"><img src="{{ asset('bundles/frontend/images/icoAdd_16.gif') }}" class="icon16 fl-space2" alt="" title="{% trans %}agregar{% endtrans %}" />'+$leyendaBoton+'</a>');
+var $newLinkCausa = $('<tr ><td  colspan='+$numeroColumnas+'></td></tr>').append($addCausaLink);
+
+jQuery(document).ready(function() {
+
+	// agregar un link de eliminar para todos los labels existentes 
+	collectionCausa.find('tr').each(function() {
+        addLinkEliminarCausa($(this));
+    });
+    
+    // add the "add Accion Correctiva" anchor and li to the tags ul
+    collectionCausa.append($newLinkCausa);
+
+    // contar la cantidad actual (e.g. 2), y usarla como nuevo
+    // index cuando inserta una nueva Accion (e.g. 2)
+    collectionCausa.data('index', collectionCausa.find(':input').length);
+
+    $addCausaLink.on('click', function(e) {
+        // prevenir que el link genere un "#" en la URL
+        e.preventDefault();
+
+        // agregar un nuevo formulario Label (ver siguiente bloque de codigo)
+        addAccionCausa(collectionCausa, $newLinkCausa);
+    });
+});
+
+}
+
+function addAccionCausa(collectionCausa, $newLinkCausa) {
+    // Obetener el data-prototype
+    
+    var prototype = collectionCausa.data('prototype');
+
+    // Obtener el nuevo index
+    var index = collectionCausa.data('index');
+
+
+	//alert($("#"+collectionCausa.attr('class')+index).length);
+
+
+	for (i = 1; 0 < $("#"+collectionCausa.attr('class')+index).length; i) { 
+    	index = index +1;
+    	//alert($("#"+collectionCausa.attr('class')+index).length);
+	}
+
+    // Reemplazar '__name__' en el prototipo HTML para
+    // pasar a ser un n�mero basado en cuantos elementos tenemos
+
+    var newForm = prototype.replace(/__name__/g, index);
+   // alert(newForm);
+    
+
+    // incrementar el index en uno para el pr�ximo elemento
+    collectionCausa.data('index', index + 1);
+
+    // mostrar el formulario en la p�gina, antes del link "add a label"
+    var $newFormLi = $('<tr></tr>').append(newForm);
+    $newLinkCausa.before($newFormLi);
+    
+    // agregar un link de eliminar al nuevo formulario
+    addLinkEliminarCausa($newFormLi);
+}
+
+function addLinkEliminarCausa($tagFormLi) {
+    var $removeFormA = $('<td><a href="#"><img src="{{ asset('bundles/frontend/images/ico_inactive_16.png') }}" class="icon16 fl-space2" alt="" title="Eliminar" /></a></td>');
+    $tagFormLi.append($removeFormA);
+
+    $removeFormA.on('click', function(e) {
+        // prevenir que el link genere un "#" en la URL
+        e.preventDefault();
+
+        // eliminar el -elemento html- del formulario
+        $tagFormLi.remove();
+    });
+}
+

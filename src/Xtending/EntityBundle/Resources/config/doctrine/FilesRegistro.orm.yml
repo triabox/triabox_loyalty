@@ -1,0 +1,32 @@
+Xtending\EntityBundle\Entity\FilesRegistro:
+    type: entity
+    table: archivo_registro
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        path:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+    manyToOne:
+        formularioResultado:
+            targetEntity: FormulariosResultados
+            inversedBy: labelsCaratulaFile
+            joinColumns:
+                formulario_resultado_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToOne:
+        labelCaratula:
+            targetEntity: LabelsCaratula
+            joinColumns:
+                label_caratula:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
+    

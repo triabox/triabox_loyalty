@@ -1,0 +1,7 @@
+event:
+    resource: "@EventBundle/Resources/config/routing/event.yml"
+    prefix:   /event
+
+object_category:
+    resource: "@EventBundle/Resources/config/routing/category.yml"
+    prefix:   /category

@@ -1,0 +1,57 @@
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /facebook/login
+ 
+login_check:
+  pattern: /login/check
+ 
+twitter_login:
+  pattern: /login/check-twitter
+ 
+github_login:
+  pattern: /login/check-github
+
+facebook_login:
+    pattern: /login/check-facebook
+
+google_login:
+    pattern: /login/check-google
+
+logout:
+  pattern: /logout
+  
+news_user:
+    resource: "@NewsUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+object:
+    resource: "@ObjectBundle/Resources/config/routing.yml"
+    prefix:   /
+
+role:
+    resource: "@RoleBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+segurity:
+    resource: "@SecurityXtendingBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+service:
+    resource: "@ServicesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+

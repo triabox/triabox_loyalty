@@ -1,0 +1,39 @@
+
+								<div id="map_intervalo">
+									<div class="main-box clearfix">
+								
+										
+										<div class="main-box-body clearfix">
+											<div class="table-responsive">
+												<table class="table table-striped table-hover">
+													<thead>
+														<tr>
+															<th><span>{% trans %}Intervalo{% endtrans %}</span></th>
+															<th><span>{% trans %}Tiempo{% endtrans %}</span></th>
+															<th class="text-center"><span>{% trans %}Ritmo{% endtrans %}</span></th>
+															<th class="text-center"><span>{% trans %}Distancia Acumulado{% endtrans %}</span></th>
+														</tr>
+													</thead>
+													<tbody>
+													{% for statistic in statistics %}
+														<tr>
+															<td>
+																{{ statistic['interval'] }}
+															</td>
+															<td>
+																{{ statistic['time'] }}
+															</td>
+															<td class="text-center">
+																{{ statistic['time'] }}
+															</td>
+															<td class="text-center">
+																{{ statistic['distanciaAcumulado'] }}
+															</td>
+														</tr>
+													{% endfor %}
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								

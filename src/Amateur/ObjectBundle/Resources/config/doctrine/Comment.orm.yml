@@ -1,0 +1,39 @@
+Amateur\ObjectBundle\Entity\Comment:
+    type: entity
+    table: comment
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        comment:
+            type: string
+            length: 5000
+            fixed: false
+            nullable: true
+        photoId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: photo_id
+        albumPhotoId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: album_photo_id
+    lifecycleCallbacks: {  }
+    manyToOne:
+      newsUser:
+            targetEntity: NewsUser
+            joinColumns:
+                news_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false

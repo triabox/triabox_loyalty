@@ -1,0 +1,69 @@
+						{% if app.user is not null %}
+						{% render controller('NewsUserBundle:NewsUser:notificationEvent') %}
+						{% render controller('NewsUserBundle:NewsUser:notificationFriend') %}
+						{% render controller('EventBundle:Event:notificationResult') %}
+						{% endif %}
+						{% block dropdown_header %}
+                                              
+						<li class="dropdown hidden-xs">
+						  {% if app.user is not null and app.user.organizer is not null %}
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								Administrar
+								<i class="fa fa-caret-down"></i>
+							</a>
+							
+							<ul class="dropdown-menu" id="more_event" > 
+								<li class="item">
+									<a href="{{ path('event_new') }}">
+										<i class="fa fa-plus"></i> 
+										Crear Evento
+									</a>
+								</li>
+                                                                <li class="item">
+									<a href="javascript:moreData('#main-box','{{ path('event_by_organizer', { 'firstResult': min_records,'maxResults': max_records,'organizer': app.user.organizer.id }) }}')">
+										<i class="fa fa-plus"></i> 
+										Ver Eventos
+									</a>
+								</li>
+						
+								{% if app.user is not null and app.user.tipeUser == '01' %}
+								<li class="item">
+									<a href="{{ path('event') }}">
+										<i class="fa fa-list"></i> 
+										Admin Event
+									</a>
+								</li>
+								
+								<li class="item">
+									
+                                                                        <a href="javascript:moreData('#main-box','{{ path('event_without_result', { 'firstResult': min_records,'maxResults': max_records  }) }}')">
+                                                                            <i class="fa fa-list"></i> 
+										Cargar Resultados
+									</a>
+								</li>
+								<li class="item">
+									<a href="{{ path('admin_dashboard') }}">
+										<i class="fa fa-list"></i> 
+										Dashboard
+									</a>
+								</li>
+								<li class="item">
+									<a href="javascript:moreData('#main-box','{{ path('event_today') }}')">
+										<i class="fa fa-list"></i> 
+										Eventos Hoy
+									</a>
+								</li>
+								<li class="item">
+									<a href="javascript:moreData('#main-box','{{ path('organizer_list') }}')">
+										<i class="fa fa-list"></i> 
+										Admin Organizadores
+									</a>
+								</li>
+								{% endif %}
+							</ul>
+							{% endif %}
+							
+						</li>
+                                                
+						{% endblock %}
+						

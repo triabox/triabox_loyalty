@@ -1,0 +1,37 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+
+	{% block header_meta %}
+    
+    <meta property="og:url"           content="http://www.triabox.com{{ url }}" />
+    
+    <meta property="og:title"         content="[Resultados] - {{ event.name }} - TriaBox" />
+    <meta property="og:description"   content="Tiempo de {{ user.name }} {{ user.lastname }} {% if classification is not  null %} {{ classification.netoTime }}  {% else %}	 {{ enrolled.time }} {% endif %}" />
+    <meta property="og:image"         content="http://www.triabox.com/{{ asset(event.photo) }}" />
+	{% endblock %}
+{% block main_box_label %}{% trans %}Resultados de{% endtrans %} {{ user.name }} {{ user.lastname }} {% trans %}en{% endtrans %} {{ event.name }} {% endblock %}
+
+{% block main_box -%}
+<div class="main-box-body clearfix">
+	
+	
+{% include 'UserBundle:UserResult:userResultEvent.html.twig' with {'user': user,'event':event ,'classification':classification, 'enrolled':enrolled } %}			
+		
+</div>
+	
+{% endblock %}
+
+
+
+
+    
+{% block script_custom %}
+
+	
+
+	{% endblock %}
+	
+
+
+	
+
+

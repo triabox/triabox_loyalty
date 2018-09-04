@@ -1,0 +1,53 @@
+
+{% extends 'layout_formulario_html.twig' %}
+{% block head_layout %}
+
+
+{% endblock %}
+
+{% block form_title %}{% trans %}timeout.aviso{% endtrans %}{% endblock %}
+
+{% block mainpage_layout -%}
+	<div class="login-box">
+<div class="login-border">
+<div class="login-style">
+  <div class="login-header">
+    <div class="login-logo clear">
+        <span class="textlogo">
+          <span class="title"><img src="{{ asset('bundles/frontend/images/site-logo.png') }}" />      </div></span>
+
+          <span class="text">
+          </span>
+        </span>
+      <div class="picture">
+        
+    </div>
+  </div>
+  
+
+  <div class="login-inside">
+    <div class="login-data">
+
+      <p>&nbsp;</p>
+	  
+      <div class="row clear">
+        
+        {% trans %}timeout.leyenda{% endtrans %}
+        
+      </div>
+    
+      	</div>    
+  </div>
+  <div class="login-footer clear">
+    <div class="login-links">
+      <a href="{{ path('login') }}">{% trans %}volver{% endtrans %}</a>
+    </div>  	
+  </div>
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+

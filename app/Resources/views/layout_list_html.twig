@@ -1,0 +1,91 @@
+{% extends "::template.html.twig" %}
+
+
+{% block mainpage_layout %}
+
+		
+<div class="main pagesize"> <!-- *** mainpage layout *** -->
+	<div class="main-wrap">
+		
+		<div class="page clear">
+			
+			
+			<div class="content-box">
+			<div class="box-body">
+				<div class="box-header clear">
+					<ul class="link-but clear">
+							
+						{% if is_granted('ROLE_ADMIN') %}
+							{% block action_title %}
+								
+							{% endblock %}
+						{% endif %}
+							{% block action_title_user %}
+							{% endblock %}
+						
+						
+					</ul>
+					
+					<h2>{% block form_title %}Form Settings{% endblock %}</h2>
+				</div>
+				
+				<div class="box-wrap clear">
+					{% block form %}
+							<!-- CONTENT BOX - DATATABLE -->
+			
+					
+					<!-- DATA-TABLE JS PLUGIN -->
+					<div id="data-table">
+						<form method="post" action="#">
+						
+						<table class="style1 datatable">
+						<thead>
+							<tr>
+								<th class="bSortable"><input type="checkbox" class="checkbox select-all" /></th>
+								<th>Column 1</th>
+								<th>Column 2</th>
+								<th>Column 3</th>
+								<th>Column 4</th>
+								<th>Column 5</th>
+								<th>Column 6</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>/td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+                                                        
+							</tbody>
+						</table>
+						
+						<div class="tab-footer clear fl">
+							<div class="fl">
+								
+							</div>
+						</div>
+						</form>
+					</div><!-- /#table -->
+					
+					
+			
+					{% endblock %} 
+					</div><!-- end of box-wrap -->
+			</div> <!-- end of box-body -->
+			</div> <!-- end of content-box -->
+			
+		</div><!-- end of page -->
+	</div>
+</div>
+
+
+
+{% endblock %}   
+
+
+

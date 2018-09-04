@@ -1,0 +1,113 @@
+<div class="main-box-body clearfix">	
+    
+
+<header class="main-box-header clearfix">
+	<h2 class="pull-left">{% trans %}Resultados evento{% endtrans %}</h2>
+
+	<div class="filter-block pull-right">
+		<div class="form-group pull-left">
+			<input type="text" id="filter" class="form-control" placeholder="{% trans %}Buscar ...{% endtrans %}">
+			<i class="fa fa-search search-icon"></i>
+		</div>
+	</div>
+</header>
+<table class="table footable toggle-circle-filled user-list table-hover" data-page-size="6" data-filter="#filter" data-filter-text-only="true">
+		<thead>
+			<tr>
+				<th class="text-center">{% trans %}Posicion{% endtrans %}</th>
+				<th >{% trans %}Nombre y Apellido{% endtrans %}</th>
+				<th >{% trans %}Tiempo Oficial{% endtrans %}</th>
+				<th >{% trans %}Sexo{% endtrans %}</th>
+				<th data-hide="phone" class="text-center">{% trans %}Accion{% endtrans %}</th>
+				<th data-hide="phone" class="text-center">{% trans %}Compartir{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Tiempo Neto{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Dorsal{% endtrans %}</th>
+				<th data-hide="all" class="text-right">{% trans %}Categoria{% endtrans %}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for classification in classifications %}
+
+			<tr>
+				<td class="text-center">
+					<a href="#">{{ classification.overallRank }}</a>
+				</td>
+				<td >
+					
+					
+					{% if classification.enrolled is not null %}
+					
+							<img src="{%  include 'user_photo.html.twig' with {'user': classification.enrolled.user } %}" alt=""/>
+																<a href="#" class="user-link">{{ classification.enrolled.user.name }} {{ classification.enrolled.user.lastname }}</a>
+																<span class="user-subhead">{{ classification.enrolled.user.username }}</span>
+					{% else %}
+					
+					{{ classification.name }} {{ classification.lastname }}
+					
+					{% endif %}
+				</td>
+				<td >
+					{{ classification.officialTime }}
+				</td>
+				<td >
+					{{ classification.sexo }}
+				</td>
+				<td class="text-center">
+
+				<a href="{{ path('asigne_result', { 'idEvent': classification.event.id,'idClassification': classification.id }) }}" ><span class="label label-success">{% trans %}Guardar{% endtrans %}</span></a>
+                                
+                                
+                                <a onclick="jsfunction()" href="javascript:compare({{ classification.id }});"><span class="label label-info">{% trans %}Comparar{% endtrans %}</span></a>
+                                
+				</td>
+				<td class="text-center">
+						
+						{% set url = path('event_show_classification', { 'idClassification': classification.id })  %}
+					
+						{% set time = classification.netoTime %}
+						
+					
+						{% set comment = '[Resultado] '~classification.event.name~ ' : - Tiempo de '~classification.name~' '~classification.lastname~' - '~time  %}
+					
+						{%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+				
+					
+				</td>
+				<td >
+					{{ classification.netoTime }}
+				</td>
+				<td >
+					{{ classification.bib }}
+				</td>
+				<td>
+					{{ classification.categoryName }}
+				</td>
+			</tr>
+			
+		{% endfor %}
+		{% if classifications is empty %}
+		<tr>
+				<td colspan="5">
+				<h5 class="pull-left">{% trans %}No hay datos disponible{% endtrans %}</h5>
+				</td>
+		</tr>
+		{% endif %}
+		</tbody>
+	</table>
+	<ul class="pagination pull-right hide-if-no-paging"></ul>
+</div>
+
+<div class="main-box-body clearfix text-center">
+	<div>
+	<a href="javascript:moreData('#classifications_event','{{ path('list_classification', { 'tipe' :'back','idEvent' :idEvent ,'firstResult': firstResultPre,'maxResults': 100 }) }}')" class="btn btn-success pull-left">{% trans %}anterior{% endtrans %}</a>
+	</div>
+	<div>
+	<a href="javascript:moreData('#classifications_event','{{ path('list_classification', { 'tipe' :'next' ,'idEvent' :idEvent ,'firstResult': firstResult,'maxResults': 100 }) }}')" class="btn btn-success pull-right">{% trans %}siguiente{% endtrans %}</a>
+	</div>
+</div>
+<script>
+
+$('.footable').footable();
+
+
+</script>

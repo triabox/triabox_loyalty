@@ -1,0 +1,24 @@
+<div class="conversation-wrapper">
+						<div class="conversation-content"  >
+
+							<div class="conversation-inner" id="comments_{{ entity.id }}">
+								
+								
+							</div>
+						</div>
+						<div class="conversation-new-message">
+							
+								<div class="form-group">
+									<input name="newUser" id="newUser_{{ entity.id }}" value="{{ entity.id }}" style="visibility: hidden;">
+									<textarea  class="form-control" id="comment_{{ entity.id }}" name="comment" rows="2" placeholder="Enter your message..."></textarea>
+								</div>
+								
+								<div class="clearfix">
+									
+									<button class="btn btn-success pull-right"
+									onclick="sendComment('{{ entity.id }}')"
+									>comentar</button>
+								</div>
+							
+						</div>
+					</div> 

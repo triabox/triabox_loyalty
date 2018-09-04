@@ -1,0 +1,185 @@
+Amateur\ObjectBundle\Entity\Event:
+    type: entity
+    table: event
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: false
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+        isTop:
+            type: boolean
+            nullable: true
+            column: is_top
+        emailContact:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: email_contact
+        startTime:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: start_time
+        startHs:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: start_hs
+        createTime:
+            type: datetime
+            nullable: true
+            column: create_time
+        photo:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+        photoBackground:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: photo_background
+        linkPage:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: link_page
+        labelLink:
+            type: string
+            length: 30
+            fixed: false
+            nullable: true
+            column: label_link
+        flyerPath:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: flyer_path
+        startDate:
+            type: datetime
+            nullable: true
+            column: start_date
+        description:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: description
+        distanceTotal:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: distance_total
+        distanceFirstRun:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: distance_first_run
+        distanceLastRun:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: distance_last_run
+        distanceSwim:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: distance_swim    
+        distanceBike:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: distance_bike
+        city:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: city
+        province:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: province   
+        country:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: country
+        latitude:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: latitude
+        longitude:
+            length: 200
+            fixed: false
+            nullable: true
+            column: longitude
+    lifecycleCallbacks: {  }
+    manyToOne:
+      organizer:
+            targetEntity: Organizer
+            joinColumns:
+                organizer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+            entries:
+                targetEntity: Entry
+                mappedBy: event
+                cascade:      [persist]
+            classifications:
+                targetEntity: Classification
+                mappedBy: event
+                cascade:      [persist]
+            registrations:
+                targetEntity: Enrolled
+                mappedBy: event
+                cascade:      [persist]
+    manyToMany:           
+       categories:
+            targetEntity: Category
+            inversedBy: events
+            cascade:      [persist]
+            joinTable:
+                name: event_category
+                joinColumns:
+                      event_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                      category_id:
+                        referencedColumnName: id
+    oneToOne:
+      sport:
+            targetEntity: Sport
+            joinColumns:
+                sport_id:
+                    referencedColumnName: id
+            orphanRemoval: false

@@ -1,0 +1,86 @@
+Amateur\ObjectBundle\Entity\Training:
+    type: entity
+    table: training
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: false
+        isFinish:
+            type: boolean
+            nullable: true
+            column: is_finish
+        startTime:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: start_time
+        startHs:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: start_hs
+        createTime:
+            type: datetime
+            nullable: true
+            column: create_time
+        time:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: time
+        distance:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: distance
+        speed:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: speed
+        calories:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: calories
+        idMobile:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: false
+            column: id_mobile
+    lifecycleCallbacks: {  }
+    manyToOne:
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+            paths:
+                targetEntity: EventPath
+                mappedBy: training
+                cascade:      [persist]
+    oneToOne:
+      sport:
+            targetEntity: Sport
+            joinColumns:
+                sport_id:
+                    referencedColumnName: id
+            orphanRemoval: false

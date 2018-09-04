@@ -1,0 +1,52 @@
+<div class="story">
+
+		<div class="story-user">
+			<a href="{{ path('user_show', { 'id': entity.id }) }}">
+				<img src="{%  include 'user_photo.html.twig' with {'user': entity.user } %}" alt=""/>
+			</a>
+		</div>
+		
+		<div class="story-content">
+			
+			<header class="story-header">
+				<div class="story-author">
+					<a href="{{ path('user_show', { 'id': entity.user.id }) }}" class="story-author-link">
+						{{ entity.user.name }} {{ entity.user.lastname }}
+					</a>
+				</div>
+				<div class="story-time">
+					<i class="fa fa-clock-o"></i> {% if entity.createTime %}{{ entity.createTime|date('Y-m-d H:i:s') }}{% endif %}
+				</div>
+			</header>
+			{% if entity.activity == null %}
+			<div class="story-inner-content">
+			
+					<div class="profile-box-content clearfix">
+						<header class="main-box-header">
+														
+							<h2 class="pull-left" style="color: black;"><big>{{ entity.comment }}</big></h2>
+							
+						</header>
+						</div>
+			</div>
+			{% endif %}
+			{% if entity.activity != null %}
+			<div class="story-inner-content">
+				<div class="alert alert-block {% if entity.activity.sport.id == 9 %}alert-success{% endif %} {% if entity.activity.sport.id == 1 %}alert-info{% endif %}  {% if entity.activity.sport.id == 2 %}alert-warning{% endif %}  fade in">
+					Entrenamiento <strong>{{ entity.activity.sport.name }}</strong>: distancia: <strong>{{ entity.activity.distance }}</strong> tiempo: <strong>{{ entity.activity.time }}</strong>
+					<br>
+					<p>{{ entity.comment }}</p>
+						
+				</div>
+				
+			</div>
+			{% endif %}
+			<div id="news_{{ entity.id }}">
+				{% include 'NewsUserBundle:NewsUser:footerNews.html.twig' with {'entity': entity } %}
+			</div>
+				{% include 'NewsUserBundle:NewsUser:showComment.html.twig' with {'entity': entity } %}
+					
+			</div>
+		</div>
+		
+		

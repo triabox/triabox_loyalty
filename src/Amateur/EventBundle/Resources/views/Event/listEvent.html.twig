@@ -1,0 +1,28 @@
+<div class="main-box" id="main-box">
+
+								
+				{% for entity in entities %} 
+					{% include 'EventBundle:Event:view.html.twig' with {'entity': entity,'tipe': tipe } %}
+					
+				{% endfor %}
+			
+				{% if tipe == "next_all" %}
+					<div id="moreNewsAll_{{ firstResult }}">							
+				{% else %}
+					<div id="moreNews_{{ firstResult }}">
+				{% endif %}	
+				 
+					
+					<div class="clearfix">
+						{% if tipe == "next" %}
+							<button type="submit" onclick="moreData('#moreNews_{{ firstResult }}','{{ path('event_next_ajax', { 'firstResult': firstResult,'maxResults': max_records  }) }}')" class="btn btn-success pull-right">Ver mas</button>
+						{% endif %}
+						{% if tipe == "past" %}
+							<button type="submit" onclick="moreData('#moreNews_{{ firstResult }}','{{ path('event_past_ajax', { 'firstResult': firstResult,'maxResults': max_records  }) }}')" class="btn btn-success pull-right">Ver mas</button>
+						{% endif %}
+						{% if tipe == "next_all" %}
+							<button type="submit" onclick="moreData('#moreNewsAll_{{ firstResult }}','{{ path('event_next_all', { 'firstResult': firstResult,'maxResults': max_records ,'view':'max' }) }}')" class="btn btn-success pull-right">Ver mas</button>							
+						{% endif %}	
+					</div>	
+				</div>	
+</div>		

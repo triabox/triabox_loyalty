@@ -1,0 +1,36 @@
+<div class="modal-header">
+	<h1 class="modal-title">Busca tus tiempos de carrera</h1>
+	<div class="main-box-body clearfix">
+		<div class="profile-box-header green-bg clearfix"
+			style="background-image: url(http://www.triabox.com/web/img/dorsal.jpg);">
+
+
+			<div class="icon-box pull-right">{% set url = '' %} 
+			{% set comment =
+			'Busca tus tiempos de carreras en triabox y guardalos para siempre'%} 
+			{% include ':helper:shareButton.html.twig' with {'url': url ,'comment':comment } %}</div>
+			<div class="job-position" style="color: white;"></div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-body">
+	<div class="form-group">
+		<div id="search-form">
+			<div class="input-group">
+				<input type="text" name="search_value{{ tipo }}" id="search_value{{ tipo }}"
+					placeholder="Nombre, Apellido o Dorsar"
+					class="form-control input-lg" />
+				<div class="input-group-btn">
+					<button class="btn btn-lg btn-primary" onclick="autocomplete{{ tipo }}()">
+						<i class="fa fa-search"></i> Buscar
+					</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<a href="https://docs.google.com/forms/d/e/1FAIpQLSdhUHlbQI5kdVy33zA1cEreokPLOGdpTfDcInI-XmZ37x475w/viewform" target="_blank">Si no encontras tus tiempos, hace click aca</a>
+	<div id="classifications{{ tipo }}"></div>
+
+</div>

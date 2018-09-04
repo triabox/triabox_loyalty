@@ -1,0 +1,25 @@
+<header id="login-header">
+<div id="login-logo">
+	
+{% trans %}Login o Registro{% endtrans %}	
+	</div>
+</header>
+
+<div id="login-box-inner">	
+<div class="row" id="facebook">
+	<div >
+		<button class="btn btn-primary col-xs-12 btn-facebook"   onclick="location.href='{{ url('hwi_oauth_service_redirect', { service: 'facebook' }) }}'">
+			<i class="fa fa-facebook"></i> FACEBOOK
+		</button>
+		<br>
+		<button class="btn col-xs-12 btn-danger"   onclick="location.href='{{ url('hwi_oauth_service_redirect', { service: 'google' }) }}'">
+			<i class="fa fa-google"></i> GOOGLE
+		</button>
+	</div>
+{# 												<div class="col-xs-12 col-sm-6">#}
+{# 													<button type="submit" class="btn btn-primary col-xs-12 btn-twitter">#}
+{# 														<i class="fa fa-twitter"></i> Twitter#}
+{# 													</button>#}
+{# 												</div>#}
+</div>
+</div>	

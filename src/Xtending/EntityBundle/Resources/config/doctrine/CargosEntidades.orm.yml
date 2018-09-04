@@ -1,0 +1,24 @@
+Xtending\EntityBundle\Entity\CargosEntidades:
+    type: entity
+    table: cargos_entidades
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        name:
+            type: string
+            length: 30
+            fixed: false
+            nullable: false
+            column: nombre
+    lifecycleCallbacks: {  }
+    manyToOne:
+        entidad:
+            targetEntity: Entidades
+            inversedBy: cargos
+            joinColumn:
+              name: entidad_id
+              referencedColumnName: id

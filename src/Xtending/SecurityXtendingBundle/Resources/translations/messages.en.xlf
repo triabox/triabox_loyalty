@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+		<trans-unit id="10000"><source>about</source><target>About</target></trans-unit>
+		<trans-unit id="10001"><source>services</source><target>Services</target></trans-unit>
+		<trans-unit id="10002"><source>portfolio</source><target>Portfolio</target></trans-unit>
+		<trans-unit id="10003"><source>contact</source><target>Contact</target></trans-unit>
+		<trans-unit id="10004"><source>welcome.to.xtending</source><target>Welcome To Xtending!</target></trans-unit>
+		<trans-unit id="10005"><source>simplifica.la.gestion</source><target>Managing in a simple way!</target></trans-unit>
+		<trans-unit id="10006"><source>tell.me.more</source><target>Know More…</target></trans-unit>
+		<trans-unit id="10007"><source>iniciar.sesion</source><target>Sign in</target></trans-unit>
+		<trans-unit id="10008"><source>gestion</source><target>Management</target></trans-unit>
+		<trans-unit id="10009"><source>gestion.sub.titulo</source><target>Internal and external, Documents and Records Manager</target></trans-unit>
+		<trans-unit id="10010"><source>administracion</source><target>Suppliers and Customers</target></trans-unit>
+		<trans-unit id="10011"><source>administracion.sub.titulo</source><target>Company internal and shared with Customers and Suppliers Processes Manager</target></trans-unit>
+		<trans-unit id="10012"><source>auditorias</source><target>Audits</target></trans-unit>
+		<trans-unit id="10013"><source>auditorias.sub.titulo</source><target>Internal and external Audits</target></trans-unit>
+		<trans-unit id="10014"><source>comunicacion</source><target>Communication</target></trans-unit>
+		<trans-unit id="10015"><source>comunicacion.sub.titulo</source><target>Platform for Collaborative and Distributed Processes</target></trans-unit>
+		<trans-unit id="10016"><source>portfolio.sub.titulo</source><target>They trust Xtending…</target></trans-unit>
+		<trans-unit id="10017"><source>mc.donals</source><target>Arcos Dorados - McDonald's</target></trans-unit>
+		<trans-unit id="10018"><source>comida</source><target>Food and Meals</target></trans-unit>
+		<trans-unit id="10019"><source>mac.cain</source><target>McCain</target></trans-unit>
+		<trans-unit id="10020"><source>calidad.gestion</source><target>Calidad y Gestión</target></trans-unit>
+		<trans-unit id="10021"><source>consultoria</source><target>Consulting</target></trans-unit>
+		<trans-unit id="10022"><source>que.es.xtending</source><target>What's Xtending?</target></trans-unit>
+		<trans-unit id="10023"><source>que.es.xtending.body</source><target>Xtending is an network for web 2.0 collaborative processes in distributed environments. Provides basic and simple tools to learn and use</target></trans-unit>
+		<trans-unit id="10024"><source>que.ofrecemos</source><target>What do we offer?</target></trans-unit>
+		<trans-unit id="10025"><source>que.ofrecemos.body</source><target>Solutions that facilitate real-time management of Internal Processes and Shared with Customers and Suppliers Processes. Xtending your company provides a broad overview of the processes of its value network.</target></trans-unit>
+		<trans-unit id="10026"><source>an.more</source><target>More…</target></trans-unit>
+		<trans-unit id="10027"><source>contact.us</source><target>Contact Us</target></trans-unit>
+		<trans-unit id="10028"><source>your.name</source><target>Your Name *</target></trans-unit>
+		<trans-unit id="10029"><source>your.email</source><target>Your e-mail *</target></trans-unit>
+		<trans-unit id="10030"><source>your.phone</source><target>Your Phone *</target></trans-unit>
+		<trans-unit id="10031"><source>your.message</source><target>Your question or request *</target></trans-unit>
+		<trans-unit id="10032"><source>send.message</source><target>Send this message</target></trans-unit>
+		<trans-unit id="10033"><source>complete.todos.los.campos.correctamente</source><target>You must complete all the required fields!</target></trans-unit>
+		<trans-unit id="10034"><source>mensaje.exitoso</source><target>The message has been sent successfully. We will respond promptly. Thank you for contacting.</target></trans-unit>
+		<trans-unit id="10035"><source>terminos.de.uso</source><target>Terms and Conditions</target></trans-unit>
+		</body>
+	</file>
+</xliff>

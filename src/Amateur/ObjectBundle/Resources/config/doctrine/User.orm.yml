@@ -1,0 +1,183 @@
+Amateur\ObjectBundle\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: Amateur\ObjectBundle\Entity\UserRepository
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        username:
+            type: string
+            length: 16
+            fixed: false
+            nullable: false
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        createTime:
+            type: datetime
+            nullable: true
+            column: create_time
+        salt:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+        password:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        isActive:
+            type: boolean
+            nullable: true
+            column: isActive
+        name:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+        lastname:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+        codePassword:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: code_password
+        photo:
+            type: string
+            length: 500
+            fixed: false
+            nullable: true
+        tyc:
+            type: boolean
+            nullable: true
+        firstTime:
+            type: boolean
+            nullable: true
+            column: first_time
+        language:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+        lastUpdateDate:
+            type: datetime
+            nullable: true
+            column: last_update_date
+        isOnline:
+            type: boolean
+            nullable: true
+            column: is_online
+        tipeUser:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+            column: tipe_user
+        street:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: street
+        number:
+            type: integer
+            length: 20
+            fixed: false
+            nullable: true
+            column: number
+        piso:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+            column: piso
+        city:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: city
+        province:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: province   
+        country:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+            column: country
+        birhDate:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: birh_date
+        latitude:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: latitude
+        longitude:
+            length: 200
+            fixed: false
+            nullable: true
+            column: longitude
+        phoneNumber:
+            length: 40
+            fixed: false
+            nullable: true
+            column: phone_number
+        postalCode:
+            length: 20
+            fixed: false
+            nullable: true
+            column: postal_code
+        codeState:
+            length: 5
+            fixed: false
+            nullable: true
+            column: code_state 
+    lifecycleCallbacks: {  }
+    oneToMany:
+        friends:
+            targetEntity: Friend
+            mappedBy: user
+            cascade:      [persist]
+        news:
+            targetEntity: NewsUser
+            mappedBy: user
+            cascade:      [persist]
+        registrations:
+            targetEntity: Enrolled
+            mappedBy: user
+            cascade:      [persist]
+    oneToOne:
+      sport:
+            targetEntity: Sport
+            joinColumns:
+                sport_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      organizer:
+        targetEntity: Organizer
+        mappedBy: user
+      userConfiguration:
+        targetEntity: UserConfiguration
+        mappedBy: user
+        cascade:      [persist]

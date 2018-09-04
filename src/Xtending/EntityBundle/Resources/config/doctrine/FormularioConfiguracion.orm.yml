@@ -1,0 +1,151 @@
+Xtending\EntityBundle\Entity\FormularioConfiguracion:
+    type: entity
+    table: formulario_configuracion
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        filtroFechaDesdeHasta:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroFechaDesdeHasta
+        filtroSite:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroSite
+        filtroContacto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroContacto
+        filtroAutor:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroAutor
+        filtroEmpresa:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroEmpresa
+        filtroCodigo:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroCodigo
+        filtroEstado:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroEstado
+        filtroPais:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: filtroPais
+        listadoEstado:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoEstado
+        listadoCodigo:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoCodigo
+        listadoNombre:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoNombre
+        listadoFechaManual:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoFechaManual
+        listadoSite:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoSite
+        listadoFechaAutomatica:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoFechaAutomatica
+        listadoContacto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoContacto
+        listadoAutor:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoAutor
+        listadoEmpresa:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoEmpresa
+        listadoCodigo:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoCodigo
+        listadoInformePdf:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoInformePdf
+        listadoInformeExcel:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: listadoInformeExcel
+        tieneDocTexto:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tiene_doc_text
+        tienePresentacion:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tiene_presentacion
+        tieneDatosTemplate:
+            type: boolean
+            unsigned: false
+            nullable: true
+            column: tiene_datos_template    
+        docTexto:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        presentacion:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        datoTemplate:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    oneToOne:
+        formularioDefincion:
+            targetEntity: FormulariosDefiniciones
+            inversedBy: formularioConfiguracion
+            joinColumn:
+                name: formularios_definiciones_id
+                referencedColumnName: id
+            
+    
+    

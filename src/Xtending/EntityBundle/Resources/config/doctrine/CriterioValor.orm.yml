@@ -1,0 +1,65 @@
+Xtending\EntityBundle\Entity\CriterioValor:
+    type: entity
+    table: criterio_valor
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+    lifecycleCallbacks: {  }
+    manyToOne:
+        criterioDefinicion:
+            targetEntity: CriterioDefinicion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                criterio_definicion_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        empresa:
+            targetEntity: Entidades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                empresa_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        producto:
+            targetEntity: Producto
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        site:
+            targetEntity: Sites
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                site_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contacto:
+            targetEntity: Contactos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contacto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+        labelsCaratulaValor:
+            targetEntity: LabelCaratulaValor
+            mappedBy: criterioValor
+            cascade:      [persist]
+   
+    
+    

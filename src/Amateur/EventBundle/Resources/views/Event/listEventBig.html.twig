@@ -1,0 +1,14 @@
+			{% set cant = 0 %}
+				{%  include 'EventBundle:EventList:listEventOrganizer.html.twig' %}
+				{% if entities|length == 0 %}
+											<div class="alert alert-warning">
+												<i class="fa fa-warning fa-fw fa-lg"></i>
+												<strong>{% trans %}No existen eventos{% endtrans %}</strong>
+											</div>
+				{% endif %}
+{# 				<div id="{{ title|replace({' ': ''}) }}_{{ firstResult }}">#}
+
+{# 					<div class="clearfix">#}
+{# 							<button type="submit" style="width: 100%"  onclick="moreData('#{{ title|replace({' ': ''}) }}_{{ firstResult }}','{{ url_more }}')" class="btn btn-success pull-right">{% block main_box_label %}Mas{% endblock %}</button>#}
+{# 					</div>	#}
+{# 				</div>	#}

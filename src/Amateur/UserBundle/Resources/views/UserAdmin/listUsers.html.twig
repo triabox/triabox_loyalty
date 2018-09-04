@@ -1,0 +1,78 @@
+<div class="table-responsive">
+<header class="main-box-header clearfix">
+	<h2 class="pull-left">{% trans %}Resultados evento{% endtrans %}</h2>
+
+	 <div class="tab-pane clearfix fade in active" id="tab-result">
+                                        <div class="form-group">
+                                        
+                                        <input type="text" class="form-control" id="search_value" placeholder="Nombre, Apellido o Dorsar">
+                                        <div id="autocomplete">
+                                        </div>
+                                </div>
+</header>
+<div id="classifications"></div>                      
+<table class="table user-list table-hover">
+        <thead>
+                <tr>
+                        <th><span>User</span></th>
+                        <th><span>Created</span></th>
+                        <th><span>Email</span></th>
+                        <th></th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td colspan="4">
+                             <div id="result{{entity.id}}"></div>
+                        </td>
+                    </tr>
+                <tr>
+                        <td>
+                                <img src="{%  include 'user_photo.html.twig' with {'user': entity } %}" alt=""/>
+                                <a href="{{ path('user_show', { 'id': entity.id }) }}" class="user-link">{{ entity.name }} {{ entity.lastname }}</a>
+                                <span class="user-subhead">{{ entity.username }}</span>
+                        </td>
+                        <td>
+                                {{ entity.createTime|date('d/m/y') }}
+                        </td>
+                        <td>
+                                <a href="">{{ entity.email }}</a>
+                        </td>
+                        <td style="width: 20%;">
+                                <a href="javascript:moreData('#result{{entity.id}}','{{ path('admin_event_result_not_asigne', {'id': entity.id }) }}')" class="table-link">
+                                        <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                </a>
+                                <a href="" class="table-link">
+                                        <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                </a>
+                                <a href="" class="table-link danger">
+                                        <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                </a>
+                        </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+</table>
+</div>
+        
+<script>
+
+$('.footable').footable();
+
+
+{%  include ':javascript:searchResult.html.twig'  %}
+   
+</script>
+    
+            
+    

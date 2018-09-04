@@ -1,0 +1,114 @@
+{% extends '::layout_xtending_dashboard.html.twig' %} {% block
+main_box_label %}Administrar Resultados{% endblock %} {% block main_box -%}
+<div class="main-box-body clearfix">
+	<form action="{{ path('event_result_preview' , { 'id': entity.id }) }}" name="result" id="result" method="post"
+		 {{ form_enctype(form) }}>
+	<button  class="btn btn-success" onclick="preview()">{% trans %}Vista Previa{% endtrans %}</button>
+		<button  class="btn btn-success" onclick="load()">{% trans %}Cargar Resultados{% endtrans %}</button>
+	<div class="form-group">
+		<label for="name">{% trans %}Archivo Resultado{% endtrans %}</label>
+		{{ form_widget(form.fileResult) }}
+		
+{# 		<input name="{{ form.labelLink.vars.full_name }}"#}
+{# 		 value="{{ form.labelLink.vars.value }}" type="archivo_resultado" class="form-control" id="archivo_resultado" placeholder="Archivo Resultado" >#}
+	</div>
+	
+	<div class="form-group">
+		<div class="input-group" >
+			
+		</div>
+	</div>
+
+	<div class="form-group">
+		{% include 'EventBundle:Result:listResultEvent.html.twig' %}
+	</div>
+<div style="visibility: hidden;">
+	<input name="action" id="action" value="view"/>
+	{{ form_widget(form.name) }}
+	{{ form_widget(form.sport) }}
+	{{ form_widget(form.emailContact) }}
+	
+	{{ form_widget(form.city) }}
+	{{ form_widget(form.province) }}
+	{{ form_widget(form.country) }}
+	
+	{{ form_widget(form.linkPage) }}
+	{{ form_widget(form.startTime) }}
+	{{ form_widget(form.startHs) }}
+	
+	{{ form_widget(form.photoBackground) }}
+	{{ form_widget(form.photo) }}
+	{{ form_widget(form.labelLink) }}
+	{{ form_widget(form.latitude) }}
+        {{ form_widget(form.longitude) }}
+        {{ form_widget(form.flyerPath) }}
+        {{ form_widget(form.isActive) }}
+{{ form_widget(form.categories) }}
+	</div>
+		
+	</form>
+</div>
+<script type="text/javascript">
+	function preview(){
+		$('#action').val("view");
+		 $( "#result" ).submit();
+
+	}
+
+	function load(){
+		$('#action').val("load");
+		 $( "#result" ).submit();
+
+	}
+
+	
+	
+	</script>
+<!--
+
+//-->
+</script>
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+
+{% block script_custom %}
+
+	
+	
+	$('#position_1').select2();
+	$('#position_2').select2();
+	$('#position_3').select2();
+	$('#position_4').select2();
+	$('#position_5').select2();
+	$('#position_6').select2();
+	$('#position_7').select2();
+	$('#position_8').select2();
+	$('#position_9').select2();
+	$('#position_10').select2();
+	$('#position_11').select2();
+	$('#position_12').select2();
+	$('#position_13').select2();
+	$('#position_14').select2();
+	
+	{% if configuration is not null %}
+	{% for i in 1..14 %}
+	
+    	$('#position_{{ i }}').val('{{ configuration[i] }}').change();
+    
+	{% endfor %}
+	{% endif %}
+
+		
+	var tableFixed = $('#table-result').dataTable({
+			'info': false,
+			'pageLength': 50
+		});
+		
+		new $.fn.dataTable.FixedHeader( tableFixed );
+
+
+{% endblock %}
+

@@ -1,0 +1,47 @@
+{% extends "layout_list_html.twig" %}
+
+{% block action_title %}
+			<li><a href="{{ path('admin_role_new') }}"><img src="{{ asset('bundles/frontend/images/icoAdd_16.gif') }}" class="icon16 fl-space2" alt="" title="Agregar" />{% trans %}agregar.nuevo{% endtrans %}</a></li>
+{% endblock %}
+
+{% block form_title %}{% trans %}role{% endtrans %}{% endblock %}
+
+{% block form -%}
+					<div id="data-table">
+					    <table class="style1 datatable">
+					        <thead>
+					            <tr>
+					            	<th></th>
+					                <th>{% trans %}nombre{% endtrans %}</th>
+					                <th></th>
+					                <th>{% trans %}role{% endtrans %}</th>
+					                <th></th>
+					                <th></th>
+					                <th></th>
+					            </tr>
+					        </thead>
+					        <tbody>
+							        {% for entity in entities %}
+							            <tr>
+							            	<td></td>
+							                <td>{{ entity.name }}</td>
+							                <td></td>
+							                <td>{{ entity.role }}</td>
+							                <td></td>
+							                <td></td>
+							                <td>
+							                	<ul>
+								                    <li>
+								                         <a href="{{ path('admin_role_edit', { 'id': entity.id }) }}">
+										            		<img  class="icon16 fl-space2" title="{% trans %}editar{% endtrans %}"  alt="{% trans %}editar{% endtrans %}" src="{{ asset('bundles/frontend/images/ico_edit_16.png') }}" >
+										        		</a>
+								                    </li>
+							                	</ul>
+							                </td>
+							            </tr>
+							        {% endfor %}
+					        </tbody>
+					    </table>
+					</div>
+      
+    {% endblock %}

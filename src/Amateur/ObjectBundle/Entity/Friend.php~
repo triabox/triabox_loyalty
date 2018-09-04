@@ -1,0 +1,170 @@
+<?php
+
+namespace Amateur\ObjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Friend
+ *
+ * @ORM\Table(name="friend")
+ * @ORM\Entity
+ */
+class Friend
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $userId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id1", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $userId1;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tipe_friend_id", type="integer", nullable=false)
+     */
+    private $tipeFriendId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_pending_active", type="integer", nullable=true)
+     */
+    private $userPendingActive;
+
+
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Friend
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set userId1
+     *
+     * @param integer $userId1
+     * @return Friend
+     */
+    public function setUserId1($userId1)
+    {
+        $this->userId1 = $userId1;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId1
+     *
+     * @return integer 
+     */
+    public function getUserId1()
+    {
+        return $this->userId1;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Friend
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set tipeFriendId
+     *
+     * @param integer $tipeFriendId
+     * @return Friend
+     */
+    public function setTipeFriendId($tipeFriendId)
+    {
+        $this->tipeFriendId = $tipeFriendId;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipeFriendId
+     *
+     * @return integer 
+     */
+    public function getTipeFriendId()
+    {
+        return $this->tipeFriendId;
+    }
+
+    /**
+     * Set userPendingActive
+     *
+     * @param integer $userPendingActive
+     * @return Friend
+     */
+    public function setUserPendingActive($userPendingActive)
+    {
+        $this->userPendingActive = $userPendingActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get userPendingActive
+     *
+     * @return integer 
+     */
+    public function getUserPendingActive()
+    {
+        return $this->userPendingActive;
+    }
+}

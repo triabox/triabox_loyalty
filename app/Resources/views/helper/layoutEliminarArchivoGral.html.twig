@@ -1,0 +1,13 @@
+{% if labelLink != "" %}
+<a id="{{ idLink }}" href="{{ asset(hrefLink) }}" target="_blank">{{ labelLink }}</a>
+	<div id="{{ idDiv }}">
+		<a id="botonEliminar" href="#" class="button template" onclick="eliminarArchivo('{{ tipo }}',{{ id }});return false;">{% trans %}eliminar{% endtrans %}</a>
+	</div>
+{% endif %}
+{% if labelLink != "" %}
+<div id="{{ idHDiv }}" hidden>
+{% else %}
+<div id="{{ idHDiv }}">
+{% endif %}
+{{ form_widget(valor) }}
+</div>

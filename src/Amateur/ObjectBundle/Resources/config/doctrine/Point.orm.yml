@@ -1,0 +1,57 @@
+Amateur\ObjectBundle\Entity\Point:
+    type: entity
+    table: point
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        description:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+        isDefeated:
+            type: string
+            length: 2
+            nullable: true
+            column: is_defeated
+        cant:
+            type: string
+            length: 10
+            fixed: false
+            nullable: false
+        date:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+            column: date
+        code:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToOne:
+      userFriend:
+            targetEntity: User
+            joinColumns:
+                user_friend_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      user:
+            targetEntity: User
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+      event:
+            targetEntity: Event
+            joinColumns:
+                event_id:
+                    referencedColumnName: id
+            orphanRemoval: false

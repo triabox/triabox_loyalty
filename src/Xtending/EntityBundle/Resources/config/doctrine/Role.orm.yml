@@ -1,0 +1,32 @@
+Xtending\EntityBundle\Entity\Role:
+    type: entity
+    table: role
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        name:
+            type: string
+            length: 30
+            fixed: false
+            nullable: false
+        role:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToMany:
+      contactos:
+        targetEntity: Contactos
+        joinTable:
+        name: contactos_role
+        joinColumns:
+          contacto_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          role_id:
+            referencedColumnName: id

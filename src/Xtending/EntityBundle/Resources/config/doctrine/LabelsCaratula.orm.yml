@@ -1,0 +1,49 @@
+Xtending\EntityBundle\Entity\LabelsCaratula:
+    type: entity
+    table: labels_caratulas
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+        tipoLabel:
+            type: integer
+            unsigned: false
+            nullable: true
+        obligatorio:
+            type: boolean
+            unsigned: false
+            nullable: true
+        orden:
+            type: integer
+            unsigned: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    
+    manyToOne:
+        
+        formulariosDefiniciones:
+            targetEntity: FormulariosDefiniciones
+            inversedBy: labelsCaratula
+            joinColumn:
+                name: id_formularios_definiciones
+                referencedColumnName: id
+        criterioDefinicion:
+            targetEntity: CriterioDefinicion
+            inversedBy: labelsCaratula
+            joinColumn:
+                name: id_criterio_definicion
+                referencedColumnName: id
+        tipoSelect:
+            targetEntity: Criterios
+            joinColumn:
+              name: tipoSelect
+              referencedColumnName: id         
+                

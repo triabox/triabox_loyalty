@@ -1,0 +1,39 @@
+<li class="dropdown hidden-xs">
+	<a class="btn dropdown-toggle" data-toggle="dropdown"  >
+		<i class="fa fa-trophy"></i>
+		{% if classifications|length > 0 %}<span class="count" >{{ classifications|length }}</span>{% endif %}
+	</a>
+	<ul class="dropdown-menu notifications-list messages-list">
+		<li class="pointer">
+			<div class="pointer-inner">
+				<div class="arrow"></div>
+			</div>
+		</li>
+		{% if classifications|length > 0 %}<li class="item-header">{% trans %}Tiene{% endtrans %} {{ classifications|length }} {% trans %}Clasificaciones{% endtrans %}</li>{% endif %}
+		
+		{% for classification in classifications %}
+		
+		<li class="item">
+			
+			<a href="{{ path('search_result') }}">
+				<span class="content">
+					<i class="fa fa-trophy"></i>
+					<span class="content-headline">
+						{{ classification.event.name }}
+					</span>
+					<span class="content-text">
+						{{ classification.officialTime }}
+					</span>
+				</span>
+				<span class="time"><i class="fa fa-clock-o"></i>{{ classification.event.startTime|date('d.m.y') }}</span>
+			</a>
+		</li>
+		{% endfor %}
+		<li class="item-footer">
+			<a href="javascript:moreData('#main-box','{{ path('search_result') }}')">
+			{% trans %}Ver todas las clasificaciones{% endtrans %}
+				
+			</a>
+		</li>
+                </ul>
+</li>

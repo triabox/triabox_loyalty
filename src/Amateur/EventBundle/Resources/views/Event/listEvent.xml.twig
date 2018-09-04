@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Proximos Eventos</title>
+  <subtitle>TriaBox</subtitle>
+  <link href="www.triabox.com" rel="self"/>
+  <updated>{{ "now"|date("m/d/Y") }}</updated>
+  <author><name>@TriaBox</name></author>
+  <id>{{ "now"|date("F jS \\a\\t g:ia") }}</id>
+ {% for entity in entities %} 
+  <entry>
+    <title>{{ entity.name }}</title>
+    <link href="www.triabox.com/{{ path('event_show', { 'id': entity.id }) }}" />
+    <id>{{ entity.id }}</id>
+    <updated>{{ entity.startTime|date('d.m.y') }}</updated>
+    <summary>[Calendario #triabox  #{{ entity.sport }}] : {{ entity.name }} -  {{ entity.startTime|date('d.m.y') }} -  {{ entity.city }} {{ entity.province }} {{ entity.country }}</summary>
+    <author><name>@TriaBox</name></author>
+  </entry>
+  {% endfor %}
+			
+</feed>
+								
+				
+					
+				
+				

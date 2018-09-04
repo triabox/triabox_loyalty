@@ -1,0 +1,25 @@
+<div id="data-table">
+											<table class="style1">
+												<thead>
+													<tr>
+														<th align="center">#</th>
+														
+														<th align="center">{% trans %}name{% endtrans %}</th>
+														<th align="center">{% trans %}category.name{% endtrans %}</th>
+														<th align="center">{% trans %}official.time{% endtrans %}</th>
+														<th align="center">{% trans %}neto.time{% endtrans %}</th>
+														<th align="center"></th>
+														<th align="center"></th>
+														
+													</tr>
+												</thead>
+												<tbody id="pacsC" class="classification" data-prototype="{% filter escape %}{% include 'EventBundle:Event:prototyClassification.html.twig' with {'classification': form.classifications.vars.prototype} %}{% endfilter %}" >
+														   
+														    {% for classification in form.classifications %}
+														    	<tr>
+														    		{% include 'EventBundle:Event:prototyClassification.html.twig' with {'classification': classification} %}
+															  	</tr>
+															{% endfor %}
+												</tbody>
+											</table> 	
+</div><!-- /#table -->

@@ -1,0 +1,83 @@
+{% extends '::registration-full.html.twig' %}
+{% block form_login %}		
+										
+										<span class="text">
+          {% if error %}
+    			<div>{{ error.message }}</div>
+		  {% endif %}
+		</span>
+{# 											<div class="input-group">#}
+{# 												<span class="input-group-addon"><i class="fa fa-user"></i></span>#}
+{# 												<input class="form-control" type="text" placeholder="Email address or User" id="username" name="_username" value="{{ last_username }}">#}
+{# 											</div>#}
+{# 											<div class="input-group">#}
+{# 												<span class="input-group-addon"><i class="fa fa-key"></i></span>#}
+{# 												<input type="password" class="form-control" id="password" name="_password" placeholder="Password">#}
+{# 											</div>#}
+{# 											<div id="remember-me-wrapper">#}
+{# 												<div class="row">#}
+{# 													<div class="col-xs-6">#}
+{# 														<div class="checkbox-nice">#}
+{# 															<input type="checkbox" id="remember-me" checked="checked" />#}
+{# 															<label for="remember-me">#}
+{# 																Remember me#}
+{# 															</label>#}
+{# 														</div>#}
+{# 													</div>#}
+{# 													<a href="#" id="login-forget-link" class="col-xs-6">#}
+{# 														Forgot password?#}
+{# 													</a>#}
+{# 												</div>#}
+{# 											</div>#}
+{# 											<div class="row">#}
+{# 												<div class="col-xs-12">#}
+{# 													<button type="submit" class="btn btn-success col-xs-12">Login</button>#}
+{# 												</div>#}
+{# 											</div>#}
+{# 											<div class="row">#}
+{# 												<div class="col-xs-12">#}
+{# 													<p class="social-text">Or login with</p>#}
+{# 												</div>#}
+{# 											</div>#}
+											<div class="row" id="facebook">
+												<div >
+													<button class="btn btn-primary col-xs-12 btn-facebook"   onclick="location.href='{{ url('hwi_oauth_service_redirect', { service: 'facebook' }) }}'">
+														<i class="fa fa-facebook"></i> FACEBOOK
+													</button>
+													<button class="btn col-xs-12 btn-danger"   onclick="location.href='{{ url('hwi_oauth_service_redirect', { service: 'google' }) }}'">
+														<i class="fa fa-google"></i> google
+													</button>
+												</div>
+{# 												<div class="col-xs-12 col-sm-6">#}
+{# 													<button type="submit" class="btn btn-primary col-xs-12 btn-twitter">#}
+{# 														<i class="fa fa-twitter"></i> Twitter#}
+{# 													</button>#}
+{# 												</div>#}
+											</div>
+										<script type="text/javascript">
+<!--
+
+//-->
+</script>
+{% endblock %}
+
+					{% block form_login_footer %}
+					<div id="login-box-footer">
+							<div class="row">
+{# 								<div class="col-xs-12">#}
+{# 									¿ Quieres ser parte ?#}
+{# 									<a href="{{ path('user_new') }}">#}
+{# 										Registrar#}
+{# 									</a>#}
+{# 								</div>#}
+{# 								<div class="col-xs-12">#}
+{# 									Eventos Publicados#}
+{# 									<a href="{{ path('dashboard') }}">#}
+{# 										ver#}
+{# 									</a>#}
+{# 								</div>#}
+							</div>
+					</div>								
+					{% endblock %}
+
+						

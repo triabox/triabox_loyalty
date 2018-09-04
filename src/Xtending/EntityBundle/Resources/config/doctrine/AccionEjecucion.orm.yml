@@ -1,0 +1,60 @@
+Xtending\EntityBundle\Entity\AccionEjecucion:
+    type: entity
+    table: accion_ejecucion
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        descripcionAccion:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: descripcion_accion
+        fechaEjecucion:
+            type: string
+            lenth: 45
+            nullable: true
+            column: fecha_ejecucion
+        descripcionEjecucion:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: descripcion_ejecucion
+        archivoEjecucion:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+            column: archivo_ejecucion
+        responsableTxt:
+            type: string
+            length: 100
+            nullable: true
+            column: responsable_txt   
+        ejecutor:
+            type: string
+            length: 200
+            nullable: true
+            column: responsable_accion_id
+        fechaAccion:
+            type: date
+            nullable: true
+            column: fecha_accion
+    manyToOne:
+      responsable:
+        targetEntity: Contactos
+        joinColumn:
+                name: responsable_ejecucion_id
+                referencedColumnName: id
+      accionCorrectiva:
+            targetEntity: AccionCorrectiva
+            inversedBy: accionesEjecuciones
+            joinColumn:
+                name: accion_correctiva_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

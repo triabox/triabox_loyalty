@@ -1,0 +1,39 @@
+Xtending\EntityBundle\Entity\CausaPropuesta:
+    type: entity
+    table: causa_propuesta
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        descripcionAnalisis:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: descripcion
+        archivoAnalisis:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: archivo
+        fechaAnalisis:
+            type: date
+            nullable: true
+            column: fecha
+    manyToOne:
+      autor:
+        targetEntity: Contactos
+        joinColumn:
+                name: autor_id
+                referencedColumnName: id
+      accionCorrectiva:
+            targetEntity: AccionCorrectiva
+            inversedBy: causasPropuestas
+            joinColumn:
+                name: accion_correctiva_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,23 @@
+{% extends ':mobile:base.html.twig' %}
+{% block body %}
+<div data-role="page">
+  <div data-role="header">
+  <h1><span class="title">login</span></h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+   <form action="{{ path('login_check') }}" method="post">
+      <div class="ui-field-contain">
+      	  {% if error %}
+    			<div>{{ error.message }}</div>
+		  {% endif %}
+        <label for="fullname">{% trans %}usuario.email{% endtrans %}:</label>
+        <input  type="text" id="username" name="_username" value="{{ last_username }}" />      
+        <label for="password">{% trans %}password{% endtrans %}:</label>
+        <input type="password" id="password" name="_password"  /> 
+      </div>
+		<input type="submit" data-inline="true" value="Submit">
+    </form>
+  </div>
+</div>
+{% endblock %}

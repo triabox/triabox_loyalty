@@ -1,0 +1,5 @@
+#Sun Jun 19 09:50:22 ART 2016
+eclipse.preferences.version=1
+include_path=1;/triabox/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar
+phpVersion=php5
+use_asp_tags_as_php=false

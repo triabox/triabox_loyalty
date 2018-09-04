@@ -1,0 +1,56 @@
+
+{% extends 'layout_formulario_html.twig' %}
+{% block head_layout %}
+
+
+{% endblock %}
+
+{% block form_title %}{% trans %}recuperar.password{% endtrans %}{% endblock %}
+
+{% block mainpage_layout -%}
+	<div class="login-box">
+<div class="login-border">
+<div class="login-style">
+  <div class="login-header">
+    <div class="login-logo clear">
+        <span class="textlogo">
+          <span class="title"><img src="{{ asset('bundles/frontend/images/site-logo.png') }}" />      </div></span>
+
+          <span class="text">
+          </span>
+        </span>
+      <div class="picture">
+        
+    </div>
+  </div>
+  <form action="{{ path('login_informacion') }}" method="post">
+
+  <div class="login-inside">
+    <div class="login-data">
+
+      <p>&nbsp;</p>
+      <div class="row clear">
+		{% if error %}{% trans %}error.ingreso{% endtrans %}{% endif %}
+	  </div>
+      <div class="row clear">
+        <label for="user">{% trans %}usuario.correo{% endtrans %}:</label>
+        <input  type="text" id="userEmail" name="userEmail"/>      
+			
+      </div>
+      <button type="submit" class="button template">{% trans %}buscar{% endtrans %}</button>
+
+       </div>    
+  </div>
+  <div class="login-footer clear">
+    <div class="login-links">
+      <a href="{{ path('login') }}">{% trans %}volver{% endtrans %}</a>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+

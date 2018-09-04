@@ -1,0 +1,23 @@
+
+<div  id="data-table">
+		<table class="basic">
+			<tr>
+				<td>
+					<label for="textfield" class="form-label size-120 fl-space2">{{ form_label(form.name) }}{{ form_errors(form.name) }}<span class="required">*</span></label>
+					{{ form_widget(form.name) }}
+					{{ form_row (form._token) }}
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="textfield" class="form-label size-120 fl-space2">{{ form_label(form.role) }}{{ form_errors(form.role) }}<span class="required">*</span></label>
+					{{ form_widget(form.role) }}
+											
+				</td>
+				
+			</tr>
+		</table>						
+</div>

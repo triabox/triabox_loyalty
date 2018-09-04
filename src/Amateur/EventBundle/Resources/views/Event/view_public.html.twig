@@ -1,0 +1,126 @@
+{% set ambiente = 'http://www.triabox.com'  %}	
+<div id="modificacion{{ entity.id }}"></div>
+<div class="main-box clearfix profile-box-menu">
+        <div class="main-box-body clearfix">
+
+                <div class="profile-box-header green-bg clearfix" style="background-image: url(http://www.triabox.com/{{ asset(entity.photoBackground) }});">
+                        <img src="http://www.triabox.com/{{ asset(entity.photo) }}"alt="" class="profile-img img-responsive" />
+                        <div class="icon-box pull-right">
+                        {% set url = '/event/'~ entity.id ~'/show'  %}
+                        {% set comment = '[Calendario '~entity.sport~ ']: '~entity.startTime|date('d.m.y')~' - '~entity.name~' - '~entity.city  %}
+
+                        {%  include ':helper:shareButton.html.twig'with {'url': url ,'comment':comment } %}
+
+                        </div>
+                </div>
+                {%  if  entity.puntuation != 0 and tipe == "show" %}
+                <div class="main-box clearfix project-box green-box">
+                        <div class="main-box-body clearfix">
+
+                                <div class="project-box-content">
+                                        <span class="chart" data-percent="{{ entity.puntuation }}" data-bar-color="#2ecc71">
+                                                <span class="percent"></span>%<br/>
+                                                <span class="lbl">Calificacion</span>
+                                        </span>
+                                </div>
+
+
+                        </div>
+                </div>
+                {% endif %}
+                <div class="profile-box-content clearfix" id="{{ entity.id }}">
+                        <ul class="menu-items">
+                        <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-arrow-right fa-lg"></i> {{ entity.name }} 
+
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-arrow-right fa-lg"></i> {{ entity.sport }}
+
+                                        </a>
+                                </li>
+                                {% if entity.categories|length >= 1 %}
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-arrow-right fa-lg"></i> 
+                                                {% if (entity.categories|length >= 1 and entity.sport.id == 9)  %}{{ entity.categories[0].name }}: {{ entity.categories[0].distanceFirstRun }}k{% endif %}  {% if (entity.categories|length >= 2 and entity.sport.id == 9 )%}  {{ entity.categories[1].name }} : {{ entity.categories[1].distanceFirstRun }}k{% endif %} 
+
+                                                        {% if entity.categories|length >= 1 and entity.sport.id == 4  %}{{ entity.categories[0].name }}: run: {{ entity.categories[0].distanceFirstRun }}k bike: {{ entity.categories[0].distanceBike }}k run: {{ entity.categories[0].distanceLastRun }}k{% endif %}
+
+                                                        {% if entity.categories|length >= 1 and entity.sport.id == 3  %}{{ entity.categories[0].name }}: swim: {{ entity.categories[0].distanceSwim }}m bike: {{ entity.categories[0].distanceBike }}k run: {{ entity.categories[0].distanceFirstRun }}k{% endif %}
+
+                                                {% if (entity.categories|length >= 1 and entity.sport.id == 2)  %}{{ entity.categories[0].name }}: {{ entity.categories[0].distanceBike }}k{% endif %}  {% if (entity.categories|length >= 2 and entity.sport.id == 2)%}  {{ entity.categories[1].name }} : {{ entity.categories[1].distanceBike }}k{% endif %}
+
+                                                {% if (entity.categories|length >= 1 and entity.sport.id == 1)  %}{{ entity.categories[0].name }}: {{ entity.categories[0].distanceSwim }}m{% endif %}  {% if (entity.categories|length >= 2 and entity.sport.id == 1)%}  {{ entity.categories[1].name }} : {{ entity.categories[1].distanceSwim }}m{% endif %}
+                                        </a>
+                                </li>
+                                {% endif %}
+                                {% if (entity.categories|length >= 2 and (entity.sport.id == 3 or entity.sport.id == 4)) %}
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-arrow-right fa-lg"></i> 
+                                                        {% if entity.sport.id == 4  %}{{ entity.categories[1].name }}: run: {{ entity.categories[1].distanceFirstRun }}k bike: {{ entity.categories[1].distanceBike }}k run: {{ entity.categories[1].distanceLastRun }}k{% endif %}
+
+                                                        {% if entity.sport.id == 3  %}{{ entity.categories[1].name }}: swim: {{ entity.categories[1].distanceSwim }}m bike: {{ entity.categories[1].distanceBike }}k run: {{ entity.categories[1].distanceLastRun }}k{% endif %}
+
+                                        </a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                <i class="fa fa-calendar fa-lg"></i> {{ entity.startTime|date('d.m.y') }} - {{ entity.startHs }}
+
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#" class="clearfix">
+                                                  <i class="fa fa-map-marker fa-lg"></i> {{ entity.city }} {{ entity.province }} {{ entity.country }}  {%  if  entity.distanceMe|number_format(1) != "0.0" %} <span class="label label-primary label-circle pull-right">{{ entity.distanceMe|number_format(1) }} km</span>{% endif %}
+
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="{{ entity.linkPage }}" class="clearfix" translate="yes">
+                                                <i class="fa fa-globe fa-lg"></i> Web Organizador
+
+                                        </a>
+                                </li>
+                                <li>
+                                        <div align="center">
+
+                                {%  if  tipe == "run" %}
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="generateIdOnline({{ entity.id }},'{{ entity.name }}')"  >
+                                                <span class="fa fa-road"></span> {% trans %}Iniciar{% endtrans %} 
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="getUserOnline({{ entity.id }})"  >
+                                                            	    <span class="fa fa-dot-circle-o"></span> {% trans %}Online{% endtrans %} 
+                                                        		</button>
+                                        {% else %}
+{#                                                 <button type="button" class="btn btn-primary btn-lg" onclick="moreData('#modificacion{{ entity.id }}','{{ path('enrolled_new', { 'idEvent': entity.id  }) }}')"  >#}
+{#                                                         <span class="fa fa-plus"></span>{% if date(entity.startTime) > date() %} {% trans %}Participar{% endtrans %} {% else %} Participe {% endif %}#}
+{#                                                 </button>#}
+
+                                        {%  if  tipe != "show" %}
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='{{ ambiente }}{{ url }}'"  >
+                                                <span class="fa fa-eye"></span> {% trans %}Detalle{% endtrans %}
+                                        </button>
+                                        {% endif %}
+                                        {% if app.user != null  and app.user.tipeUser == '01' %}
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='{{ path('event_edit', { 'id': entity.id }) }}'"  >
+                                                <span class="fa fa-edit"></span> {% trans %}Editar{% endtrans %}
+                                        </button>
+                                        {% endif %}
+
+                                        {% endif %}
+                                        </div>
+                                </li>
+                                 <li>
+                                        <br>
+                                </li>
+
+                        </ul>
+                </div>
+        </div>
+</div>

@@ -1,0 +1,17 @@
+function buscarEntidades(id,string,tipo) {
+	
+		var routeWithPlaceHolder= "{{ path('entidades_asignaciones',{'id':'_id_'}) }}" ; 
+		var routeToLoad = routeWithPlaceHolder.replace("_id_",id);
+		
+	//para probar si hay errores
+	$("#resultadoSearch").load(routeToLoad,{string:string, tipo:tipo}, function(response, status, xhr) {
+	    if (status == "error") {
+{# 			var msg = "Error!, algo ha sucedido: ";#}
+{# 			$("#output").html(msg + xhr.status + " " + xhr.statusText);#}
+{# 			$('#output').html(xhr.responseText);#}
+		}
+		if (status == "success") {
+			$("#btModal")[0].click();
+		}
+	});
+}

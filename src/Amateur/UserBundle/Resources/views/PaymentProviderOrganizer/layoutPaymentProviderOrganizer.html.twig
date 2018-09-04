@@ -1,0 +1,14 @@
+<div id="data-table">
+	<table class="style1">
+		<thead>
+		</thead>
+		<tbody id="pacsC" class="paymentProvidersOrganizer" data-prototype="{% filter escape %}{% include 'UserBundle:PaymentProviderOrganizer:prototyPaymentProviderOrganizer.html.twig' with {'entity': form.paymentProvidersOrganizer.vars.prototype}  %}{% endfilter %}" >
+
+				    {% for entity in form.paymentProvidersOrganizer %}
+				    	<tr>
+				    		{% include 'UserBundle:PaymentProviderOrganizer:prototyPaymentProviderOrganizer.html.twig' with {'entity': entity} %}
+					  	</tr>
+					{% endfor %}
+		</tbody>
+	</table> 	
+</div><!-- /#table -->

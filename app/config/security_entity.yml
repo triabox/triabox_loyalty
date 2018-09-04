@@ -1,0 +1,23 @@
+security:
+    encoders:
+        Amateur\ObjectBundle\Entity\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+        
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        administrators:
+            entity: { class: ObjectBundle:User, property: username }
+
+    firewalls:
+        admin_area:
+            pattern:    ^/padmin/formulario*
+            http_basic: ~
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_USER }

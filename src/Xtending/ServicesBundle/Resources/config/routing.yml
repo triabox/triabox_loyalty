@@ -1,0 +1,5 @@
+homepage:
+  pattern:  /{_locale}
+  defaults: { _controller: "ServicesBundle:Default:index", _locale: en }
+  requirements:
+    _locale: en|es|pt

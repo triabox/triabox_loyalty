@@ -1,0 +1,23 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}Eventos Sin Resultados{% endblock %}
+{% block main_box -%}
+
+				<div id="event_without">
+						
+				</div>	
+
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+
+{% block script_custom %}
+	
+	$('#event_without').load('{{ path('event_without_result', { 'firstResult': 0,'maxResults': 15  }) }}');
+	
+   
+   {% endblock %}
+   {% block script_ajax_down %}
+   	
+   {% endblock %}

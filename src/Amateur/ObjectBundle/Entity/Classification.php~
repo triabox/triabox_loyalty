@@ -1,0 +1,305 @@
+<?php
+
+namespace Amateur\ObjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Classification
+ *
+ * @ORM\Table(name="classification")
+ * @ORM\Entity
+ */
+class Classification
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=600, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="event_id", type="integer", nullable=false)
+     */
+    private $eventId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category_name", type="string", length=300, nullable=true)
+     */
+    private $categoryName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="official_time", type="datetime", nullable=true)
+     */
+    private $officialTime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="neto_time", type="datetime", nullable=true)
+     */
+    private $netoTime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="classificationcol", type="string", length=20, nullable=true)
+     */
+    private $classificationcol;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extra_data", type="string", length=2000, nullable=true)
+     */
+    private $extraData;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexo", type="string", length=20, nullable=true)
+     */
+    private $sexo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=300, nullable=true)
+     */
+    private $lastname;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Classification
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set eventId
+     *
+     * @param integer $eventId
+     * @return Classification
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+    
+        return $this;
+    }
+
+    /**
+     * Get eventId
+     *
+     * @return integer 
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
+    }
+
+    /**
+     * Set categoryName
+     *
+     * @param string $categoryName
+     * @return Classification
+     */
+    public function setCategoryName($categoryName)
+    {
+        $this->categoryName = $categoryName;
+    
+        return $this;
+    }
+
+    /**
+     * Get categoryName
+     *
+     * @return string 
+     */
+    public function getCategoryName()
+    {
+        return $this->categoryName;
+    }
+
+    /**
+     * Set officialTime
+     *
+     * @param \DateTime $officialTime
+     * @return Classification
+     */
+    public function setOfficialTime($officialTime)
+    {
+        $this->officialTime = $officialTime;
+    
+        return $this;
+    }
+
+    /**
+     * Get officialTime
+     *
+     * @return \DateTime 
+     */
+    public function getOfficialTime()
+    {
+        return $this->officialTime;
+    }
+
+    /**
+     * Set netoTime
+     *
+     * @param \DateTime $netoTime
+     * @return Classification
+     */
+    public function setNetoTime($netoTime)
+    {
+        $this->netoTime = $netoTime;
+    
+        return $this;
+    }
+
+    /**
+     * Get netoTime
+     *
+     * @return \DateTime 
+     */
+    public function getNetoTime()
+    {
+        return $this->netoTime;
+    }
+
+    /**
+     * Set classificationcol
+     *
+     * @param string $classificationcol
+     * @return Classification
+     */
+    public function setClassificationcol($classificationcol)
+    {
+        $this->classificationcol = $classificationcol;
+    
+        return $this;
+    }
+
+    /**
+     * Get classificationcol
+     *
+     * @return string 
+     */
+    public function getClassificationcol()
+    {
+        return $this->classificationcol;
+    }
+
+    /**
+     * Set extraData
+     *
+     * @param string $extraData
+     * @return Classification
+     */
+    public function setExtraData($extraData)
+    {
+        $this->extraData = $extraData;
+    
+        return $this;
+    }
+
+    /**
+     * Get extraData
+     *
+     * @return string 
+     */
+    public function getExtraData()
+    {
+        return $this->extraData;
+    }
+
+    /**
+     * Set sexo
+     *
+     * @param string $sexo
+     * @return Classification
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+    
+        return $this;
+    }
+
+    /**
+     * Get sexo
+     *
+     * @return string 
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return Classification
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+}

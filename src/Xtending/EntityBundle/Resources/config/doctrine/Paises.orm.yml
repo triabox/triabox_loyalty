@@ -1,0 +1,21 @@
+Xtending\EntityBundle\Entity\Paises:
+    type: entity
+    table: paises
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 150
+            fixed: false
+            nullable: true
+        sigla:
+            type: string
+            length: 2
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,46 @@
+Xtending\EntityBundle\Entity\LabelCaratulaValorHistorial:
+    type: entity
+    table: labels_caratulas_valor_historial
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        valor:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+    oneToOne:
+        tipoSelect:
+            targetEntity: LabelsCriterio
+            joinColumns:
+              tipoSelect_id:
+                referencedColumnName: id
+            orphanRemoval: false
+        labelCaratula:
+            targetEntity: LabelsCaratula
+            joinColumns:
+                label_caratula_id:
+                    referencedColumnName: id
+            orphanRemoval: false 
+    manyToOne:
+        formularioResultado:
+            targetEntity: FormulariosResultadosHistorial
+            inversedBy: labelsCaratulaValor
+            joinColumns:
+                formulario_resultado_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        criterioValor:
+            targetEntity: CriterioValor
+            inversedBy: labelsCaratulaValor
+            joinColumns:
+                criterio_valor_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        
+    lifecycleCallbacks: {  }

@@ -1,0 +1,111 @@
+<div class="main-box-body clearfix">
+<div class="row" id="user-profile">
+        <div class="col-lg-3 col-md-4 col-sm-4">
+                <div class="main-box clearfix">
+                        <header class="main-box-header clearfix">
+                                <h2>{{ user.name }} {{ user.lastname }} </h2>
+                        </header>
+
+                        <div class="main-box-body clearfix">
+                                <div class="profile-status">
+<!-- 							<i class="fa fa-circle"></i> Online -->
+                                </div>
+
+                                <img src="{%  include 'user_photo.html.twig' with {'user': user } %}" alt="" class="profile-img img-responsive center-block" />
+
+
+
+                                <div class="profile-since">
+                                        {{ user.city }} <br/>{{ user.province }}<br/> {{ user.country }}
+                                </div>
+                                <div class="profile-details">
+                                        <ul class="fa-ul">
+                                                <li><i class="fa-li fa fa-group "></i>{% trans %}Amigos{% endtrans %}: <span>{{ user.friendsUser|length }}</span></li>
+                                                <li><i class="fa-li fa fa-trophy"></i>{% trans %}Eventos{% endtrans %}: <span>{{ user.registrations|length }}</span></li>
+                                        </ul>
+                                </div>
+
+                                {%  if app.user.id == user.id %} 
+                                <div class="profile-message-btn center-block text-center">
+
+                                        <a href="{{ path('user_edit', { 'id': app.user.id }) }}" class="btn btn-success">
+                                                <i class="fa fa-edit"></i>
+                                                {% trans %}Configuracion{% endtrans %}
+                                        </a>
+                                        {%  if app.user.organizer is null %} 
+                                        <br>
+                                        <br>
+                                        <a href="{{ path('organizer_new') }}" class="btn btn-success">
+                                                <i class="fa fa-gear "></i>
+                                                {% trans %}Soy Organizador de eventos{% endtrans %}
+                                        </a>
+                                        {% endif %}
+
+                                        {%  if app.user.organizer is not null and app.user.organizer.isActive == 1 %} 
+                                        <br>
+                                        <br>
+                                        <a href="{{ path('organizer_edit', { 'id': app.user.organizer.id }) }}" class="btn btn-success">
+                                                <i class="fa fa-gear "></i>
+                                                {% trans %}Administrar eventos{% endtrans %}
+                                        </a>
+                                        {% endif %}
+                                </div>
+                                {% endif %}
+                        </div>
+
+                </div>
+        </div>
+
+        <div class="col-lg-9 col-md-8 col-sm-8">
+                <div class="main-box clearfix">
+                        <div class="tabs-wrapper profile-tabs">
+                                <ul class="nav nav-tabs">
+                                        <li ><a href="#tab-activity" data-toggle="tab">{% trans %}Actividad{% endtrans %}</a></li>
+                                        <li><a href="#tab-friends" data-toggle="tab">{% trans %}Amigos{% endtrans %}</a></li>
+                                        <li class="active"><a href="#tab-newsfeed" data-toggle="tab">{% trans %}Logros{% endtrans %}</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                        <div class="tab-pane fade" id="tab-activity">
+
+                                                <div id="newsfeed">
+
+                                                <div id="moreNews_1">
+
+
+                                                        </div>	
+
+
+                                                </div>
+
+                                        </div>
+                                        <div class="tab-pane clearfix fade" id="tab-friends">
+                                                <ul class="widget-users row">
+
+                                                        {%  if app.user.id == user.id %} 
+                                                                {% include 'UserBundle:User:list_users.html.twig' with {'entities': user.friendsUser,'type': 'friends' , 'tipe':''}  %}
+                                                        {% else %}
+                                                                {% include 'UserBundle:User:list_users.html.twig' with {'entities': user.friendsUser,'type': '' , 'tipe':'notificaciones' }  %}
+                                                        {% endif %}
+
+
+                                        </div>
+
+                                        <div class="tab-pane fade in active" id="tab-newsfeed">
+
+                                                <div id="newsfeed">
+
+                                                {% for enrolled in enrolleds %}
+                                                        {% include 'UserBundle:UserResult:userResultEvent.html.twig' with {'user': user, 'event':enrolled.event ,'classification':enrolled.classification, 'enrolled':enrolled } %}
+                                                {% endfor %}
+
+                                                </div>
+
+                                        </div>
+                                </div>
+                        </div>
+
+                </div>
+        </div>
+</div>
+</div>

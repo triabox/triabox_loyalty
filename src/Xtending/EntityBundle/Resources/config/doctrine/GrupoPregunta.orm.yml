@@ -1,0 +1,29 @@
+Xtending\EntityBundle\Entity\GrupoPregunta:
+    type: entity
+    table: grupo_pregunta
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        nombre:
+            type: string
+            length: 250
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }
+    oneToMany:
+        preguntas:
+            targetEntity: Preguntas
+            mappedBy: grupoPregunta
+            cascade:      [persist]
+    manyToOne:
+        formulariosDefiniciones:
+            targetEntity: FormulariosDefiniciones
+            inversedBy: gruposPregunta
+            joinColumn:
+                name: formularios_definiciones_id
+                referencedColumnName: id      
+     

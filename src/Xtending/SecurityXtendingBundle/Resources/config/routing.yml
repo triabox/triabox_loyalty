@@ -1,0 +1,52 @@
+_login: 
+    pattern: / 
+    defaults: { _controller: "NewsUserBundle:NewsUser:index"}
+    
+login_enviar_email:
+    pattern:   /login/enviaremail/{id}
+    defaults:  { _controller: "SecurityXtendingBundle:SecurityXtending:enviarEmail" }
+
+login:
+    pattern:   /calendario
+    defaults: { _controller: "FrameworkBundle:Redirect:redirect", route: _login }
+
+login_redirect:
+    pattern:   /login
+    defaults: { _controller: "SecurityXtendingBundle:SecurityXtending:login" }
+
+login_cambio:
+    pattern:   /login/cambio/{id}
+    defaults:  { _controller: "SecurityXtendingBundle:SecurityXtending:cambio" }
+
+login_recuperar_password:
+    pattern:   /login/recuperarpassword
+    defaults:  { _controller: "SecurityXtendingBundle:SecurityXtending:recuperarPassword" }
+
+login_informacion:
+    pattern:   /login/informacion
+    defaults:  { _controller: "SecurityXtendingBundle:SecurityXtending:informacion" }
+
+login_codigo:
+    pattern:   /login/codigo/{id}
+    defaults:  { _controller: "SecurityXtendingBundle:SecurityXtending:codigoPassword" }
+
+login_contacto:
+    pattern: /login/contacto
+    defaults: { _controller: "SecurityXtendingBundle:SecurityXtending:contacto" }
+    requirements: { _method: post|put }    
+
+timeout_aviso:
+    pattern:   /timeout
+    defaults: { _controller: "FrameworkBundle:Redirect:redirect", route: _login }
+    
+logout:
+    path:   /logout
+    defaults: { _controller: "FrameworkBundle:Redirect:redirect", route: _login }
+
+login_check:
+    pattern: /login_check
+    
+public:
+    pattern:   /public
+    defaults:  { _controller: "SecurityXtendingBundle:SecurityXtending:publicData" }  
+    

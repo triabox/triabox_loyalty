@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box show-grid clearfix">
+			<br />
+			<div class="main-box-body clearfix">
+				{% if entities is empty %}
+				<h5 class="pull-left">{% trans %}No se encontraron usuarios{% endtrans %}</h5>
+				{% endif %}
+				<div class="row">{% include 'UserBundle:User:list_users.html.twig'
+					with {'entities': entities,'type': type } %}</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+

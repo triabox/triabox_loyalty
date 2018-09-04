@@ -1,0 +1,66 @@
+
+				
+				<div class="form-group">
+					<label for="name">{% trans %}Nombre{% endtrans %}</label>
+					<input name="{{ form.name.vars.full_name }}" value="{{ form.name.vars.value }}" type="name" class="form-control" id="name" placeholder="Ingrese Nombre" >
+				</div>
+				<div class="form-group">
+					<label for="lastname">{% trans %}Apellido{% endtrans %}</label>
+					<input name="{{ form.lastname.vars.full_name }}" value="{{ form.lastname.vars.value }}" type="lastname" class="form-control" id="lastname" placeholder="Ingrese Apellido" >
+				</div>
+				<div class="form-group">
+					<label for="date">{% trans %}Fecha de Nacimiento{% endtrans %}</label>
+					<div class="input-group" data-date-format="dd-mm-yyyy">
+						<input type="text" class="form-control" id="date" name="{{ form.birhDate.vars.full_name }}"  value="{% if form.birhDate.vars.value %}{{ form.birhDate.vars.value }}{% endif %}" >
+						
+						<span class="input-group-addon"><i class="fa fa-th"></i></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email">{% trans %}Email{% endtrans %}</label>
+					<input name="{{ form.email.vars.full_name }}" value="{{ form.email.vars.value }}" type="email" class="form-control" id="email" placeholder="Enter email" data-validate="validate">
+				</div>
+				<div class="form-group">
+				<label for="phoneNumber">{% trans %}Telefono{% endtrans %} </label>
+				<input name="{{ form.phoneNumber.vars.full_name }}" value="{{ form.phoneNumber.vars.value }}" class="form-control" id="cel" placeholder="Ingresar Telefono">
+				
+				</div>
+				<div class="form-group">
+				<label for=sport>{% trans %}Deporte Favorito{% endtrans %} </label>
+					<div class="form-group form-group-select2">
+						{{ form_widget(form.sport) }}
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="address">{% trans %}Direccion{% endtrans %} </label>
+					<input name="{{ form.street.vars.full_name }}" value="{{ form.street.vars.value }}" class="form-control" id="street" 
+					placeholder="Ingresar Calle">
+					<input name="{{ form.number.vars.full_name }}" value="{{ form.number.vars.value }}" class="form-control" id="{{ form.number.vars.full_name }}" 
+					placeholder="Ingresar Numero">
+					<input name="{{ form.piso.vars.full_name }}" value="{{ form.piso.vars.value }}" class="form-control" id="{{ form.piso.vars.full_name }}" 
+					placeholder="Ingresar Piso">
+				</div>
+				
+				
+				
+				<div style="visibility: hidden;">
+				{{ form_widget(form.latitude) }}
+				{{ form_widget(form.longitude) }}
+				{{ form_widget(form.tipeUser) }}
+				{{ form_widget(form.password) }}
+				{{ form_widget(form.codePassword) }}
+				{{ form_widget(form.salt) }}
+				{{ form_widget(form.firstTime) }}
+                {{ form_widget(form.createTime) }}
+				</div>
+
+
+				<script type="text/javascript">
+				
+				$('#date').datepicker({
+		  		format: 'mm-dd-yyyy'
+				});
+				</script>
+				

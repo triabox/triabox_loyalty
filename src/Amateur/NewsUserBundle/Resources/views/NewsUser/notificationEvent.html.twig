@@ -1,0 +1,29 @@
+<li class="dropdown hidden-xs">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" id="notificationEvent" >
+		<i class="fa fa-bell"></i>
+		
+		
+	</a>
+	<ul class="dropdown-menu notifications-list">
+		<li class="pointer">
+			<div class="pointer-inner">
+				<div class="arrow"></div>
+			</div>
+		</li>
+		
+		{% for news in notifications %}
+		<li class="item">
+			<a href="{{ path('event_show', { 'id': news.event.id }) }}">
+				<i class="fa fa-comment"></i>
+				<span class="content">{% if news.type == "03" %}{{ news.user.name }}{% endif %}  {{ news.comment }} {{ news.event.name }} </span>
+{# 				<span class="time"><i class="fa fa-clock-o"></i>{% if news.createTime %}{{ news.createTime|date('Y-m-d H:i:s') }}{% endif %}</span>#}
+			</a>
+		</li>
+		{% endfor %}			
+{# 		<li class="item-footer">#}
+{# 			<a href="#">#}
+{# 				View all notifications#}
+{# 			</a>#}
+{# 		</li>#}
+	</ul>
+</li>

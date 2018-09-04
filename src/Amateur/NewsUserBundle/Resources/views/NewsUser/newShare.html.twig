@@ -1,0 +1,62 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+
+	{% block header_meta %}
+    <meta property="og:url"           content="http://www.triabox.com/news/{{ entity.id }}" />
+    <meta property="og:title"         content="{{ entity.title }}" />
+    <meta property="og:description"   content="{% if entity.description == '' %}{{ entity.comment[:100]  }} ...{% else %}{{ entity.description[:100] }}...{% endif %}" />
+    <meta property="og:image"         content="{% if entity.urlImagen != '' %}{{entity.urlImagen}}{% else %}http://www.triabox.com{%include 'user_photo.html.twig' with {'user': entity.user } %}{% endif %}" />
+	
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:description" content="{% if entity.description == '' %}{{ entity.comment[:100]  }} ...{% else %}{{ entity.description[:100] }}...{% endif %}"/>
+	<meta name="twitter:title" content="{{ entity.title }}"/>
+	<meta name="twitter:site" content="@triabox"/>
+	<meta name="twitter:domain" content="triabox.com"/>
+	<meta name="twitter:image:src" content="{% if entity.urlImagen != '' %}{{entity.urlImagen}}{% else %}http://www.triabox.com{%include 'user_photo.html.twig' with {'user': entity.user } %}{% endif %}"/>
+	<meta name="twitter:domain" content="TriaBox"/>
+	
+	{% endblock %}
+{% block main_box_label %}{% endblock %}
+											{% block main_box_label_right %}
+											<div class="icon-box pull-right">
+												<div class="fb-share-button" data-href="http://www.triabox.com/news/{{ entity.id }}" data-layout="button_count"></div>
+												<a href="https://twitter.com/share" class="twitter-share-button" data-text="{% if entity.comment != '' %}{{ entity.comment[:100]  }} ...{% else %}{{ entity.title[:100] }}...{% endif %}" data-url="http://www.triabox.com/news/{{ entity.id }}" data-via="TriaBox" data-dnt="true">Tweet</a>
+											</div>
+											{% endblock %}
+
+{% block main_box -%}
+<div class="main-box-body clearfix" id="novedades">
+	<div id="newsfeed">
+{% include 'NewsUserBundle:NewsUser:newsWebSite.html.twig' with {'entity': entity } %}	
+<div class="story">
+</div>			
+	</div>
+</div>
+	
+{% endblock %}
+	{% block lateral_box_up_label %}Mas actividad del usuario{% endblock %}
+												
+	{% block lateral_box_up %}
+			<div id="newsfeed">
+
+	        <div id="moreNews_1">
+				
+				
+			</div>	
+				
+																							
+		</div>
+	{% endblock %}
+	{% block script_custom %}
+
+	 $('#moreNews_1').load('{{ path('news_user', { 'firstResult': min_records,'maxResults': 3 ,'userId': entity.user.id  }) }}');
+	
+
+	{% endblock %}
+
+
+
+
+
+	
+
+

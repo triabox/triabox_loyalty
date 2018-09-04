@@ -1,0 +1,84 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}{% trans %}Novedades{% endtrans %}{% endblock %}
+{% block main_box -%}
+<div class="main-box-body clearfix" id="novedades">
+	
+			<form action="{{ path('newsuser_create') }}" method="post" {{ form_enctype(form) }}>
+				<div class="row">
+					<div class="form-group col-xs-12">
+						<textarea class="form-control" rows="2" placeholder="Estas entrenando?..." name="{{ form.comment.vars.full_name }}"></textarea>
+						{{ form_row(form._token) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-12">
+						{% trans %}Cual fue tu entrenamiento del dia?{% endtrans %}
+					</div>
+				</div>
+				<div class="row">
+					
+						<div class="form-group form-group-select2 col-xs-4"">
+							<select style="width:200px" id="sel2" name="{{ form.activity.sport.vars.full_name}}">
+								<option value="9">{% trans %}Running{% endtrans %}</option> 
+								<option value="1">{% trans %}Natacion{% endtrans %}</option> 
+								<option value="2">{% trans %}Bicicleta{% endtrans %}</option> 
+							</select>
+						</div>
+					
+					<div class="form-group col-xs-4">
+						<input type="text" class="form-control" placeholder="distancia" name="{{ form.activity.distance.vars.full_name }}">
+					</div>
+					<div class="form-group col-xs-4">
+						<input type="text" class="form-control" placeholder="tiempo" name="{{ form.activity.time.vars.full_name }}">
+					</div>
+				</div>
+				
+				<div class="clearfix">
+					<button type="submit" class="btn btn-success pull-right">{% trans %}enviar novedad{% endtrans %}</button>
+				</div>
+			</form>
+		
+		<div id="newsfeed">
+		
+		<div id="newComent">
+			
+			
+		</div>	
+		
+        <div id="moreNews_1">
+			
+			
+		</div>	
+				
+																							
+		</div>
+		
+
+</div>
+   
+{% endblock %}
+
+
+
+
+	{% block script_custom %}
+		
+	 
+
+	 
+	  
+	   function appendNews(link,idNews){
+	 	$(idNews).append($('<div>').load(link));
+	  
+	  }
+	  
+	
+	  
+	  
+	$('#moreNews_1').load('{{ path('more_news_user', { 'firstResult': min_records,'maxResults': max_records }) }}');
+	
+
+   
+   		
+	{% endblock %}
+    

@@ -1,0 +1,56 @@
+<div class="main-box clearfix profile-box-stats"> 
+ 			<div class="main-box-body clearfix">
+ 				<div class="profile-box-header purple-bg clearfix" style="background-image: url(../../img/samples/nature.jpg);">
+						<h2>{{ form.name.vars.value }} {{ form.lastname.vars.value }}</h2>
+						<div class="job-position">
+							{{ form.username.vars.value }}
+						</div>
+						{% if form.photo.vars.value != "" %}
+						<img id="archivo" src="{{ asset(form.photo.vars.value) }}" class="profile-img img-responsive" />						
+						{% endif %}
+				</div>
+				 <div class="profile-box-footer clearfix">
+					<a href="#">
+						<span class="value"></span>
+						<span class="label"></span>
+					</a>
+					<a href="#">
+						<span class="value"></span>
+						<span class="label"></span>
+					</a>
+					<a href="#">
+						<span class="value"></span>
+						<span class="label"></span>
+					</a>
+				</div>    
+			</div>
+</div>
+			<div class="form-group">
+					<label for="photo">{% trans %}Foto{% endtrans %}</label>
+					{{ form_widget(form.file) }}
+					<div style="visibility: hidden;">{{ form_widget(form.photo) }}</div>
+					
+				</div>
+				
+				<div class="form-group">
+					<label for="username">{% trans %}Usuario{% endtrans %}</label>
+					<input name="{{ form.username.vars.full_name }}" value="{{ form.username.vars.value }}" type="username" class="form-control" id="username" placeholder="Ingrese Usuario" >
+					
+				</div>
+				{%  include 'UserBundle:User:layoutUser.html.twig' with {'form': form } %}
+				<div class="form-group">
+				<input id="{{ form.city.vars.id }}" class="controls" name="{{ form.city.vars.full_name }}" value="{{ form.city.vars.value }}" id="address"
+			        placeholder="{% trans %}Ingrese Lugar{% endtrans %}">
+			    </div>
+				<div class="form-group">
+						<label for="email">{% trans %}Donde vivis?{% endtrans %}</label>
+						<div class="main-box clearfix">
+							
+							<div class="main-box-body clearfix">
+								<div id="map-geo" class="map-content" style="height: 400px; width: 750px"></div>
+							</div>
+						</div>
+					
+					
+				</div>
+		<button type="submit" class="btn btn-success">Enviar</button>

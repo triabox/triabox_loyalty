@@ -1,0 +1,22 @@
+	<form role="form" action="{{ path('enrolled_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+	
+		{% include 'EventBundle:Event:layoutEnrolled.html.twig' with {'entity': entity,'form': form } %}
+	
+	</form>
+		
+	<script type="text/javascript">
+		$('#{{ form.category.vars.id}}').select2();
+
+		
+			//timepicker
+			$('#tiempoNoOficial').timepicker({
+			minuteStep: 5,
+			showSeconds: true,
+			showMeridian: false,
+			disableFocus: false,
+			showWidget: true
+										}).
+			focus(function() {$(this).next().trigger('click');});
+				
+		
+	</script>

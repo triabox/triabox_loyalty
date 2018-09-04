@@ -1,0 +1,63 @@
+	
+	
+	<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">{% trans %}Datos Participacion{% endtrans %}</h4>
+			</div>
+			<div class="modal-body">
+					
+					<div class="form-group">
+						<label for="tiempoNoOficial">{% trans %}Tiempo Objetivo{% endtrans %}</label>
+						
+						<div class="input-group input-append bootstrap-timepicker">
+							<input type="text" class="form-control" id="{{ form.objetive.vars.id  }}" placeholder="{% trans %}Objetivo{% endtrans %}"  name="{{ form.objetive.vars.full_name }}"  id="{{ form.objetive.vars.full_name }}" value="{{ entity.objetive}}" >
+							<span class="add-on input-group-addon"><i class="fa fa-clock-o"></i></span>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="tiempoNoOficial">{% trans %}Distancia{% endtrans %}</label>
+						<div class="input-group" >
+							<div class="form-group form-group-select2">
+								{{ form_widget(form.category) }}
+								</div>
+						</div>
+					</div>
+					
+			</div>
+			<div class="modal-footer">
+				<button  onclick="createEnrolled()" class="btn btn-primary">{% trans %}Enviar{% endtrans %}</button>
+			</div>
+		</div><!-- /.modal-content -->
+		
+	<script type="text/javascript">
+	
+		$('#{{ form.category.vars.id}}').select2();
+
+		
+			//timepicker
+			$('#{{ form.objetive.vars.id  }}').timepicker({
+			minuteStep: 5,
+			showSeconds: true,
+			showMeridian: false,
+			disableFocus: false,
+			showWidget: true
+										}).
+			focus(function() {$(this).next().trigger('click');});
+
+		
+			function createEnrolled(){
+                            
+                                var url = '{{ path('add_registration' , { 'tiempo' :'tiempo_value','distancia' :'distancia_value','idEvent' :event.id }) }}';
+                                var url_value = url.replace('tiempo_value', $('#{{ form.objetive.vars.id }}').val());
+                                url_value = url_value.replace('distancia_value', $( "#{{ form.category.vars.id}} option:selected" ).val());
+		
+                                $('#modificacion{{ event.id }}').load(url_value);
+                            
+			
+			  
+			  }	
+			$('html, body').animate({ scrollTop: $('#modificacion{{ entity.id }}').offset().top }, 'slow');
+		
+	</script>

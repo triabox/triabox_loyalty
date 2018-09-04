@@ -1,0 +1,30 @@
+parameters:
+    xtending_user_security.component.authentication.handler.login_failure_handler.class: Xtending\SecurityXtendingBundle\Component\Authentication\Handler\LoginSuccessHandler
+    xtending_user_security.component.authentication.handler.logout_success_handler.class: Xtending\SecurityXtendingBundle\Component\Authentication\Handler\LogoutSuccessHandler
+    xtending_user_security.component.authentication.handler.Session_Idle_Handler.class: Xtending\SecurityXtendingBundle\Component\Authentication\Handler\SessionIdleHandler
+    ib_user.oauth_user_provider.class:  Xtending\SecurityXtendingBundle\Component\Authentication\Handler\OAuthUserProvider
+    hwi_oauth.authentication.provider.oauth.class: Xtending\SecurityXtendingBundle\Component\Authentication\Handler\OAuthProvider
+    
+services:
+    xtending_user_security.component.authentication.handler.login_failure_handler:
+        class:  %xtending_user_security.component.authentication.handler.login_failure_handler.class%
+        arguments:  [@router, @security.context]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' } 
+    xtending_user_security.component.authentication.handler.logout_success_handler:
+        class:  %xtending_user_security.component.authentication.handler.logout_success_handler.class%
+        arguments:  [@service_container, @router]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+    my.handler.session_idle:
+        class: %xtending_user_security.component.authentication.handler.Session_Idle_Handler.class%
+        arguments: ["@session", "@security.context", "@router", %session_max_idle_time%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    ib_user.oauth_user_provider:
+        class:  %ib_user.oauth_user_provider.class%
+        arguments: [ @doctrine.orm.entity_manager, @security.encoder_factory ]
+        
+    hwi_oauth.user.provider.entity:
+        class: Amateur\ObjectBundle\Entity\User
+         

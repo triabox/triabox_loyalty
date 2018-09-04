@@ -1,0 +1,308 @@
+<div class="row" id="principal-main-box">
+									<div class="col-md-8">
+											
+										<div class="main-box" id="main-box">
+										
+										<header class="main-box-header clearfix">
+											<h2>Seguimiento Online</h2>
+											
+											<div class="icon-box pull-right">
+												
+											</div>
+											
+										</header>
+											<div id="login">
+														
+											
+											</div><!-- /.modal-content -->
+				
+			{% set ambiente = 'http://www.triabox.com'  %}						
+<div class="main-box clearfix profile-box-menu">
+	<div class="main-box-body clearfix">
+		
+		<div class="profile-box-header green-bg clearfix" style="background-image: url(http://www.triabox.com{{ asset(entity.photoBackground) }});">
+			<img src="http://www.triabox.com{{ asset(entity.photo) }}"alt="" class="profile-img img-responsive" />
+			<h2 style="color: black;">{{ entity.name }}</h2>
+			<div class="icon-box pull-right">
+			{% set url = '/event/show/map/'~name~'/'~entity.id~'/online'  %}
+			{% set comment = '[Estoy participando en '~entity.name~ ']: Mira mi progreso online en triabox'  %}
+		
+			
+		<div class="story-time">
+			<div class="btn-group">
+			<button type="button" class="btn btn-info" target="_blank" data-mce-target="_blank"  onclick="window.open('http://twitter.com/share?text={{ comment }} &url={{ ambiente }}{{ url }}&hashtags=triabox')"><i class="fa fa-twitter"></i></button>
+			<button type="button" class="btn btn-info btn-facebook" target="_blank" data-mce-target="_blank" 
+			onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ ambiente }}{{ url }}')"><i class="fa fa-facebook"></i></button>
+		
+		</div>
+</div>
+		
+			</div>
+												
+		</div>
+		<div align="center">
+	
+				<button type="button" class="btn btn-primary btn-lg" onclick='start()'  >
+					<span class="fa fa-play"></span> {% trans %}Iniciar {% endtrans %} 
+				</button>
+				<button type="button" class="btn btn-primary btn-lg" onclick='stop()'   >
+					<span class="fa fa-stop"></span> {% trans %}Detener {% endtrans %} 
+				</button>
+	
+		</div>
+		<div>
+			<div class="alert alert-info" align="center">
+						
+						<h1><i class="fa fa-clock-o fa-fw fa-lg"></i><strong id="hour">00</strong>
+                <strong class="divider">:</strong>
+                <strong id="minute">00</strong>
+                <strong class="divider">:</strong>
+                <strong id="second">00</strong></h1>   
+			</div>
+		</div>
+		
+	</div>
+</div>						
+{# <div id="map" style="height: 700px"></div>#}
+	
+											
+											
+										</div>
+									
+									</div>
+	
+										<div class="col-md-4">
+										
+											<div class="main-box">
+												<header class="main-box-header clearfix">
+													<h2 class="pull-left">Estadisticas</h2>
+												</header>
+												
+												
+												<div id="map_distancia" ></div>
+													
+											</div>	
+																				
+										</div>
+									
+										<div class="col-md-4">
+											<div class="main-box weather-box">
+												<header class="main-box-header clearfix">
+													<h2 class="pull-left">Intervalos</h2>
+												</header>
+												<div id="map_intervalo" ></div>	
+													
+											</div>	
+																					
+										</div>
+										
+									</div>
+
+<div style="visibility: hidden;">
+									<input id="name" name="name" value="{{ name }}">
+									<input id="idEvento" name="idEvento" value="{{ entity.id }}">
+									</div>
+	
+<script>
+		
+// This example creates a 2-pixel-wide red polyline showing the path of William
+// Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+// Brisbane, Australia.
+
+//var	ambiente = "http://localhost/triabox/web/app_dev.php";
+//var ambiente = "http://www.triabox.com/web/app_test.php";
+var ambiente = "http://www.triabox.com";
+
+
+
+var lastPointTime;
+var reloadEstTime;
+var reloadIntTime;
+var cronometro;
+var tiempo = {
+        hora: 0,
+        minuto: 0,
+        segundo: 0
+    };
+
+var tiempo_corriendo = null;
+
+var poly;
+var map;
+var markers = [];
+
+function initMap() {
+ map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: {lat:-34.6027687, lng: -58.367339484}  // Center the map on Chicago, USA.
+  });
+
+  poly = new google.maps.Polyline({
+    strokeColor: '#000000',
+    strokeOpacity: 1.0,
+    strokeWeight: 3
+  });
+  poly.setMap(map);
+
+}
+
+// Adds a marker to the map and push to the array.
+function addMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    title: '{{ name }}',
+    map: map
+  });
+  markers.push(marker);
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+
+
+// Handles click events on a map, and adds a new point to the Polyline.
+function addLatLng(lat,lng) {
+  var path = poly.getPath();
+	
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+  path.push(new google.maps.LatLng(lat, lng));
+deleteMarkers();
+  	// Add a new marker at the new plotted point on the polyline.
+ 	addMarker(new google.maps.LatLng(lat, lng));
+}
+
+function getLastPoint(){
+
+ $.ajax({
+    // la URL para la petición
+ {#    url : '{{ path('event_lastpoint', { 'name': name,'idEvent': idEvent   }) }}',#}
+  	 url : ambiente+'/event/last/point/{{ name }}/{{ idEvent }}/online', 
+    // especifica si será una petición POST o GET
+    type : 'GET',
+ 
+    // el tipo de información que se espera de respuesta
+    dataType : 'json',
+ 
+    // código a ejecutar si la petición es satisfactoria;
+    // la respuesta es pasada como argumento a la función
+    success : function(json) {
+        //alert("posicion".concat(json.long, json.lant));
+        
+        addLatLng(json.lant,json.long);
+    },
+ 
+    // código a ejecutar si la petición falla;
+    // son pasados como argumentos a la función
+    // el objeto de la petición en crudo y código de estatus de la petición
+    error : function(xhr, status) {
+        //alert('Disculpe, existió un problema');
+    },
+ 
+    // código a ejecutar sin importar si la petición falló o no
+    complete : function(xhr, status) {
+        
+    }
+});
+
+}
+
+function reloadEstadistica(){
+
+$('#map_distancia').load(ambiente+'/event/distance/map/{{ name }}/{{ entity.id }}/online');
+
+}
+
+function reloadIntervalo(){
+$('#map_intervalo').load(ambiente+'/event/interval/map/{{ name }}/{{ entity.id }}/online');
+
+}
+function start(){
+	showNotification("success",'Vamos!!! Vamos!!! Vamos!!!  Inicio la carrera');
+	positionTime =  setInterval(sendPosition, 45000);
+// 	lastPointTime = setInterval(getLastPoint,15000); -> Para mostrar el mapa..
+// 	reloadEstTime = setInterval(reloadEstadistica,20000);
+// 	reloadIntTime = setInterval(reloadIntervalo, 30000);
+	carga();
+
+}
+
+function sendPosition(){
+	getPosition('{{ name }}','{{ entity.id }}');
+}
+
+function stop(){
+	showNotification("notice",'Un momento!!! vas a descansar ahora??!!!');
+    clearInterval(positionTime);
+//     clearInterval(lastPointTime);
+//     clearInterval(reloadEstTime);
+//     clearInterval(reloadIntTime);
+    clearInterval(cronometro);
+
+}
+
+function carga()
+    {
+	
+
+
+        cronometro = setInterval(
+
+            function(){
+            	// Segundos
+                tiempo.segundo++;
+                if(tiempo.segundo >= 60)
+                {
+                    tiempo.segundo = 0;
+                    tiempo.minuto++;
+                }      
+
+                // Minutos
+                if(tiempo.minuto >= 60)
+                {
+                    tiempo.minuto = 0;
+                    tiempo.hora++;
+                }
+
+                $("#hour").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+                $("#minute").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+                $("#second").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+
+
+            }
+
+            ,1000);
+    }
+
+
+
+	var count = 0;
+
+	
+
+
+	</script>
+
+
+

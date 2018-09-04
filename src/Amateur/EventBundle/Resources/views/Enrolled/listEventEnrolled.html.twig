@@ -1,0 +1,73 @@
+<div class="main-box-body clearfix">
+											<div class="table-responsive">
+												<table id="table-example" class="table table-hover">
+													<thead>
+														<tr>
+															<th>Participante</th>
+															<th>Email</th>
+															<th>Nacimiento</th>
+															<th>Codigo</th>
+															<th>Distancia</th>
+															<th>Estado</th>
+															<th>Accion</th>
+														</tr>
+													</thead>
+													<tbody>
+													{% for entity in entities %} 
+														<tr>
+															<td><a href="{{ path('user_show', { 'id': entity.user	.id }) }}" class="user-link">{{ entity.user.name }}<br> {{ entity.user.lastname }}</a></td>
+															<td>{{ entity.user.email }}</td>
+															<td>{{ entity.user.birhDate }}</td>
+															<td>{{ entity.code }}</td>
+															<td>{{ entity.category.name }}</td>
+															<td>
+															 {%  if  entity.payment is not null and entity.payment.state != "02" %}
+																<span class="label label-success">Pagado</span>
+															{% else %}	
+																<span class="label label-danger">Pendiente Pago</span>
+															{% endif %}
+															
+															</td>
+															<td>
+															 {%  if  entity.payment is not null and  entity.payment.state != "02" %}
+																<a href="javascript:moreData('#main-box','{{ path('enrolled_show', { 'id': entity.id  }) }}')" class="table-link">
+																	<span class="fa-stack">
+																		<i class="fa fa-square fa-stack-2x"></i>
+																		<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+																	</span>
+																</a>
+															{% else %}	
+																<a href="{{ path('user_show', { 'id': entity.user.id }) }}" class="table-link">
+																	<span class="fa-stack">
+																		<i class="fa fa-square fa-stack-2x"></i>
+																		<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+																	</span>
+																</a>
+															{% endif %}
+															
+															</td>
+														</tr>
+													{% endfor %}
+													</tbody>
+												</table>
+											</div>
+										</div>
+										
+<script>
+	$(document).ready(function() {
+		var table = $('#table-example').dataTable({
+			'info': false,
+			'sDom': 'lTfr<"clearfix">tip',
+			'oTableTools': {
+	            'aButtons': [
+	                {
+	                    'sExtends':    'collection',
+	                    'sButtonText': '<i class="fa fa-cloud-download"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i>',
+	                    'aButtons':    [ 'csv', 'xls', 'pdf', 'copy', 'print' ]
+	                }
+	            ]
+	        }
+		});
+	});
+	</script>
+										

@@ -1,0 +1,66 @@
+<div class="main-box clearfix profile-box-menu">
+	<div class="main-box-body clearfix">
+		<div class="profile-box-header green-bg clearfix"
+			style="background-image: url({{ asset(classification.event.photoBackground) }});">
+			<img src="{{ asset(classification.event.photo) }}" alt=""
+				class="profile-img img-responsive" />
+			<h2 style="color: black;">{{ classification.event.name }}</h2>
+			<div class="job-position" style="color: black;">{{
+				classification.event.startTime|date('d.m.y') }}</div>
+		</div>
+
+		<div class="profile-box-content clearfix">
+			<ul class="menu-items">
+				<li><a href="#" class="clearfix"> <i class="fa fa-arrow-right fa-lg"></i>
+						{% trans %}Participante{% endtrans %} : {{ classification.name }}
+						{{ classification.lastname }}
+
+				</a></li>
+				<li><a href="#" class="clearfix"> <i class="fa fa-arrow-right fa-lg"></i>
+						{% trans %}Deporte{% endtrans %} : {{ classification.event.sport
+						}}
+
+				</a></li> {% if classification.event.categories|length >= 1 %}
+				<li><a href="#" class="clearfix"> <i class="fa fa-arrow-right fa-lg"></i>
+						{% if classification.event.categories|length >= 1 %}{{
+						classification.event.categories[0].distanceTotal }}{% endif %}
+
+				</a></li> {% endif %}
+				<li><a href="#" class="clearfix"> <i class="fa fa-trophy fa-lg"></i>
+						{% trans %}Posicion{% endtrans %} : {{ classification.overallRank
+						}}
+
+				</a></li>
+				<li><a href="#" class="clearfix"> <i class="fa fa-child fa-lg"></i>
+						BIB : {{ classification.bib }}
+
+				</a></li>
+				<li><a href="#" class="clearfix"> <i class="fa fa-tachometer fa-lg"></i>{%
+						trans %}Tiempo Neto{% endtrans %} : {{ classification.netoTime }}
+
+				</a></li>
+				<li><a href="#" class="clearfix"> <i class="fa fa-tachometer fa-lg"></i>
+						{% trans %}Tiempo Oficial{% endtrans %} : {{
+						classification.officialTime }}
+
+				</a></li>
+				<li><a href="#" class="clearfix"> <i class="fa fa-map-marker fa-lg"></i>
+						{{ classification.event.city }} {{ classification.event.province
+						}} {{ classification.event.country }}
+
+				</a></li>
+				<li>
+					<div align="center">
+						<button type="button" class="btn btn-primary btn-lg"
+							onclick="window.location.href='{{ path('asigne_result', { 'idEvent': classification.event.id,'idClassification': classification.id }) }}'">
+							<span class="fa fa-reddit"></span> {% trans %}Aceptar Resultado{%
+							endtrans %}
+						</button>
+					</div>
+
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>

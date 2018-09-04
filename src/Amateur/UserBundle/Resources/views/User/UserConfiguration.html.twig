@@ -1,0 +1,44 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}{% trans %}Configuracion Usuario{% endtrans %}{% endblock %}
+{% block main_box -%}
+{%  include ':javascript:autocompleteMapStyle.html.twig' with {'placeId':  form.street.vars.id  } %}    
+<div class="main-box-body clearfix">      
+<form action="{{ path('user_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+
+										<div class="main-box-body clearfix">
+											<div class="tabs-wrapper">
+												<ul class="nav nav-tabs">
+													<li class="active"><a href="#tab-general" data-toggle="tab">{% trans %}General{% endtrans %}</a></li>
+													<li><a href="#tab-privacity" data-toggle="tab">{% trans %}Privacidad{% endtrans %}</a></li>
+												</ul>
+												
+												<div class="tab-content">
+													<div class="tab-pane fade in active" id="tab-general">
+														{% include 'UserBundle:User:edit.html.twig' with {'form': form}  %}
+													</div>
+													<div class="tab-pane fade" id="tab-privacity">
+														{% include 'UserBundle:User:editPrivacity.html.twig' with {'form': form}  %}
+													</div>
+													
+												</div>
+											</div>
+											
+										</div>
+						
+							</div>
+</form>
+{% endblock %}
+
+		{% block script_custom %}
+		
+	 	
+		$('#{{ form.sport.vars.id}}').select2();
+		{% include 'dateScript.html.twig' with {'id': 'startTime' } %}
+	
+																																																																																						
+		{%  include ':javascript:autocompleteMap.html.twig' with {'form': form, 'place': form.city.vars.value , 'placeId':  form.city.vars.id  } %}																																																							
+	
+		
+		
+   
+   		{% endblock %}

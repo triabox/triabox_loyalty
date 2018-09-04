@@ -1,0 +1,114 @@
+<section id="col-left" class="col-left-nano">
+						<div id="col-left-inner" class="col-left-nano-content">
+							{% if app.user is not null %}
+							<div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
+								<img alt="" src="{%  include 'user_photo.html.twig' with {'user': app.user } %}" />
+							
+								<div class="user-box">
+								
+									<span class="name">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+											{{ app.user.name }} <br>{{ app.user.lastname }} 
+											<i class="fa fa-angle-down"></i>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#{{ path('user_show', { 'id': app.user.id }) }}"><i class="fa fa-user"></i>Profile</a></li>
+{# 											<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>#}
+{# 											<li><a href="email-inbox.html"><i class="fa fa-envelope-o"></i>Mensajes</a></li>#}
+											<li><a href="{{ path('logout') }}"><i class="fa fa-power-off"></i>Logout</a></li>
+										</ul>
+									</span>
+									<span class="status">
+										<i class="fa fa-circle"></i>{% trans %}En Linea{% endtrans %} 
+									</span>
+								
+								</div>
+							</div>
+							{% endif %}
+							<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+								<ul class="nav nav-pills nav-stacked">
+									<li class="nav-header nav-header-first hidden-sm hidden-xs">
+										
+									</li>
+									{% if app.user is not null %}
+									<li>
+										
+										<a href="{{ path('newsuser') }}">
+											<i class="fa fa-comment-o" ></i>
+											<span>Novedades</span>
+											<span class="label label-primary label-circle pull-right"></span>
+										</a>
+									</li>
+									{% endif %}
+{# 									<li>#}
+{# 										<a href="email-inbox.html" class="dropdown-toggle">#}
+{# 											<i class="fa fa-envelope"></i>#}
+{# 											<span>Mensajes</span>#}
+												
+{# 										</a>#}
+										
+{# 									</li>#}
+									<li>
+										<a href="#" class="dropdown-toggle">
+											<i class="fa fa-trophy"></i>
+											<span>Eventos</span>
+											<i class="fa fa-angle-right drop-icon"></i>
+										</a>
+										<ul class="submenu">
+											<li>
+												<a href="{{ path('event_list_next') }}">
+													Proximos
+												</a>
+											</li>
+											{% if app.user is not null %}
+											<li>
+												<a href="{{ path('event_next') }}">
+													Inscripto
+												</a>
+											</li>
+											<li>
+												<a href="{{ path('event_past') }}" >
+													Finalizados
+												</a>
+											</li>
+											<li>
+												<a href="{{ path('search_result') }}">
+													Buscar resultados
+												</a>
+											</li>
+											{% endif %}
+{# 											<li>#}
+{# 												<a href="{{ path('event_calendar') }}">#}
+{# 													Calendar#}
+{# 												</a>#}
+{# 											</li>#}
+										</ul>
+									</li>
+{# 									<li>#}
+{# 										<a href="gallery.html" class="dropdown-toggle">#}
+{# 											<i class="fa fa-bar-chart-o"></i>#}
+{# 											<span>Fotos</span>#}
+									
+{# 										</a>#}
+{# 									</li>#}
+									<li>
+										{% if app.user is not null %}
+										<a href="{{ path('friends') }}">
+											<i class="fa  fa-users"></i>
+											<span>Amigos</span>
+											
+										</a>
+											{% endif %}
+										
+									</li>
+									
+									
+									
+									
+									
+									
+								</ul>
+							</div>
+						</div>
+					</section>
+					<div id="nav-col-submenu"></div>

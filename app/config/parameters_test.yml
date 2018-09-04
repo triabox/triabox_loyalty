@@ -1,0 +1,17 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: triabox_test_db
+    database_user: root
+    database_password: 
+    mailer_transport: smtp
+    #para usar de manera local
+    mailer_host: smtp.sendgrid.net
+    mailer_port: 587
+    mailer_user: triabox
+    mailer_password: Jona.05-16
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
+    session_max_idle_time: 2700

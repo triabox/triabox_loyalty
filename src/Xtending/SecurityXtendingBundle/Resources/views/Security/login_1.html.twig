@@ -1,0 +1,66 @@
+
+{% extends 'layout_formulario_html.twig' %}
+
+{% block head_layout %}
+
+
+{% endblock %}
+
+{% block form_title %}{% trans %}login{% endtrans %}{% endblock %}
+
+{% block mainpage_layout -%}
+	<div class="login-box">
+<div class="login-border">
+<div class="login-style">
+  <div class="login-header">
+    <div class="login-logo clear">
+        <span class="textlogo">
+          <span class="title"><img src="{{ asset('bundles/frontend/images/site-logo.png') }}" />      </div></span>
+
+          <span class="text">
+          {% if error %}
+    			<div>{{ error.message }}</div>
+		  {% endif %}
+		</span>
+        </span>
+      <div class="picture">
+        
+    </div>
+  </div>
+  <form action="{{ path('login_check') }}" method="post">
+
+  <div class="login-inside">
+    <div class="login-data">
+
+      <p>&nbsp;</p>
+
+      <div class="row clear">
+        <label for="user">{% trans %}usuario.email{% endtrans %}:</label>
+        <input  type="text" id="username" name="_username" value="{{ last_username }}" />
+      </div>
+      <div class="row clear">
+
+        <label for="password">{% trans %}password{% endtrans %}:</label>
+        <input type="password" id="password" name="_password"  />      </div>
+      <div class="row clear">
+      </div>
+		<button type="input" class="button template">{% trans %}ingresar{% endtrans %}</button>
+	</div>    
+  </div>
+  <div class="login-footer clear">
+    <div class="login-links">
+      <p>
+        <a href="{{ path('login_recuperar_password') }}">{% trans %}olvido.contrasena{% endtrans %}?</a>
+
+      </p>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+</div>
+<div id="output"></div>
+
+{% endblock %}
+
+

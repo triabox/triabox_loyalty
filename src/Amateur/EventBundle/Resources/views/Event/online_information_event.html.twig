@@ -1,0 +1,63 @@
+
+		<div class="main-box clearfix profile-box-menu">
+										<div class="main-box-body clearfix">
+											
+											<div class="profile-box-header green-bg clearfix" style="background-image: url({{ asset(entity.photoBackground) }});">
+												<img src="{{ asset(entity.photo) }}"alt="" class="profile-img img-responsive" />
+												<h2 style="color: black;">{{ entity.name }}</h2>
+												<div class="job-position" style="color: black;">
+													{{ entity.startTime|date('d.m.y') }}
+												</div>
+											</div>
+											<div align="center">
+				
+														<button type="button" class="btn btn-primary btn-lg" onclick='timer.play();'  >
+															<span class="fa fa-reddit"></span> {% trans %}Iniciar Carrera{% endtrans %} 
+														</button>
+														<button type="button" class="btn btn-primary btn-lg" onclick='timer.pause();'   >
+															<span class="fa fa-reddit"></span> {% trans %}Detener Carrera{% endtrans %} 
+														</button>
+											
+											</div>
+											
+											<div class="profile-box-content clearfix">
+												<ul class="menu-items">
+													<li>
+														<a href="#" class="clearfix">
+															<i class="fa fa-arrow-right fa-lg"></i> Distancia recorrida: <div id="distance"></div>
+															
+														</a>
+													</li>
+													<li>
+														<a href="#" class="clearfix">
+															<i class="fa fa-arrow-right fa-lg"></i> Ritmo promedio
+															</a>
+													</li>
+													<li>
+														<a href="#" class="clearfix">
+															<i class="fa fa-arrow-right fa-lg"></i> 1k : 6:30m
+															</a>
+													</li>
+													
+													<li>
+														<a href="#" class="clearfix">
+															<i class="fa fa-arrow-right fa-lg"></i> Posicion Actual <div id="position"></div>
+															</a>
+													</li>
+											
+													
+												</ul>
+											</div>
+										</div>
+									</div>
+									</div>
+									<div style="visibility: hidden;">
+									<input id="name" name="name" value="{{ name }}">
+									<input id="idEvento" name="idEvento" value="{{ entity.id }}">
+									</div>
+	
+	
+	
+	
+
+	

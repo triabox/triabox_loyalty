@@ -1,0 +1,51 @@
+Xtending\EntityBundle\Entity\VerificacionEfectiva:
+    type: entity
+    table: verificacion_efectiva
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator: { strategy: AUTO }
+        supervisor:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: supervisor
+        auditor:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: auditor
+        fecha:
+            type: date
+            nullable: true
+            column: fecha
+        estadoSupervisor:
+            type: integer
+            nullable: true
+            column: estadoSupervisor
+        estadoAuditor:
+            type: integer
+            nullable: true
+            column: estadoAuditor
+        estado:
+            type: integer
+            nullable: true
+            column: estado
+    manyToOne:
+      autor:
+        targetEntity: Contactos
+        joinColumn:
+                name: autor_id
+                referencedColumnName: id
+      accionCorrectiva:
+            targetEntity: AccionCorrectiva
+            inversedBy: verificacionesEfectivas
+            joinColumn:
+                name: accion_correctiva_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

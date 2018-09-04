@@ -1,0 +1,157 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+
+{% block header_meta %}
+    <meta property="og:url"           content="http://www.triabox.com/event/{{ entity.id }}/show" />
+    <meta property="og:title"         content="{{ entity.name }}" />
+    <meta property="og:description"   content="[{{ entity.sport }} - {{ entity.startTime|date('d.m.y') }} - {{ entity.startHs }}]  {{ entity.name }} - {{ entity.province }} - {{ entity.city }}" />
+    <meta property="og:image"         content="http://www.triabox.com/{{ asset(entity.photo) }}" />
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="[{{ entity.sport }} - {{ entity.startTime|date('d.m.y') }} - {{ entity.startHs }}]  {{ entity.name }} - {{ entity.province }} - {{ entity.city }}"/>
+    <meta name="twitter:title" content="{{ entity.name }}"/>
+    <meta name="twitter:site" content="@triabox"/>
+    <meta name="twitter:domain" content="triabox.com"/>
+    <meta name="twitter:image:src" content="http://www.triabox.com/{{ asset(entity.photo) }}"/>
+    <meta name="twitter:domain" content="TriaBox"/>
+
+{% endblock %}
+{% block main_box_label %}{{ entity.name }} {% endblock %}
+{% block main_box_label_right %}
+
+{% endblock %}
+
+{% block main_box -%}
+    <div class="main-box-body clearfix">
+
+
+
+        {% include 'EventBundle:Event:view.html.twig' with {'entity': entity } %}
+
+        {% include 'EventBundle:Event:eventInformation.html.twig' with {'entity': entity } %}				
+
+    </div>
+
+{% endblock %}
+{% block main_col %}{% endblock %}
+{% block lateral_box %}
+
+{% endblock %}
+
+
+
+
+{% block script_custom %}
+
+    
+
+    cant = "1";
+
+     function compare(idClasificacion){
+ 
+     var url = '{{ path('get_classification' , { 'idClassification' :'idClassification_value'}) }}';
+     var url_value = url.replace('idClassification_value', idClasificacion);
+     if(cant === "1"){
+     $('#result_1').load(url_value);
+     cant = "2";
+     }else{
+      $('#result_2').load(url_value);
+     cant = "1";
+     
+{#     $( "compartirComparar" ).show( 2000 );#}
+      
+     }
+   
+    }
+
+
+
+
+    function generateSliderLower(nameSlider,min,max,start,imputId,spanId) {
+
+    $(nameSlider).noUiSlider({
+    range: [min,max],
+    start: [start],
+    handles: 1,
+    connect: 'lower',
+    slide: function(){
+    var val = $(this).val();
+
+    $(imputId).val(
+    val
+    );
+    $(spanId).text(
+    val
+    );
+    },
+    set: function() {
+    var val = $(this).val();
+
+    $(imputId).val(
+    val
+    );
+    $(spanId).text(
+    val
+    );
+    }
+    });
+    $(nameSlider).val(start, true);
+    }
+
+    generateSliderLower('.slider-minmax',0,100,50,'#location','#location_span');
+    generateSliderLower('.slider-minmax1',0,100,50,'#circuit','#circuit_span');
+    generateSliderLower('.slider-minmax2',0,100,50,'#organization','#organization_span');
+
+    generateSliderLower('.slider-minmax3',0,100,50,'#nutrition','#nutrition_span');
+    generateSliderLower('.slider-minmax4',0,100,50,'#punctuality','#punctuality_span');
+    generateSliderLower('.slider-minmax5',0,100,50,'#assistance','#assistance_span');
+    generateSliderLower('.slider-minmax6',0,100,50,'#kit','#kit_span');
+
+
+    $(function() {
+    $('.chart').easyPieChart({
+    easing: 'easeOutBounce',
+    onStep: function(from, to, percent) {
+    $(this.el).find('.percent').text(Math.round(percent));
+    },
+    barColor: '#3498db',
+    trackColor: '#f2f2f2',
+    scaleColor: false,
+    lineWidth: 8,
+    size: 130,
+    animate: 1500
+    });
+    });
+
+
+    function appendNews(link,idNews){
+    $(idNews).append($('<div>').load(link));
+
+        }
+
+        $('#classifications_event').load('{{ path('list_classification', { 'tipe' :'next','idEvent' :entity.id ,'firstResult': min_records,'maxResults': 100 }) }}');
+
+
+        function autocompleteEvent(){
+            var url = '{{ path('event_rearch_result' , { 'search' :'search_value','idEvent' :entity.id }) }}';
+           
+            var value = $( "#search_value_event" ).val();
+          
+            var url_value = url.replace('search_value', encodeURIComponent(value));
+            
+            $('#classifications_event').load(url_value);
+        }
+
+        $( "#search_value_event").keyup(function() {
+        if($( "#search_value_event" ).val().length >= 3){
+        autocompleteEvent();
+        }
+
+        });
+
+    {% endblock %}	
+
+
+
+
+
+

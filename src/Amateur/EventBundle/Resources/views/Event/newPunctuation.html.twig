@@ -1,0 +1,22 @@
+{% extends '::layout_xtending_dashboard.html.twig' %}
+{% block main_box_label %}Crear Evento{% endblock %}
+{% block main_box -%}
+<div class="main-box-body clearfix">    
+				<form action="{{ path('event_create') }}" method="post" {{ form_enctype(form) }}>
+				
+				{% include 'EventBundle:Event:layoutEvent.html.twig' with {'form': form } %}								
+												
+				<button type="submit" class="btn btn-success">Sign in</button>
+</form>
+		</div>
+
+	<script type="text/javascript">
+
+	
+	</script>
+<!--
+
+//-->
+</script>
+{% endblock %}
+

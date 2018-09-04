@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description"  content=""/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="ALL,FOLLOW"/>
+<meta name="Author" content="AIT"/>
+<meta http-equiv="imagetoolbar" content="no"/>
+
+{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'bundles/frontend/css/reset.css'
+	   		'bundles/frontend/css/screen_yacht.css'
+	  		'bundles/frontend/css/fancybox.css'
+       		'bundles/frontend/css/jquery.wysiwyg.css'
+	   		'bundles/frontend/css/jquery.ui.css'
+	   		'bundles/frontend/css/visualize.css'
+	   		'bundles/frontend/css/visualize-light.css' %}
+		
+		    <link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+		<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/xtending/web/bundles/frontend/css/ie7.css" />
+	   <![endif]-->	
+{% endblock %}
+</head>
+<title>{% block title 'Xtending' %}</title>
+<link rel="shortcut icon" href="{{ asset('bundles/frontend/images/Ico_xte_16.ico') }}" ></link>
+
+
+{% block body %}
+<body>
+	{% block content %}
+	<div class="pagetop">
+		{% block head_layout %}
+				<div class="head pagesize"> <!-- *** head layout *** -->
+						{% block head_top %}
+							<div class="head_top">
+								  <div class="logo clear">
+									<div class="picture">
+									  <img src="{{ asset('bundles/frontend/images/velas_yatch_service.jpg') }}" alt="" class="picture" style="max-width: 60mm; max-height: 50mm"/>
+									 
+									  
+									</div>
+					
+									<span class="textlogo">
+									  <span class="title"></span>
+									  <span class="text"></span>
+									</span>
+					
+							  	  </div>
+					
+								 {%  include 'header.html.twig' %}
+					
+							</div>
+							{% endblock %}
+							{% block menu %}
+								<br/>
+								{%  include 'menu.html.twig' %}
+								
+						   {% endblock %}
+						</div>
+	</div>
+					{% block path %}
+						{%  include 'path.html.twig' %}
+					
+					 {% endblock %}
+			{% endblock %}
+			{% block mainpage_layout %}
+			
+			
+			{% endblock %}
+	
+	
+	
+	{% endblock %} 
+	{% block footer %}
+		<div class="footer">
+			<div class="pagesize clear">
+			<p class="bt-space15"><span class="copy"><strong>Powered by <a href="http://www.xtending.co/">Xtending</a></strong></span> </p>
+	
+			</div>
+		</div>
+	{% endblock %}
+	
+    {% block script %}
+			{% javascripts 
+				'bundles/frontend/js/jquery-1.7.2.min.js'
+				'bundles/frontend/js/jquery.visualize.js'
+				'bundles/frontend/js/jquery.wysiwyg.js'
+				'bundles/frontend/js/tiny_mce/jquery.tinymce.js'
+				'bundles/frontend/js/jquery.fancybox.js'
+				'bundles/frontend/js/jquery.idtabs.js'
+				'bundles/frontend/js/jquery.datatables.js'
+				'bundles/frontend/js/jquery.jeditable.js'
+				'bundles/frontend/js/jquery.ui.js'
+				'bundles/frontend/js/jquery.jcarousel.js'
+				'bundles/frontend/js/jquery.validate.js'
+				'bundles/frontend/js/excanvas.js'
+				'bundles/frontend/js/cufon.js'
+				'bundles/frontend/js/script.js'
+				output="scripts.js" %}
+		    	<script type="text/javascript" src="{{ asset_url }}"></script>
+		    {% endjavascripts %}
+			<script language="javascript" type="text/javascript">
+			{% include '::chatAyuda.html.twig'  %}
+				{% block script_custom %}
+				
+				{% endblock %}
+				{% block script_custom_ejecute %}
+				
+				{% endblock %}
+			</script>
+	   {% endblock %}
+</body>
+ {% endblock %}   
+
+ </html>
